@@ -28,5 +28,8 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<!-- Keys for Location Permission -->
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Can we use your location when is app is being used</string>
 </dict>
 </plist>
