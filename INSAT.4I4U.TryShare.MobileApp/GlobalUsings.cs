@@ -1,6 +1,5 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
-//global using MonkeyFinder.Model;
 global using INSAT._4I4U.TryShare.MobileApp.ViewModel;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
