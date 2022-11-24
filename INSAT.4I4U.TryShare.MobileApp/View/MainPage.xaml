@@ -4,26 +4,34 @@
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
+             xmlns:model="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Model"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage">
 
     <Grid>
-		<Map IsShowingUser="True">
-			<x:Arguments>
-				<MapSpan>
-					<x:Arguments>
-						<sensors:Location>
-							<x:Arguments>
-								<x:Double>43,3417567</x:Double> 
-								<x:Double>1,284699</x:Double>
-							</x:Arguments>
-						</sensors:Location>
-						<x:Double>0.01</x:Double>
-						<x:Double>0.01</x:Double>
-					</x:Arguments>
-				</MapSpan>
-			</x:Arguments>
-		</Map>
+		<Map IsShowingUser="True"
+             ItemsSource="{Binding Tricycle}">
+            <x:Arguments>
+                <MapSpan>
+                    <x:Arguments>
+                        <sensors:Location>
+                            <x:Arguments>
+                                <x:Double>43.5700699</x:Double>
+                                <x:Double>1.467344</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                        <x:Double>0.01</x:Double>
+                        <x:Double>0.01</x:Double>
+                    </x:Arguments>
+                </MapSpan>
+            </x:Arguments>
+            <Map.ItemTemplate>
+                <DataTemplate x:DataType="model:Tricycle">
+                    <Pin Location="{Binding Location}"
+                         Label ="{Binding Id}" />
+                </DataTemplate>
+            </Map.ItemTemplate>
+        </Map>
     </Grid>
 
 </ContentPage>
