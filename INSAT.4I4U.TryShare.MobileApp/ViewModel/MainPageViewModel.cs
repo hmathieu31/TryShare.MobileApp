@@ -1,25 +1,65 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 using INSAT._4I4U.TryShare.MobileApp.Model;
+using INSAT._4I4U.TryShare.MobileApp.Services;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using INSAT._4I4U.TryShare.MobileApp.Services.Trycicle;
+using CommunityToolkit.Mvvm.Input;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
 
-        readonly ObservableCollection<Tricycle> _tricycle;
-        public IEnumerable Tricycle => _tricycle;
-        public ICommand GetTricycleCommand { get; }
+        public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
-        public MainPageViewModel()
+        TrycicleMockService trycicleMockService;
+
+        public Command GetTricycleCommand { get; }
+
+        public MainPageViewModel(TrycicleMockService trycicleMockService)
         {
-            _tricycle = new ObservableCollection<Tricycle>();
-            _tricycle.Add(new Tricycle { Id = 1, Location = new Location(43.56, 1.46), BatteryPercentage = 12 });
-            _tricycle.Add(new Tricycle { Id = 2, Location = new Location(43.53, 1.52), BatteryPercentage = 12 });
+            Title = "Accueil";
+            this.trycicleMockService = trycicleMockService;
+            GetTricycleCommand = new Command(async () => await GetTricyclesAsync());
         }
 
+
+        async Task GetTricyclesAsync()
+        {
+            // Implémentation de la méthode qui accède au service
+            // et met les tricycles dans la `tricycles` (qui a été crée 
+            // automatiquement en caché normalement 
+            //- tu peux le vérifier en utilisant l'autocomplete)
+
+            if (IsBusy)
+                return;
+
+            try
+            {
+                IsBusy = true;
+                var Tricycles = await trycicleMockService.GetMockTrycicleList();
+
+                if (Tricycles.Count != 0)
+                    Tricycles.Clear();
+
+                foreach (var tricycle in Tricycles)
+                    Tricycles.Add(tricycle);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to get tricycle {ex.Message}");
+                await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+        }
 
     }
 }

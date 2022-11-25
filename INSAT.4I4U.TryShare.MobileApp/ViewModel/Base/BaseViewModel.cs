@@ -15,6 +15,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel.Base
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         bool isBusy;
 
+        [ObservableProperty]
+        string title;
         public bool IsNotBusy => !IsBusy;
     }
 }

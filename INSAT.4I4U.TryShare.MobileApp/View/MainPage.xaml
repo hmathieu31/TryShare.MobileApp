@@ -6,18 +6,20 @@
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
              xmlns:model="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Model"
              x:DataType="viewmodel:MainPageViewModel"
-             x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage">
+             x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
+             Title="{Binding Title}">
+             
 
     <Grid>
 		<Map IsShowingUser="True"
-             ItemsSource="{Binding Tricycle}">
+             ItemsSource="{Binding Tricycles}">
             <x:Arguments>
                 <MapSpan>
                     <x:Arguments>
                         <sensors:Location>
                             <x:Arguments>
-                                <x:Double>43.5700699</x:Double>
-                                <x:Double>1.467344</x:Double>
+                                <x:Double>43.570844</x:Double>
+                                <x:Double>1.467343</x:Double>
                             </x:Arguments>
                         </sensors:Location>
                         <x:Double>0.01</x:Double>
