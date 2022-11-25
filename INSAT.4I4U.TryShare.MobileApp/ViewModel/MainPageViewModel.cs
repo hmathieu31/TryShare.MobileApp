@@ -36,11 +36,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             {
                 IsBusy = true;
                 var tricycles = await trycicleMockService.GetMockTrycicleList();
+                
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();
 
-                foreach (var tricycle in Tricycles)
+                foreach (var tricycle in tricycles)
                     Tricycles.Add(tricycle);
 
             }
