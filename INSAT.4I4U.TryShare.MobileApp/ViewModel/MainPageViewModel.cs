@@ -14,7 +14,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
-        TrycicleMockService trycicleMockService;
+        readonly TrycicleMockService trycicleMockService;
 
         public Command GetTricycleCommand { get; }
 
@@ -28,10 +28,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         async Task GetTricyclesAsync()
         {
-            // Implémentation de la méthode qui accède au service
-            // et met les tricycles dans la `tricycles` (qui a été crée 
-            // automatiquement en caché normalement 
-            //- tu peux le vérifier en utilisant l'autocomplete)
 
             if (IsBusy)
                 return;
@@ -39,7 +35,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             try
             {
                 IsBusy = true;
-                var Tricycles = await trycicleMockService.GetMockTrycicleList();
+                var tricycles = await trycicleMockService.GetMockTrycicleList();
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();
