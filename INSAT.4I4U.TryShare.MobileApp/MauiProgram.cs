@@ -35,7 +35,7 @@ public static class MauiProgram
 	{
 		builder.Services
 			.AddSingleton<MainPage>();
-
+			.AddTransient<TricycleDetailsPage>();
 		return builder;
 	}
 
@@ -48,6 +48,7 @@ public static class MauiProgram
     {
         builder.Services
 			.AddSingleton<MainPageViewModel>();
+		    .AddTransient<TricycleDetailsViewModel>();
         return builder;
     }
 

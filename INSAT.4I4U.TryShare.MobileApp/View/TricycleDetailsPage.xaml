@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
+             x:DataType="viewmodel:TricycleDetailsViewModel"
+             x:Class="INSAT._4I4U.TryShare.MobileApp.View.TricycleDetailsPage"
+             Title="{Binding Tricycle.Id}">
+             
+    
+    <VerticalStackLayout Spacing="10" Padding="15">
+        <Label Text="Id"/>
+        <Label Text="Location"/>
+        <Label Text="BatteryPercentage"/>          
+    </VerticalStackLayout>
+</ContentPage>
