@@ -25,10 +25,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         async Task GetTricyclesAsync()
         {
-            // Implémentation de la méthode qui accède au service
-            // et met les tricycles dans la `tricycles` (qui a été crée 
-            // automatiquement en caché normalement 
-            //- tu peux le vérifier en utilisant l'autocomplete)
 
             if (IsBusy)
                 return;
