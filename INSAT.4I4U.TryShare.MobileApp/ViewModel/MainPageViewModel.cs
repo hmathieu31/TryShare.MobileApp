@@ -4,7 +4,7 @@ using INSAT._4I4U.TryShare.MobileApp.Services;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using INSAT._4I4U.TryShare.MobileApp.Services.Trycicle;
+using INSAT._4I4U.TryShare.MobileApp.Services.Tricycle;
 using CommunityToolkit.Mvvm.Input;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
@@ -14,18 +14,15 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
-        TrycicleMockService trycicleMockService;
+        readonly ITricycleService tricycleMockService;
 
-        public Command GetTricycleCommand { get; }
-
-        public MainPageViewModel(TrycicleMockService trycicleMockService)
+        public MainPageViewModel(ITricycleService tricycleMockService)
         {
             Title = "Accueil";
-            this.trycicleMockService = trycicleMockService;
-            GetTricycleCommand = new Command(async () => await GetTricyclesAsync());
+            this.tricycleMockService = tricycleMockService;
         }
 
-
+        [RelayCommand]
         async Task GetTricyclesAsync()
         {
             // Implémentation de la méthode qui accède au service
@@ -39,12 +36,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             try
             {
                 IsBusy = true;
-                var Tricycles = await trycicleMockService.GetMockTrycicleList();
+                var list = await tricycleMockService.GetTricycleList();
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();
 
-                foreach (var tricycle in Tricycles)
+                foreach (var tricycle in list)
                     Tricycles.Add(tricycle);
 
             }

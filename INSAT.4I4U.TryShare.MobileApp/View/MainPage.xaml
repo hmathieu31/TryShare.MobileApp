@@ -8,10 +8,10 @@
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
              Title="{Binding Title}">
-             
+
 
     <Grid>
-		<Map IsShowingUser="True"
+        <Map IsShowingUser="True"
              ItemsSource="{Binding Tricycles}">
             <x:Arguments>
                 <MapSpan>
@@ -34,6 +34,13 @@
                 </DataTemplate>
             </Map.ItemTemplate>
         </Map>
+        <Button Text="Get Tricycles" 
+                Command="{Binding GetTricyclesCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Style="{StaticResource ButtonOutline}"
+                Margin="100"/>
     </Grid>
 
 </ContentPage>
