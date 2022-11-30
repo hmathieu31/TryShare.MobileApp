@@ -9,7 +9,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Trycicle
     /// <summary>
     /// TODO Define the interface
     /// </summary>
-    public interface ITrycicleService
+    public interface ITricycleService
     {
         
     }
