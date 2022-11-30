@@ -1,9 +1,12 @@
-﻿namespace INSAT._4I4U.TryShare.MobileApp;
+﻿using INSAT._4I4U.TryShare.MobileApp.View;
+
+namespace INSAT._4I4U.TryShare.MobileApp;
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
+		Routing.RegisterRoute(nameof(TricycleDetailsPage), typeof(TricycleDetailsPage));
 	}
 }
