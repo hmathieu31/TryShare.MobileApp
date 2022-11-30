@@ -1,5 +1,5 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
-using BaseViewModel;
+using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
