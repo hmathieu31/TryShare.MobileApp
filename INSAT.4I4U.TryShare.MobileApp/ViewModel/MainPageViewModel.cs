@@ -27,7 +27,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             try
             {
                 IsBusy = true;
-                var list = await tricycleMockService.GetTricycleList();
+                var list = await tricycleMockService.GetTricyclesAsync();
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();

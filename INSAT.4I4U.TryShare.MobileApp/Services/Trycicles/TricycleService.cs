@@ -8,7 +8,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
     /// </summary>
     public class TricycleService : ITricycleService
     {
-        public Task<List<Tricycle>> GetTricycleList()
+        public Task<List<Tricycle>> GetTricyclesAsync()
         {
             throw new NotImplementedException();
         }

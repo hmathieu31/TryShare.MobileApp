@@ -15,7 +15,7 @@
             tricycleList.Add(new Model.Tricycle { Id = 000002, Location = new Location(43.53, 1.52), BatteryPercentage = 12 });
         }
 
-        public Task<List<Model.Tricycle>> GetTricycleList()
+        public Task<List<Model.Tricycle>> GetTricyclesAsync()
         {
             return  Task.FromResult(tricycleList);
         }
