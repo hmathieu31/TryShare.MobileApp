@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace INSAT._4I4U.TryShare.MobileApp.Model
 {
     /// <summary>
-    /// The connected Tricycle.
+    /// The connected Tricycles.
     /// </summary>
     public class Tricycle
     {
