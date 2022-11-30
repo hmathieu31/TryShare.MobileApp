@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace INSAT._4I4U.TryShare.MobileApp.Model
 {
     /// <summary>
-    /// The connected Trycicle.
+    /// The connected Tricycle.
     /// </summary>
-    public class Trycicle
+    public class Tricycle
     {
         [Key]
         public required int Id { get; set; }
