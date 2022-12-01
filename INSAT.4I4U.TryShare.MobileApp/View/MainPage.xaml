@@ -34,8 +34,9 @@
                 </DataTemplate>
             </Map.ItemTemplate>
         </Map>
-        <Button Text="Get Tricycles" 
-                Command="{Binding GetTricyclesCommand}"
+        <Button Text="Go to detail" 
+                Command="{Binding GoToDetailsCommand}"
+                CommandParameter="{Binding MockSelectedTricycle}"
                 IsEnabled="{Binding IsNotBusy}"
                 VerticalOptions="End"
                 HorizontalOptions="Center"
