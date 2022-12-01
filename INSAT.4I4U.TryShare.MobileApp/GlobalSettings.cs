@@ -11,14 +11,13 @@ namespace INSAT._4I4U.TryShare.MobileApp
         public const string AzureTag = "Azure";
         public const string MockTag = "Mock";
 #if DEBUG
-        public const string DefaultEndpoint = "http://localhost:5000";
+        public const string DefaultEndpoint = "https://localhost:7293";
 #else
-        public const string DefaultEndpoint = "http://localhost:5000";
+        public const string DefaultEndpoint = "https://localhost:7293";
 #endif
 
         private string _baseIdentityEndpoint;
         private string _baseGatewayShoppingEndpoint;
-        private string _baseGatewayMarketingEndpoint;
 
         public GlobalSettings()
         {

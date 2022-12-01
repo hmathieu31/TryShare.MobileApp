@@ -2,6 +2,7 @@
 using Microsoft.Maui.Controls.Hosting;
 using INSAT._4I4U.TryShare.MobileApp.Services;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -62,7 +63,8 @@ public static class MauiProgram
     private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
 		builder.Services
-			.AddSingleton<ITricycleService, TricycleMockService>();
+			.AddSingleton<ITricycleService, TricycleService>()
+			.AddSingleton<IRequestProvider, RequestProvider>();
         return builder;
     }
 }
