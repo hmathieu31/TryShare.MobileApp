@@ -1,13 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
+             xmlns:model="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Model"
              x:DataType="viewmodel:MainPageViewModel"
-             x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage">
+             x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
+             Title="{Binding Title}">
+
 
     <Grid>
-        <Map IsShowingUser="True"/>
-
+        <Map IsShowingUser="True"
+             ItemsSource="{Binding Tricycles}">
+            <x:Arguments>
+                <MapSpan>
+                    <x:Arguments>
+                        <sensors:Location>
+                            <x:Arguments>
+                                <x:Double>43.570844</x:Double>
+                                <x:Double>1.467343</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                        <x:Double>0.01</x:Double>
+                        <x:Double>0.01</x:Double>
+                    </x:Arguments>
+                </MapSpan>
+            </x:Arguments>
+            <Map.ItemTemplate>
+                <DataTemplate x:DataType="model:Tricycle">
+                    <Pin Location="{Binding Location}"
+                         Label ="{Binding Id}" />
+                </DataTemplate>
+            </Map.ItemTemplate>
+        </Map>
+        <Button Text="Get Tricycles" 
+                Command="{Binding GetTricyclesCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Style="{StaticResource ButtonOutline}"
+                Margin="100"/>
     </Grid>
 
 </ContentPage>

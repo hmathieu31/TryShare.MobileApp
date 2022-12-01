@@ -19,5 +19,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Model
 
         [Range(0, 100, ErrorMessage = "The value must be a whole percentage")]
         public required int BatteryPercentage { get; set; }
+
     }
 }
