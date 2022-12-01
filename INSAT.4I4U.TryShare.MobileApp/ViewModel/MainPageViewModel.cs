@@ -1,6 +1,7 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.View;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -8,6 +9,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     {
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
+
+        [ObservableProperty]
+        Tricycle mockSelectedTricycle;
 
         readonly ITricycleService tricycleMockService;
 
@@ -45,10 +49,24 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             {
                 IsBusy = false;
             }
-
-
         }
 
+        [RelayCommand]
+        async Task GoToDetailsAsync(Tricycle tricycle)
+        {
+            if (Tricycles.Count == 0)
+            {
+                await GetTricyclesAsync();
+                MockSelectedTricycle = Tricycles[0];
+                return;
+            }
+
+            if (tricycle == null)
+                return;
+
+            await Shell.Current.GoToAsync(nameof(TricycleDetailsPage), true, new Dictionary<string, object>
+                { {"Tricycle", tricycle } });
+        }
     }
 }
 
