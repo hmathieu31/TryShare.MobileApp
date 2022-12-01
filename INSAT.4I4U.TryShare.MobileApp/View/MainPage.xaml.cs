@@ -7,5 +7,9 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
         BindingContext = viewModel;
     }
+	async void OnDetailsButtonClicked()
+	{
+		await Shell.Current.GoToAsync(nameof(TricycleDetailsPage));
+	}
 }
 
