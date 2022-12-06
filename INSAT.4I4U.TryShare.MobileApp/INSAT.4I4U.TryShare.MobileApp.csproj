@@ -87,8 +87,4 @@
 	  <PackageReference Include="System.Text.Json" Version="7.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="OpenAPIs\swagger.json" ClassName="TricycleDto" />
-	</ItemGroup>
-
 </Project>
