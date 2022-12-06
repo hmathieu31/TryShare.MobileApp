@@ -1,8 +1,8 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.View;
 using Microsoft.Maui.Controls.Hosting;
 using INSAT._4I4U.TryShare.MobileApp.Services;
-using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
+using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 

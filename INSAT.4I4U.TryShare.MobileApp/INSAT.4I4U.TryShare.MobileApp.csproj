@@ -66,6 +66,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <OpenApiReference Include="OpenAPIs\swagger1.json" CodeGenerator="NSwagCSharp" Namespace="INSAT.4I4U.TryShare.Infrastructure" ClassName="TryShareApi">
+	    <SourceUri>https://insat-tryshare.azurewebsites.net/swagger/v1/swagger.json</SourceUri>
+	  </OpenApiReference>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="IdentityModel" Version="6.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="3.0.0">
@@ -79,6 +85,10 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="System.Text.Json" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="OpenAPIs\swagger.json" ClassName="TricycleDto" />
 	</ItemGroup>
 
 </Project>

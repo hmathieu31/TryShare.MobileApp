@@ -17,7 +17,7 @@
 
         public Task<List<Model.Tricycle>> GetTricyclesAsync()
         {
-            return  Task.FromResult(tricycleList);
+            return Task.FromResult(tricycleList);
         }
 
 

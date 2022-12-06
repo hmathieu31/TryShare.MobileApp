@@ -21,7 +21,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
         /// Gets the tricycles asynchronously.
         /// </summary>
         /// <returns>A List of Tricycles if the client is connected to the Internet</returns>
-        /// <exception cref="System.NotImplementedException">Offline functionality not implemented</exception>
+        /// <exception cref="NotImplementedException">Offline functionality not implemented</exception>
         public async Task<List<Tricycle>> GetTricyclesAsync()
         {
             if (IsConnectedInternet)

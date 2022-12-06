@@ -13,7 +13,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
     public interface ITricycleService
     {
 
-        public Task<List<Model.Tricycle>> GetTricyclesAsync();
+        public Task<List<Tricycle>> GetTricyclesAsync();
 
     }
 }
