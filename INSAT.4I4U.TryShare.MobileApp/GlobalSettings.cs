@@ -11,7 +11,7 @@ namespace INSAT._4I4U.TryShare.MobileApp
         public const string AzureTag = "Azure";
         public const string MockTag = "Mock";
 
-        public const string DefaultEndpoint = "TODO: Be defined";
+        public const string DefaultEndpoint = "https://insat-tryshare.azurewebsites.net";
 
         private string _baseIdentityEndpoint;
         private string _baseGatewayShoppingEndpoint;

@@ -10,7 +10,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
     public class TricycleService : ITricycleService
     {
         private readonly IRequestProvider _requestProvider;
-        private const string apiUrlTricycle = "api/Tricycle";
+        private const string apiUrlTricycle = "api/Tricycles";
 
         public TricycleService(IRequestProvider requestProvider)
         {
