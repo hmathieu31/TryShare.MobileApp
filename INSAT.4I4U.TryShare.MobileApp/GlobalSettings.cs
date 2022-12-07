@@ -8,10 +8,10 @@ namespace INSAT._4I4U.TryShare.MobileApp
 {
     public class GlobalSettings
     {
-        public const string AzureTag = "Azure";
-        public const string MockTag = "Mock";
+        public static readonly string AzureTag = "Azure";
+        public static readonly string MockTag = "Mock";
 
-        public const string DefaultEndpoint = "https://insat-tryshare.azurewebsites.net";
+        public static readonly string DefaultEndpoint = "https://insat-tryshare.azurewebsites.net";
 
         private string _baseIdentityEndpoint;
         private string _baseGatewayShoppingEndpoint;

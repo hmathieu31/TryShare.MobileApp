@@ -19,7 +19,7 @@ public class RequestProvider : IRequestProvider
         },
             LazyThreadSafetyMode.ExecutionAndPublication);
 
-    public async Task<TResult> GetAsync<TResult>(string uri, string token = "")
+    public async Task<TResult> GetAsync<TResult>(Uri uri, string token = "")
     {
         HttpClient httpClient = GetOrCreateHttpClient(token);
         HttpResponseMessage response = await httpClient.GetAsync(uri).ConfigureAwait(false);
@@ -30,8 +30,8 @@ public class RequestProvider : IRequestProvider
 
         return result;
     }
-
-    public async Task<TResult> PostAsync<TResult>(string uri, TResult data, string token = "", string header = "")
+    
+    public async Task<TResult> PostAsync<TResult>(Uri uri, TResult data, string token = "", string header = "")
     {
         HttpClient httpClient = GetOrCreateHttpClient(token);
 
@@ -46,11 +46,11 @@ public class RequestProvider : IRequestProvider
 
         await RequestProvider.HandleResponse(response).ConfigureAwait(false);
         TResult result = await response.Content.ReadFromJsonAsync<TResult>();
-
+        
         return result;
     }
 
-    public async Task<TResult> PostAsync<TResult>(string uri, string data, string clientId, string clientSecret)
+    public async Task<TResult> PostAsync<TResult>(Uri uri, string data, string clientId, string clientSecret)
     {
         HttpClient httpClient = GetOrCreateHttpClient(string.Empty);
 
@@ -69,7 +69,7 @@ public class RequestProvider : IRequestProvider
         return result;
     }
 
-    public async Task<TResult> PutAsync<TResult>(string uri, TResult data, string token = "", string header = "")
+    public async Task<TResult> PutAsync<TResult>(Uri uri, TResult data, string token = "", string header = "")
     {
         HttpClient httpClient = GetOrCreateHttpClient(token);
 
@@ -88,7 +88,7 @@ public class RequestProvider : IRequestProvider
         return result;
     }
 
-    public async Task DeleteAsync(string uri, string token = "")
+    public async Task DeleteAsync(Uri uri, string token = "")
     {
         HttpClient httpClient = GetOrCreateHttpClient(token);
         await httpClient.DeleteAsync(uri).ConfigureAwait(false);
