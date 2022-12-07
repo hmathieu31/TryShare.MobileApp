@@ -9,7 +9,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 
 public class RequestProvider : IRequestProvider
 {
-
     private readonly Lazy<HttpClient> _httpClient =
         new(() =>
         {

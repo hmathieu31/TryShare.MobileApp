@@ -2,7 +2,7 @@
 
 public static class UriHelper
 {
-    public static string CombineUri(params string[] uriParts)
+    public static Uri CombineUri(params string[] uriParts)
     {
         string uri = string.Empty;
         if (uriParts != null && uriParts.Length > 0)
@@ -14,6 +14,7 @@ public static class UriHelper
                 uri = string.Format("{0}/{1}", uri.TrimEnd(trims), (uriParts[i] ?? string.Empty).TrimStart(trims));
             }
         }
-        return uri;
+        
+        return new Uri(uri);
     }
 }
