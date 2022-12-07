@@ -1,4 +1,6 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.Helpers;
+using INSAT._4I4U.TryShare.MobileApp.Infrastructure.Dto;
+using INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers;
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 
@@ -28,7 +30,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
             {
                 var uri = UriHelper.CombineUri(GlobalSettings.DefaultEndpoint, $"{apiUrlTricycle}");
 
-                return await _requestProvider.GetAsync<List<Tricycle>>(uri);
+                var dtos =  await _requestProvider.GetAsync<List<TricycleDto>>(uri);
+                return dtos.Select(dto => dto.ToModel()).ToList();
             }
             else
             {
