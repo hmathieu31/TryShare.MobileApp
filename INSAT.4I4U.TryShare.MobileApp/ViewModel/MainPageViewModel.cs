@@ -2,7 +2,6 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-using INSAT._4I4U.TryShare.MobileApp.View;
 
 using Microsoft.Maui.Controls.Maps;
 
@@ -66,16 +65,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         async Task GoToDetailsAsync(Tricycle tricycle)
         {
-            if (Tricycles.Count == 0)
-            {
-                await GetTricyclesAsync();
-                MockSelectedTricycle = Tricycles[0];
-                return;
-            }
-
-            if (tricycle == null)
-                return;
-
             await Shell.Current.GoToAsync(nameof(TricycleDetailsPage), true, new Dictionary<string, object>
                 { {"Tricycle", tricycle } });
         }
