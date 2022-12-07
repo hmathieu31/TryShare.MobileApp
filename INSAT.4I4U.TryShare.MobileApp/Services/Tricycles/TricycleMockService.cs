@@ -1,4 +1,6 @@
-﻿namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
+﻿using INSAT._4I4U.TryShare.MobileApp.Model;
+
+namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
 {
     /// <summary>
     /// TODO
@@ -19,7 +21,6 @@
         {
             return Task.FromResult(tricycleList);
         }
-
 
     }
 }

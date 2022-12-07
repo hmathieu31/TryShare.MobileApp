@@ -30,18 +30,34 @@
             <Map.ItemTemplate>
                 <DataTemplate x:DataType="model:Tricycle">
                     <Pin Location="{Binding Location}"
-                         Label ="{Binding Id}" />
+                         Label ="{Binding Id}"
+                         MarkerClicked="Pin_MarkerClicked"/>
                 </DataTemplate>
             </Map.ItemTemplate>
         </Map>
-        <Button Text="Go to detail" 
-                Command="{Binding GoToDetailsCommand}"
-                CommandParameter="{Binding MockSelectedTricycle}"
+        
+        <Button Text="Get Tricycles" 
+                Command="{Binding GetTricyclesCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 VerticalOptions="End"
                 HorizontalOptions="Center"
                 Style="{StaticResource ButtonOutline}"
                 Margin="100"/>
+        
+        <Grid IsVisible= "{Binding IsPopupVisible}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Text="{Binding SelectedTricycle.Id}"
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+        </Grid>
     </Grid>
 
 </ContentPage>

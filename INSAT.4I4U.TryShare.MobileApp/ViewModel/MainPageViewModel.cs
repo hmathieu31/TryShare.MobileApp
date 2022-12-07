@@ -2,6 +2,9 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.View;
+
+using Microsoft.Maui.Controls.Maps;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -11,14 +14,23 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         [ObservableProperty]
-        Tricycle mockSelectedTricycle;
+        private bool isPopupVisible;
 
-        readonly ITricycleService tricycleMockService;
+        [ObservableProperty]
+        private Tricycle selectedTricycle;
 
-        public MainPageViewModel(ITricycleService tricycleMockService)
+        readonly ITricycleService tricycleService;
+
+        public MainPageViewModel(ITricycleService tricycleService)
         {
-            Title = "Accueil";
-            this.tricycleMockService = tricycleMockService;
+            //Title = "Accueil";
+            this.tricycleService = tricycleService;
+        }
+
+        public void DisplayPopup(int id)
+        {
+            SelectedTricycle = Tricycles.First(x => x.Id == id);
+            IsPopupVisible = true;
         }
 
         [RelayCommand]
@@ -31,7 +43,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             try
             {
                 IsBusy = true;
-                var list = await tricycleMockService.GetTricyclesAsync();
+                var list = await tricycleService.GetTricyclesAsync();
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();
