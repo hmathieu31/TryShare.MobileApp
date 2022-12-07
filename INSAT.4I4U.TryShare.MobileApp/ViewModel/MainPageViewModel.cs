@@ -2,6 +2,9 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.View;
+
+using Microsoft.Maui.Controls.Maps;
 
 using Microsoft.Maui.Controls.Maps;
 
