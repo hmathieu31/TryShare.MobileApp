@@ -13,7 +13,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         [ObservableProperty]
-        private bool isPopupVisible;
+        private bool isPopupVisible = false;
 
         [ObservableProperty]
         private Tricycle selectedTricycle;

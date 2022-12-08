@@ -43,20 +43,68 @@
                 HorizontalOptions="Center"
                 Style="{StaticResource ButtonOutline}"
                 Margin="100"/>
-        
+
         <Grid IsVisible= "{Binding IsPopupVisible}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="300"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Text="{Binding SelectedTricycle.Id}"
+            <Grid BackgroundColor="AliceBlue"
+                  Grid.Row="2"
+                  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <BoxView Color="Red"
+                         Grid.Row="0"
+                         Grid.Column="0"/>
+                <Label Text="{Binding SelectedTricycle.Id}"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="26"/>
+                <Button Text="Réserver"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontSize="26"
+                        Grid.ColumnSpan="2"
+                        Command="{Binding GoToDetailsCommand}"
+                        CommandParameter="{Binding SelectedTricycle}"/>
+            </Grid>
+
+            <!--<Button Text="{Binding SelectedTricycle.Id}"
                     Grid.Row="1"
-                    Grid.Column="1"/>
+                    Grid.Column="1"/>-->
+            <!--<BoxView Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Column="1"
+                   Text="{Binding SelectedTricycle.BatteryPercentage}"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>-->
+            <!--<BoxView Grid.Row="2"
+                 Grid.ColumnSpan="2"
+                 Color="Red" />
+            <Label Grid.Row="2"
+               Grid.ColumnSpan="2"
+               Text="Row 2, Columns 0 and 1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />-->
         </Grid>
     </Grid>
 
