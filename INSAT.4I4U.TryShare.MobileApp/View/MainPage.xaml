@@ -69,7 +69,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <BoxView Color="Aqua"
+                <BoxView Color="Red"
                          Grid.Row="0"
                          Grid.Column="0"/>
                 <Label Text="{Binding SelectedTricycle.Id}"
@@ -82,7 +82,9 @@
                         Grid.Row="2"
                         Grid.Column="0"
                         FontSize="26"
-                        Grid.ColumnSpan="2"/>
+                        Grid.ColumnSpan="2"
+                        Command="{Binding GoToDetailsCommand}"
+                        CommandParameter="{Binding SelectedTricycle}"/>
             </Grid>
 
             <!--<Button Text="{Binding SelectedTricycle.Id}"
