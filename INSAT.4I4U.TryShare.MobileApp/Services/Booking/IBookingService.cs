@@ -15,12 +15,18 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
     public interface IBookingService
     {
         /// <summary>
-        /// Book a tricycle
+        /// Request the booking of the tricycle.
         /// </summary>
         /// <param name="tricycle">The tricycle to book</param>
         /// <returns>False if the booking order was not allowed</returns>
         /// <exception cref="NotImplementedException">Offline functionality not implemented</exception>
-        public Task<bool> BookTricycleAsync(Tricycle tricycle);
+        public Task<bool> RequestTricycleBookingAsync(Tricycle tricycle);
+
+        /// <summary>
+        /// Request the end of the current tricycle booking for the user.
+        /// </summary>
+        /// <returns>False if the end of the booking was not allowed</returns>
+        public Task<bool> RequestTricycleBookingEndAsync();
 
         /// <summary>
         /// Determines whether the tricycle can be booked the specified tricycle.

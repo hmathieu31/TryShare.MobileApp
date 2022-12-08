@@ -11,11 +11,16 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
         : IBookingService
     {
 
-        public async Task<bool> BookTricycleAsync(Tricycle tricycle)
+        public Task<bool> RequestTricycleBookingAsync(Tricycle tricycle)
         {
             if (tricycle is null)
                 throw new ArgumentNullException(nameof(tricycle));
+            
+            return RequestTricycleBookingInternalAsync(tricycle);
+        }
 
+        private async Task<bool> RequestTricycleBookingInternalAsync(Tricycle tricycle)
+        {
             if (!await CanTricycleBeBooked(tricycle))
                 return false;
 
@@ -25,7 +30,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
 
         public Task<bool> CanTricycleBeBooked(Tricycle tricycle)
         {
-            // TODO: Implement cient-side booking validation
+            Debug.WriteLine("Checking if the tricycle can be booked");
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> RequestTricycleBookingEndAsync()
+        {
+            
+            Debug.WriteLine("User requesting the end of its booking");
             return Task.FromResult(true);
         }
     }
