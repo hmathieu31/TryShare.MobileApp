@@ -32,6 +32,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             IsPopupVisible = true;
         }
 
+        public void HidePopup()
+        {
+            IsPopupVisible = false;
+        }
+
         [RelayCommand]
         async Task GetTricyclesAsync()
         {
@@ -67,6 +72,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await Shell.Current.GoToAsync(nameof(TricycleDetailsPage), true, new Dictionary<string, object>
                 { {"Tricycle", tricycle } });
+            IsPopupVisible = false;
         }
     }
 }

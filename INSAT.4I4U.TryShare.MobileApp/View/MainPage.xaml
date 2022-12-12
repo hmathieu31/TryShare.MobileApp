@@ -5,6 +5,7 @@
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
              xmlns:model="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Model"
+             xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
              Title="{Binding Title}">
@@ -12,7 +13,8 @@
 
     <Grid>
         <Map IsShowingUser="True"
-             ItemsSource="{Binding Tricycles}">
+             ItemsSource="{Binding Tricycles}"
+             MapClicked="OnMapClicked">
             <x:Arguments>
                 <MapSpan>
                     <x:Arguments>
@@ -36,13 +38,15 @@
             </Map.ItemTemplate>
         </Map>
         
-        <Button Text="Get Tricycles" 
+        <Button ImageSource="Resources/Images/refreshicon.svg"
                 Command="{Binding GetTricyclesCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                VerticalOptions="End"
+                BackgroundColor="White"
+                HeightRequest="40"
+                VerticalOptions="Start"
                 HorizontalOptions="Center"
                 Style="{StaticResource ButtonOutline}"
-                Margin="100"/>
+                Margin="0,10,0,0"/>
 
         <Grid IsVisible= "{Binding IsPopupVisible}">
             <Grid.RowDefinitions>
@@ -72,12 +76,59 @@
                 <BoxView Color="Red"
                          Grid.Row="0"
                          Grid.Column="0"/>
+                <Image Source="Resources/Images/bike.svg"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       HeightRequest="40"
+                       Margin="0,10,0,0"/>
                 <Label Text="{Binding SelectedTricycle.Id}"
                        Grid.Row="0"
                        Grid.Column="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       FontSize="26"/>
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       Margin="0,40,0,0"/>
+                <BoxView Color="Red"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"/>
+                <controls:Rating Value="3"
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2"/>
+                <BoxView Color="Gray"
+                         Grid.Row="0"
+                         Grid.Column="1"/>
+                <Image Source="Resources/Images/battery.svg"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       HeightRequest="50"
+                       Margin="0,0,0,0"/>
+                <controls:ProgressBar Progress="{Binding SelectedTricycle.BatteryPercentageBetween0And1}"
+                             WidthRequest="67"
+                             HeightRequest="40"
+                             IsVertical="False"
+                             ProgressBrush="Green"
+                             BackgroundColor="White"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             VerticalOptions="Center"
+                             Margin="0,0,11,40"/>
+                <Label Text="{Binding SelectedTricycle.BatteryPercentage}"
+                       TextColor="Black"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"
+                       FontAttributes="Bold"
+                       FontSize="18"/>
+                
                 <Button Text="Réserver"
                         Grid.Row="2"
                         Grid.Column="0"
@@ -86,25 +137,6 @@
                         Command="{Binding GoToDetailsCommand}"
                         CommandParameter="{Binding SelectedTricycle}"/>
             </Grid>
-
-            <!--<Button Text="{Binding SelectedTricycle.Id}"
-                    Grid.Row="1"
-                    Grid.Column="1"/>-->
-            <!--<BoxView Grid.Column="1"
-                     Color="AliceBlue"/>
-            <Label Grid.Column="1"
-                   Text="{Binding SelectedTricycle.BatteryPercentage}"
-                   TextColor="Black"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>-->
-            <!--<BoxView Grid.Row="2"
-                 Grid.ColumnSpan="2"
-                 Color="Red" />
-            <Label Grid.Row="2"
-               Grid.ColumnSpan="2"
-               Text="Row 2, Columns 0 and 1"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />-->
         </Grid>
     </Grid>
 

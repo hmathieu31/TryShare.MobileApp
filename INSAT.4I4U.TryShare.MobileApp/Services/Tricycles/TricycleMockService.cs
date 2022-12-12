@@ -13,7 +13,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
 
         public TricycleMockService()
         {
-            tricycleList.Add(new Model.Tricycle { Id = 000001, Location = new Location(43.56, 1.46), BatteryPercentage = 12 });
+            tricycleList.Add(new Model.Tricycle { Id = 000001, Location = new Location(43.56, 1.46), BatteryPercentage = 56 });
             tricycleList.Add(new Model.Tricycle { Id = 000002, Location = new Location(43.53, 1.52), BatteryPercentage = 12 });
         }
 

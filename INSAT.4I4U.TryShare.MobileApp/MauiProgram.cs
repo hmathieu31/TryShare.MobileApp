@@ -63,7 +63,7 @@ public static class MauiProgram
     private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
 		builder.Services
-			.AddSingleton<ITricycleService, TricycleService>()
+			.AddSingleton<ITricycleService, TricycleMockService>()
 			.AddSingleton<IRequestProvider, RequestProvider>();
         return builder;
     }

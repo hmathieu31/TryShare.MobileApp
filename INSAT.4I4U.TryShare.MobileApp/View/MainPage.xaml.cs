@@ -23,5 +23,10 @@ public partial class MainPage : ContentPage
 
     }
 
+    private void OnMapClicked(object sender, Microsoft.Maui.Controls.Maps.MapClickedEventArgs e)
+    {
+        _viewModel.HidePopup();
+    }
+
 }
 
