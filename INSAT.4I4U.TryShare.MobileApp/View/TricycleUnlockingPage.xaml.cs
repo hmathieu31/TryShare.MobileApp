@@ -7,7 +7,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.View;
 [QueryProperty(nameof(Tricycle), "Tricycle")]
 public partial class TricycleUnlockingPage : ContentPage
 {
-    public TricycleUnlockingPage(TricycleUnlockingPage viewModel)
+    public TricycleUnlockingPage(TricycleUnlockingViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;

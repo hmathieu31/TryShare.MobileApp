@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
-    internal class TricycleUnlockingViewModel : BaseViewModel
+    public partial class TricycleUnlockingViewModel : BaseViewModel
     {
+
     }
 }
