@@ -8,5 +8,6 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 		Routing.RegisterRoute(nameof(TricycleDetailsPage), typeof(TricycleDetailsPage));
-	}
+        Routing.RegisterRoute(nameof(TricycleUnlockingPage), typeof(TricycleUnlockingPage));
+    }
 }
