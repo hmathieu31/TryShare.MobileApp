@@ -8,7 +8,8 @@
              xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
-             Title="{Binding Title}">
+             Title="Accueil"
+             BackgroundColor="White">
 
 
     <Grid>
@@ -73,25 +74,25 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <BoxView Color="Red"
+                <BoxView Color="LightGray"
                          Grid.Row="0"
                          Grid.Column="0"/>
                 <Image Source="Resources/Images/bike.svg"
                        Grid.Row="0"
                        Grid.Column="0"
                        HorizontalOptions="Center"
-                       VerticalOptions="Start"
+                       VerticalOptions="Center"
                        HeightRequest="40"
-                       Margin="0,10,0,0"/>
-                <Label Text="{Binding SelectedTricycle.Id}"
+                       Margin="0,0,0,0"/>
+                <!--<Label Text="{Binding SelectedTricycle.Id}"
                        Grid.Row="0"
                        Grid.Column="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        FontSize="20"
                        FontAttributes="Bold"
-                       Margin="0,40,0,0"/>
-                <BoxView Color="Red"
+                       Margin="0,40,0,0"/>-->
+                <BoxView Color="LightGray"
                          Grid.Row="1"
                          Grid.Column="0"
                          Grid.ColumnSpan="2"/>
@@ -99,7 +100,7 @@
                                  Grid.Row="1"
                                  Grid.Column="0"
                                  Grid.ColumnSpan="2"/>
-                <BoxView Color="Gray"
+                <BoxView Color="LightGray"
                          Grid.Row="0"
                          Grid.Column="1"/>
                 <Image Source="Resources/Images/battery.svg"
@@ -113,7 +114,7 @@
                              WidthRequest="67"
                              HeightRequest="40"
                              IsVertical="False"
-                             ProgressBrush="Green"
+                             ProgressBrush="LimeGreen"
                              BackgroundColor="White"
                              Grid.Row="0"
                              Grid.Column="1"
@@ -128,12 +129,20 @@
                        Margin="0,0,10,0"
                        FontAttributes="Bold"
                        FontSize="18"/>
-                
+                <BoxView Color="LightGray"
+                         Grid.Row="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"/>
                 <Button Text="Réserver"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        BackgroundColor="MediumPurple"
                         Grid.Row="2"
                         Grid.Column="0"
-                        FontSize="26"
                         Grid.ColumnSpan="2"
+                        WidthRequest="250"
+                        HeightRequest="60"
+                        FontSize="26"
                         Command="{Binding GoToDetailsCommand}"
                         CommandParameter="{Binding SelectedTricycle}"/>
             </Grid>
