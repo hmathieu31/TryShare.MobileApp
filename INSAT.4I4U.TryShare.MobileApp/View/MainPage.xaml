@@ -37,8 +37,41 @@
                          MarkerClicked="PinMarkerClicked"/>
                 </DataTemplate>
             </Map.ItemTemplate>
+            
+            <Map.MapElements>
+                <maps:Polygon  StrokeColor="#FF9900"
+                          StrokeWidth="8"
+                          FillColor="#88FF9900">
+                    <Polygon.Geopath>
+                        <sensors:Location>
+                            <x:Arguments>
+                                <x:Double>43.558253</x:Double>
+                                <x:Double>1.491952</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                        <sensors:Location>
+                            <x:Arguments>
+                                <x:Double>43.645383</x:Double>
+                                <x:Double>1.468049</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                        <sensors:Location>
+                            <x:Arguments>
+                                <x:Double>43.609230</x:Double>
+                                <x:Double>1.368447</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                        <sensors:Location>
+                            <x:Arguments>
+                                <x:Double>43.554773</x:Double>
+                                <x:Double>1.409388</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                    </Polygon.Geopath>
+                </maps:Polygon>
+            </Map.MapElements>
         </Map>
-        
+
         <Button ImageSource="Resources/Images/refreshicon.svg"
                 Command="{Binding GetTricyclesCommand}"
                 IsEnabled="{Binding IsNotBusy}"

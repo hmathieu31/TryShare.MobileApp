@@ -18,6 +18,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
+        [ObservableProperty]
+        private ReturnZone returnZone;
+
+        readonly ITricycleService tricycleService;
+
         public MainPageViewModel(ITricycleService tricycleService)
         {
             this.tricycleService = tricycleService;
@@ -71,6 +76,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                 { {"Tricycle", tricycle } });
             IsPopupVisible = false;
         }
+
+
     }
 }
 
