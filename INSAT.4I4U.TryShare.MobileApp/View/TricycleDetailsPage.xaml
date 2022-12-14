@@ -53,12 +53,15 @@
                      Grid.Row="1"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"/>
-            <Label Text="Adresse :"
+            
+            <!-- Either one of those Labels should be deleted I might have added one by mistake-->
+            <!-- Below, note StringFormat is a powerfool tool to cleanly combine text and variables (bindings) -->
+            <Label Text="{Binding TricycleAddress, StringFormat='Addresse : {0}'}"
                    FontAttributes="Bold"
                    Grid.Row="1"
                    Grid.Column="0"
                    Margin="10,10,0,0"/>
-            <Label Text="H"
+            <Label Text="{Binding TricycleAddress, StringFormat='Addresse : {0}'}"
                    Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
