@@ -2,14 +2,93 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
+             xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
              x:DataType="viewmodel:TricycleDetailsViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.TricycleDetailsPage"
-             Title="{Binding Tricycle.Id}">
-             
-    
-    <VerticalStackLayout Spacing="10" Padding="15">
-        <Label Text="Id"/>
-        <Label Text="Location"/>
-        <Label Text="BatteryPercentage"/>          
-    </VerticalStackLayout>
+             Title="Détails Tricycle">
+
+
+    <Grid Padding="15"
+          BackgroundColor="Gray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <BoxView Color="Red"
+                     Grid.Row="0"
+                     Grid.Column="0"/>
+            <Image Source="Resources/Images/bike.svg"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HeightRequest="60"
+                   Margin="0,0,0,0"/>
+            <BoxView Color="Blue"
+                     Grid.Row="0"
+                     Grid.Column="1"/>
+            <Label Text="Tricycle Modèle 1"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="0,25,0,0"/>
+            <controls:Rating Value="3"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             HorizontalOptions="Center"
+                             VerticalOptions="End"
+                             Margin="0,0,0,25"/>
+            <BoxView Color="Green"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+            <Label Text="Adresse :"
+                   FontAttributes="Bold"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="10,10,0,0"/>
+            <Label Text="H"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalOptions="End"
+                   Margin="10,0,10,10"/>
+
+            <BoxView Color="White"
+                     Grid.Row="2"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+
+            <BoxView Color="Black"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+
+            <BoxView Color="Purple"
+                     Grid.Row="4"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+            <Button Text="Déverrouiller"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        BackgroundColor="MediumPurple"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        WidthRequest="300"
+                        HeightRequest="60"
+                        FontSize="22"/>
+        </Grid>
+    </Grid>
 </ContentPage>
