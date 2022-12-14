@@ -66,6 +66,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="View\Controls\**" />
+	  <Compile Remove="View\Controls\**" />
+	  <EmbeddedResource Remove="View\Controls\**" />
+	  <MauiCss Remove="View\Controls\**" />
+	  <MauiXaml Remove="View\Controls\**" />
+	  <None Remove="View\Controls\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\Vector.svg" />
 	</ItemGroup>
 
@@ -91,10 +100,6 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="System.Text.Json" Version="7.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="View\Controls\" />
 	</ItemGroup>
 
 </Project>

@@ -6,26 +6,29 @@ using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     [QueryProperty(nameof(Tricycle), "Tricycle")]
-    public partial class TricycleDetailsViewModel : BaseViewModel, IQueryAttributable
+    public partial class TricycleDetailsViewModel : BaseViewModel
     {
+        public TricycleDetailsViewModel()
+        {
+        }
 
         [ObservableProperty]
         Tricycle tricycle;
 
-        public TricycleDetailsViewModel()
-        {
-            Console.WriteLine();
-            ApplyQueryAttributes(new Dictionary<string, object>
-                { {"Tricycle", tricycle } });
-        }
+        /// <summary>
+        /// Postal address of the tricycle following the format "street, city"
+        /// </summary>
+        [ObservableProperty]
+        string tricycleAddress = "";
 
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
-        {
-            Tricycle = query["Tricycle"] as Tricycle;
-            OnPropertyChanged("Tricycle");
-        }
-
-        public async Task<string> GetTricycleAddress()
+        /// <summary>
+        /// Sets the ObservableProperty of the postal address of the tricycle.
+        /// Asynchronously uses the Geocoding Service to get the address from the tricycle's location.
+        /// </summary>
+        /// <remarks>
+        /// The address set is follows the format : "Street, City"
+        /// </remarks>
+        public async Task SetTricycleAddressLabelAsync()
         {
             double latitude = Tricycle.Location.Latitude;
             double longitude = Tricycle.Location.Longitude;
@@ -35,22 +38,19 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             Placemark placemark = placemarks?.FirstOrDefault();
 
             if (placemark is not null)
-            {
-                return
-                    $"AdminArea:       {placemark.AdminArea}\n" +
-                    $"CountryCode:     {placemark.CountryCode}\n" +
-                    $"CountryName:     {placemark.CountryName}\n" +
-                    $"FeatureName:     {placemark.FeatureName}\n" +
-                    $"Locality:        {placemark.Locality}\n" +
-                    $"PostalCode:      {placemark.PostalCode}\n" +
-                    $"SubAdminArea:    {placemark.SubAdminArea}\n" +
-                    $"SubLocality:     {placemark.SubLocality}\n" +
-                    $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
-                    $"Thoroughfare:    {placemark.Thoroughfare}\n";
+                TricycleAddress = $"{placemark.Thoroughfare}, {placemark.Locality}";
 
-            }
-
-            return "";
+            //return
+            //    $"AdminArea:       {placemark.AdminArea}\n" +
+            //    $"CountryCode:     {placemark.CountryCode}\n" +
+            //    $"CountryName:     {placemark.CountryName}\n" +
+            //    $"FeatureName:     {placemark.FeatureName}\n" +
+            //    $"Locality:        {placemark.Locality}\n" +
+            //    $"PostalCode:      {placemark.PostalCode}\n" +
+            //    $"SubAdminArea:    {placemark.SubAdminArea}\n" +
+            //    $"SubLocality:     {placemark.SubLocality}\n" +
+            //    $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
+            //    $"Thoroughfare:    {placemark.Thoroughfare}\n";
         }
 
 

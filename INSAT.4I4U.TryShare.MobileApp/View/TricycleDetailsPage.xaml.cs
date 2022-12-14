@@ -1,14 +1,10 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
-using Xamarin.Google.Crypto.Tink.Mac;
 
 namespace INSAT._4I4U.TryShare.MobileApp.View;
 
 [QueryProperty(nameof(Tricycle),"Tricycle")]
 public partial class TricycleDetailsPage: ContentPage
 {
-
-    TricycleDetailsViewModel _viewModel = new();
-
     public TricycleDetailsPage(TricycleDetailsViewModel viewModel)
     {
         InitializeComponent();
@@ -17,9 +13,12 @@ public partial class TricycleDetailsPage: ContentPage
 
     protected override async void OnAppearing()
     {
+        // Call the base methods first
         base.OnAppearing();
-        await _viewModel.GetTricycleAddress();
 
+        // Cast the BindingContext to a TricycleDetailsViewModel (this cast is safe because the BindingContext is set in the constructor)
+        // and call the SetTricycleAddressLabelAsync method defined in the ViewModel
+        await (BindingContext as TricycleDetailsViewModel).SetTricycleAddressLabelAsync();
     }
 
 }
