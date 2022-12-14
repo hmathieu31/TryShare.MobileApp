@@ -10,6 +10,13 @@
     <VerticalStackLayout Spacing="10" Padding="15">
         <Label Text="Id"/>
         <Label Text="Location"/>
-        <Label Text="BatteryPercentage"/>          
+        <Label Text="BatteryPercentage"/>
+        <Button Text="Réserver"
+                Grid.Row="2"
+                Grid.Column="0"
+                FontSize="26"
+                Grid.ColumnSpan="2"
+                Command="{Binding GoToUnlockCommand}"
+                CommandParameter="{Binding Tricycle}"/>
     </VerticalStackLayout>
 </ContentPage>
