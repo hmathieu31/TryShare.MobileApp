@@ -8,8 +8,7 @@
              Title="Détails Tricycle">
 
 
-    <Grid Padding="15"
-          BackgroundColor="Gray">
+    <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
@@ -53,15 +52,15 @@
                      Grid.Row="1"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"/>
-            
+
             <!-- Either one of those Labels should be deleted I might have added one by mistake-->
             <!-- Below, note StringFormat is a powerfool tool to cleanly combine text and variables (bindings) -->
-            <Label Text="{Binding TricycleAddress, StringFormat='Addresse : {0}'}"
+            <Label Text="Adresse :"
                    FontAttributes="Bold"
                    Grid.Row="1"
                    Grid.Column="0"
                    Margin="10,10,0,0"/>
-            <Label Text="{Binding TricycleAddress, StringFormat='Addresse : {0}'}"
+            <Label Text="{Binding TricycleAddress, StringFormat='{0}'}"
                    Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
@@ -72,11 +71,71 @@
                      Grid.Row="2"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"/>
+            <Grid Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <BoxView Color="Pink"
+                         Grid.Row="0"
+                         Grid.Column="0"/>
+                <Label Text="Commentaires :"
+                       FontAttributes="Bold"
+                       FontSize="14"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Padding="10"/>
+                <BoxView Color="Purple"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.RowSpan="3"
+                         CornerRadius="10"
+                         Margin="10,10,10,10"/>
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Margin="25,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Voir plus de commentaires"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToMoreCommentsCommand}"
+                                                          CommandParameter="https://learn.microsoft.com/dotnet/maui"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </Grid>
 
             <BoxView Color="Black"
                      Grid.Row="3"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"/>
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalOptions="Center"
+                   Margin="25,0,0,0"
+                   Text="Conditions d'utilisation"
+                   TextColor="Blue"
+                   TextDecorations="Underline"
+                   FontSize="16">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTermsAndConditionsTapped"
+                                          NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
 
             <BoxView Color="Purple"
                      Grid.Row="4"
@@ -92,6 +151,55 @@
                         WidthRequest="300"
                         HeightRequest="60"
                         FontSize="22"/>
+        </Grid>
+
+
+        <Grid IsVisible="{Binding IsTermsAndConditionsPopupVisible}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <BoxView Color="White"
+                     Grid.Row="0"
+                     Grid.Column="0"/>
+            <Label Text="Conditions d'utilisation"
+                   TextColor="Black"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+            <BoxView Color="White"
+                     Grid.Row="1"
+                     Grid.Column="0"/>
+            <ScrollView Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="10">
+                <StackLayout>
+                    <Label Text="TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+                           TextColor="Black"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                </StackLayout>
+            </ScrollView>
+            <BoxView Color="White"
+                     Grid.Row="2"
+                     Grid.Column="0"/>
+            <Button Text="Retour"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BackgroundColor="MediumPurple"
+                    Command="{Binding GoBackToDetailsCommand}"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="100"
+                    HeightRequest="60"/>
         </Grid>
     </Grid>
 </ContentPage>
