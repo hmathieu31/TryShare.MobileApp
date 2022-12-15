@@ -1,10 +1,12 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
+using System.Windows.Input;
 
 namespace INSAT._4I4U.TryShare.MobileApp.View;
 
 [QueryProperty(nameof(Tricycle),"Tricycle")]
 public partial class TricycleDetailsPage: ContentPage
 {
+
     public TricycleDetailsPage(TricycleDetailsViewModel viewModel)
     {
         InitializeComponent();
@@ -21,4 +23,8 @@ public partial class TricycleDetailsPage: ContentPage
         await (BindingContext as TricycleDetailsViewModel).SetTricycleAddressLabelAsync();
     }
 
+    private void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
+    {
+        (BindingContext as TricycleDetailsViewModel).DisplayTermsAndConditionsPopup();
+    }
 }

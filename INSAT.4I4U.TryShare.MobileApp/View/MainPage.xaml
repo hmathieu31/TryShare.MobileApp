@@ -84,14 +84,6 @@
                        VerticalOptions="Center"
                        HeightRequest="40"
                        Margin="0,0,0,0"/>
-                <!--<Label Text="{Binding SelectedTricycle.Id}"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       Margin="0,40,0,0"/>-->
                 <BoxView Color="LightGray"
                          Grid.Row="1"
                          Grid.Column="0"
