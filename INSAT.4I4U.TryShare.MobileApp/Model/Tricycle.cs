@@ -22,7 +22,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Model
 
         public double BatteryPercentageBetween0And1 => BatteryPercentage / 100.0;
 
-        public float Rating { get; set; }
+        public int Rating { get; set; }
 
     }
 }

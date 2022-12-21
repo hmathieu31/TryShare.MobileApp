@@ -88,7 +88,7 @@
                          Grid.Row="1"
                          Grid.Column="0"
                          Grid.ColumnSpan="2"/>
-                <controls:Rating Value="3"
+                <controls:Rating Value="4"
                                  Grid.Row="1"
                                  Grid.Column="0"
                                  Grid.ColumnSpan="2"/>
