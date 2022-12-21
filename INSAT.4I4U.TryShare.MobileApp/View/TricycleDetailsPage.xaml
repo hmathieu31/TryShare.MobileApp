@@ -43,7 +43,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Start"
                    Margin="0,25,0,0"/>
-            <controls:Rating Value="3"
+            <controls:Rating Value="4"
                              Grid.Row="0"
                              Grid.Column="1"
                              HorizontalOptions="Center"
@@ -108,12 +108,12 @@
                        Grid.Row="1"
                        Grid.Column="0"
                        Padding="15"/>
-                <Label Text="Pas ouf, mais pratique pour le retour PK !"
+                <Label Text="Pas ouf, mais pratique pour le retour PK avec 3 personnes à l'avant !"
                        TextColor="Black"
                        FontSize="16"
                        Grid.Row="1"
                        Grid.Column="0"
-                       Margin="15,50,0,0"/>
+                       Margin="15,50,15,0"/>
 
                 <Label Grid.Row="3"
                        Grid.Column="0"
