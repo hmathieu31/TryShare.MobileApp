@@ -9,14 +9,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 {
     public class UserLocationMockService : IUserLocationService
     {
-
         public UserLocationMockService()
         {
         }
 
-        public double CalculateDistanceFromTricycle(Tricycle tricycle)
+        public Task<double> CalculateDistanceFromTricycleAsync(Tricycle tricycle)
         {
-            return Location.CalculateDistance(new Location(43.56, 1.47), tricycle.Location, DistanceUnits.Kilometers);
+            return Task.FromResult(Location.CalculateDistance(new Location(43.56, 1.47), tricycle.Location, DistanceUnits.Kilometers));
         }
     }
 }

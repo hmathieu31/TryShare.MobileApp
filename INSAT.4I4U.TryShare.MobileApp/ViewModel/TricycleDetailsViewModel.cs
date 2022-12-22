@@ -11,10 +11,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     public partial class TricycleDetailsViewModel : BaseViewModel
     {
 
-        readonly IUserLocationService userLocation;
+        readonly IUserLocationService userLocationService;
         public TricycleDetailsViewModel(IUserLocationService userLocationService)
         {
-            this.userLocation = userLocationService;
+            this.userLocationService = userLocationService;
         }
 
         [ObservableProperty]
@@ -65,9 +65,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
 
         [RelayCommand]
-        public void GoToRatingPage(Tricycle tricycle)
-        { 
-            Distance = userLocation.CalculateDistanceFromTricycleAsync(tricycle);
+        public async Task GoToRatingPage(Tricycle tricycle)
+        {
+            Distance = await userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
         }
 
     }

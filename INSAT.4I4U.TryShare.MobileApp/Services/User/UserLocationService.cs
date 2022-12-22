@@ -13,35 +13,33 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 
         private CancellationTokenSource _cancelTokenSource;
         private bool _isCheckingLocation;
-        bool _AreLocationPermissionActivated;
-        private Location _userLocation;
 
         public UserLocationService()
         {
         }
 
-        public async Task GetCurrentLocationAsync()
+        private async Task<Location> GetCurrentLocationAsync()
         {
             try
             {
                 _isCheckingLocation = true;
 
-                GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(10));
+                GeolocationRequest request = new (GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
 
                 _cancelTokenSource = new CancellationTokenSource();
 
                 Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
 
-                _userLocation= location;
+                return location;
             }
             // Catch one of the following exceptions:
             //   FeatureNotSupportedException
             //   FeatureNotEnabledException
             //   PermissionException
-            catch (PermissionException ex)
+            catch (Exception ex) when (ex is PermissionException || ex is FeatureNotEnabledException )
             {
                 // Unable to get location
-                _AreLocationPermissionActivated = false;
+                throw;
             }
             finally
             {
@@ -51,19 +49,15 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 
         public void CancelRequest()
         {
-            if (_isCheckingLocation && _cancelTokenSource != null && _cancelTokenSource.IsCancellationRequested == false)
+            if (_isCheckingLocation && _cancelTokenSource is not null && !_cancelTokenSource.IsCancellationRequested)
                 _cancelTokenSource.Cancel();
         }
 
-        public async Task<double> CalculateDistanceFromTricyle(Tricycle tricycle)
+        public async Task<double> CalculateDistanceFromTricycleAsync(Tricycle tricycle)
         {
-            await GetCurrentLocation();
-            return Location.CalculateDistance(_userLocation, tricycle.Location, DistanceUnits.Kilometers);
+            var location = await GetCurrentLocationAsync();
+            return Location.CalculateDistance(location, tricycle.Location, DistanceUnits.Kilometers);
         }
 
-        public double CalculateDistanceFromTricycle(Tricycle tricycle)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
