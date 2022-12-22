@@ -44,6 +44,7 @@
                    VerticalOptions="Start"
                    Margin="0,25,0,0"/>
             <controls:Rating Value="4"
+                             IsReadOnly="True"
                              Grid.Row="0"
                              Grid.Column="1"
                              HorizontalOptions="Center"
