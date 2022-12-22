@@ -23,7 +23,7 @@ public partial class TricycleDetailsPage: ContentPage
         await (BindingContext as TricycleDetailsViewModel).SetTricycleAddressLabelAsync();
     }
 
-    private void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
+    private async void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
     {
         await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
     }
