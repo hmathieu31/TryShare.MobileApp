@@ -43,7 +43,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Start"
                    Margin="0,25,0,0"/>
-            <controls:Rating Value="4"
+            <controls:Rating Value="{Binding Tricycle.Rating}"
                              IsReadOnly="True"
                              Grid.Row="0"
                              Grid.Column="1"

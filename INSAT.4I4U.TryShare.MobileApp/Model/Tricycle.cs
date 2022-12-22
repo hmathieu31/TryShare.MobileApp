@@ -22,7 +22,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.Model
 
         public double BatteryPercentageBetween0And1 => BatteryPercentage / 100.0;
 
-        public int Rating { get; set; }
+        [Range(0, 5, ErrorMessage ="The value must be between 0 and 5")]
+        public int? Rating { get; set; }
 
     }
 }
