@@ -22,7 +22,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public MainPageViewModel(ITricycleService tricycleService)
         {
-            //Title = "Accueil";
             this.tricycleService = tricycleService;
         }
 

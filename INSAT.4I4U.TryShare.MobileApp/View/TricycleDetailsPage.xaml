@@ -2,14 +2,174 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
+             xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
              x:DataType="viewmodel:TricycleDetailsViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.TricycleDetailsPage"
-             Title="{Binding Tricycle.Id}">
-             
-    
-    <VerticalStackLayout Spacing="10" Padding="15">
-        <Label Text="Id"/>
-        <Label Text="Location"/>
-        <Label Text="BatteryPercentage"/>          
-    </VerticalStackLayout>
+             Title="Détails Tricycle">
+
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <BoxView Color="MediumPurple"
+                     Grid.Row="0"
+                     Grid.Column="0"/>
+            <Image Source="Resources/Images/bike.svg"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HeightRequest="60"
+                   Margin="0,0,0,0"/>
+            <BoxView Color="White"
+                     Grid.Row="0"
+                     Grid.Column="1"/>
+            <Label Text="{Binding Distance}"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   TextColor="Black"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="0,25,0,0"/>
+            <controls:Rating Value="{Binding Tricycle.Rating}"
+                             IsReadOnly="True"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             HorizontalOptions="Center"
+                             VerticalOptions="End"
+                             Margin="0,0,0,25"/>
+            <BoxView Color="LightGrey"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+
+            <!-- Either one of those Labels should be deleted I might have added one by mistake-->
+            <!-- Below, note StringFormat is a powerfool tool to cleanly combine text and variables (bindings) -->
+            <Label Text="Adresse :"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="10,20,0,0"/>
+            <Label Text="{Binding TricycleAddress, StringFormat='{0}'}"
+                   TextColor="Black"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalOptions="End"
+                   Margin="10,0,10,20"/>
+
+            <BoxView Color="White"
+                     Grid.Row="2"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+            <Grid Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <BoxView Color="White"
+                         Grid.Row="0"
+                         Grid.Column="0"/>
+                <Label Text="Commentaires :"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="14"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Padding="10"/>
+                <BoxView Color="LightGrey"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.RowSpan="3"
+                         CornerRadius="10"
+                         Margin="10,10,10,10"/>
+                <Label Text="Clément S. : 15/12/2022"
+                       TextColor="Black"
+                       FontSize="14"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Padding="15"/>
+                <Label Text="Pas ouf, mais pratique pour le retour PK avec 3 personnes à l'avant !"
+                       TextColor="Black"
+                       FontSize="16"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="15,50,15,0"/>
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Margin="25,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Voir plus de commentaires"
+                                  TextColor="Black"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToMoreCommentsCommand}"
+                                                          CommandParameter="https://learn.microsoft.com/dotnet/maui"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </Grid>
+
+            <BoxView Color="White"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalOptions="Center"
+                   Margin="25,0,0,0"
+                   Text="Conditions d'utilisation"
+                   TextColor="DarkGrey"
+                   TextDecorations="Underline"
+                   FontSize="16">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTermsAndConditionsTapped"
+                                          NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <BoxView Color="White"
+                     Grid.Row="4"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
+            <Button Text="Déverrouiller"
+                    Command="{Binding GoToRatingPageCommand}"
+                    CommandParameter="{Binding Tricycle}"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    BackgroundColor="MediumPurple"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="300"
+                    HeightRequest="60"
+                    FontSize="22"/>
+        </Grid>
+    </Grid>
 </ContentPage>
