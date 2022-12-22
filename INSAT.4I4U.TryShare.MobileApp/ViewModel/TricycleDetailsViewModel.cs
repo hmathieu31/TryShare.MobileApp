@@ -67,7 +67,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         public void GoToRatingPage(Tricycle tricycle)
         { 
-            Distance = userLocation.CalculateDistanceFromTricycle(tricycle);
+            Distance = userLocation.CalculateDistanceFromTricycleAsync(tricycle);
         }
 
     }

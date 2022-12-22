@@ -13,14 +13,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 
         private CancellationTokenSource _cancelTokenSource;
         private bool _isCheckingLocation;
-        private bool _AreLocationPermissionActivated;
+        bool _AreLocationPermissionActivated;
         private Location _userLocation;
 
         public UserLocationService()
         {
         }
 
-        public async Task GetCurrentLocation()
+        public async Task GetCurrentLocationAsync()
         {
             try
             {
@@ -33,9 +33,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
                 Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
 
                 _userLocation= location;
-
-                //if (location != null)
-                //    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
             }
             // Catch one of the following exceptions:
             //   FeatureNotSupportedException
