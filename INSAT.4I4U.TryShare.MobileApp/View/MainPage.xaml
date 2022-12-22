@@ -34,7 +34,7 @@
                 <DataTemplate x:DataType="model:Tricycle">
                     <Pin Location="{Binding Location}"
                          Label ="{Binding Id}"
-                         MarkerClicked="Pin_MarkerClicked"/>
+                         MarkerClicked="PinMarkerClicked"/>
                 </DataTemplate>
             </Map.ItemTemplate>
         </Map>

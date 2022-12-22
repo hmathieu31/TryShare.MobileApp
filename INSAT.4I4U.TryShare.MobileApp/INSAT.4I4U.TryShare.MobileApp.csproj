@@ -75,6 +75,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Services\User\IUserService.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\Vector.svg" />
 	</ItemGroup>
 
@@ -100,6 +104,12 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="System.Text.Json" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\TermsAndConditionsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

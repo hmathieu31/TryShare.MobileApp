@@ -25,6 +25,6 @@ public partial class TricycleDetailsPage: ContentPage
 
     private void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
     {
-        (BindingContext as TricycleDetailsViewModel).DisplayTermsAndConditionsPopup();
+        (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
     }
 }

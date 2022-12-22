@@ -1,5 +1,6 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 using System.Windows.Input;
@@ -9,21 +10,27 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     [QueryProperty(nameof(Tricycle), "Tricycle")]
     public partial class TricycleDetailsViewModel : BaseViewModel
     {
-        public TricycleDetailsViewModel()
+
+        readonly IUserLocationService userLocation;
+        public TricycleDetailsViewModel(IUserLocationService userLocationService)
         {
+            this.userLocation = userLocationService;
         }
 
         [ObservableProperty]
         Tricycle tricycle;
 
         [ObservableProperty]
-        private bool isTermsAndConditionsPopupVisible = false;
+        private bool isPopupVisible = false;
 
         /// <summary>
         /// Postal address of the tricycle following the format "street, city"
         /// </summary>
         [ObservableProperty]
         string tricycleAddress = "";
+
+        [ObservableProperty]
+        double distance;
 
         /// <summary>
         /// Sets the ObservableProperty of the postal address of the tricycle.
@@ -43,36 +50,25 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
             if (placemark is not null)
                 TricycleAddress = $"{placemark.Thoroughfare}, {placemark.Locality}";
-
-            //return
-            //    $"AdminArea:       {placemark.AdminArea}\n" +
-            //    $"CountryCode:     {placemark.CountryCode}\n" +
-            //    $"CountryName:     {placemark.CountryName}\n" +
-            //    $"FeatureName:     {placemark.FeatureName}\n" +
-            //    $"Locality:        {placemark.Locality}\n" +
-            //    $"PostalCode:      {placemark.PostalCode}\n" +
-            //    $"SubAdminArea:    {placemark.SubAdminArea}\n" +
-            //    $"SubLocality:     {placemark.SubLocality}\n" +
-            //    $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
-            //    $"Thoroughfare:    {placemark.Thoroughfare}\n";
         }
 
         [RelayCommand]
-        public async Task GoToMoreComments(Uri url) => await Launcher.OpenAsync(url);
+        public async Task GoToMoreCommentsAsync(Uri url) => await Launcher.OpenAsync(url);
 
-
-
-        public void DisplayTermsAndConditionsPopup()
-        {
-            IsTermsAndConditionsPopupVisible = true;
-        }
 
         [RelayCommand]
-        public void GoBackToDetails()
+        public async Task GoToTermsAndConditionsAsync()
         {
-            IsTermsAndConditionsPopupVisible = false;
+            await Shell.Current.GoToAsync(nameof(TermsAndConditionsPage), true);
+            IsPopupVisible = false;
         }
 
+
+        [RelayCommand]
+        public void GoToRatingPage(Tricycle tricycle)
+        { 
+            Distance = userLocation.CalculateDistanceFromTricycle(tricycle);
+        }
 
     }
 }
