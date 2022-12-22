@@ -34,7 +34,7 @@
             <BoxView Color="White"
                      Grid.Row="0"
                      Grid.Column="1"/>
-            <Label Text="Tricycle Modèle 1"
+            <Label Text="{Binding Distance}"
                    FontAttributes="Bold"
                    FontSize="14"
                    TextColor="Black"
@@ -158,64 +158,17 @@
                      Grid.Column="0"
                      Grid.ColumnSpan="2"/>
             <Button Text="Déverrouiller"
-                        FontAttributes="Bold"
-                        TextColor="White"
-                        BackgroundColor="MediumPurple"
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        WidthRequest="300"
-                        HeightRequest="60"
-                        FontSize="22"/>
-        </Grid>
-
-
-        <Grid IsVisible="{Binding IsTermsAndConditionsPopupVisible}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition/>
-                <RowDefinition Height="80"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <BoxView Color="White"
-                     Grid.Row="0"
-                     Grid.Column="0"/>
-            <Label Text="Conditions d'utilisation"
-                   TextColor="Black"
-                   FontSize="22"
-                   FontAttributes="Bold"
-                   Grid.Row="0"
-                   Grid.Column="0"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
-            <BoxView Color="White"
-                     Grid.Row="1"
-                     Grid.Column="0"/>
-            <ScrollView Grid.Row="1"
-                        Grid.Column="0"
-                        Padding="10">
-                <StackLayout>
-                    <Label Text="......................................................................................................."
-                           TextColor="Black"
-                           Grid.Row="1"
-                           Grid.Column="0"/>
-                </StackLayout>
-            </ScrollView>
-            <BoxView Color="White"
-                     Grid.Row="2"
-                     Grid.Column="0"/>
-            <Button Text="Retour"
-                    TextColor="White"
+                    Command="{Binding GoToRatingPageCommand}"
+                    CommandParameter="{Binding Tricycle}"
                     FontAttributes="Bold"
-                    FontSize="16"
+                    TextColor="White"
                     BackgroundColor="MediumPurple"
-                    Command="{Binding GoBackToDetailsCommand}"
-                    Grid.Row="2"
+                    Grid.Row="4"
+                    Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    WidthRequest="100"
-                    HeightRequest="60"/>
+                    WidthRequest="300"
+                    HeightRequest="60"
+                    FontSize="22"/>
         </Grid>
     </Grid>
 </ContentPage>
