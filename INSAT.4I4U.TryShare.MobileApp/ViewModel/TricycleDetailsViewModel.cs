@@ -10,7 +10,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     [QueryProperty(nameof(Tricycle), "Tricycle")]
     public partial class TricycleDetailsViewModel : BaseViewModel
     {
-
         readonly IUserLocationService userLocationService;
         public TricycleDetailsViewModel(IUserLocationService userLocationService)
         {
