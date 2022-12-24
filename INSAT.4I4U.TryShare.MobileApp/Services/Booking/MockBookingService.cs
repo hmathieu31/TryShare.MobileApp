@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
 {
-    public class MockBookingService
-        : IBookingService
+    public class MockBookingService : IBookingService
     {
 
         public Task<bool> RequestTricycleBookingAsync(Tricycle tricycle)
