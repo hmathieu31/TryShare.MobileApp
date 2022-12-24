@@ -13,6 +13,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
     {
         private readonly IRequestProvider _requestProvider;
         private const string apiUrlTricycle = "api/Tricycles";
+        private static bool IsConnectedInternet => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
         public TricycleService(IRequestProvider requestProvider)
         {
@@ -38,7 +39,5 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
                 throw new NotImplementedException("Offline functionality not implemented");
             }
         }
-
-        private static bool IsConnectedInternet => Connectivity.NetworkAccess == NetworkAccess.Internet;
     }
 }

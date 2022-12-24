@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 {
-    public interface IUserService
+    public interface IUserSubscriptionService
     {
         /// <exception cref="NotImplementedException">Offline functionality not implemented</exception>
-        public bool IsConnected => Connectivity.Current.NetworkAccess == NetworkAccess.Internet;
-
-        public bool IsAuthenticated();
-
+        public bool CheckSubscriptionValidity();
     }
 }

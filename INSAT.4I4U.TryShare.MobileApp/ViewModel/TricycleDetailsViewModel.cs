@@ -1,4 +1,5 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.View;
@@ -10,26 +11,31 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     [QueryProperty(nameof(Tricycle), "Tricycle")]
     public partial class TricycleDetailsViewModel : BaseViewModel
     {
-        readonly IUserLocationService userLocationService;
-        public TricycleDetailsViewModel(IUserLocationService userLocationService)
+        readonly IUserLocationService _userLocationService;
+        readonly IUserService _userService;
+        readonly IUserSubscriptionService _userSubscriptionService;
+        readonly IBookingService _bookingService;
+
+        public bool IsConnectedAndSignedIn;
+        public TricycleDetailsViewModel(IUserLocationService userLocationService,
+                                        IUserService userService,
+                                        IUserSubscriptionService userSubscriptionService,
+                                        IBookingService bookingService)
         {
-            this.userLocationService = userLocationService;
+            this._userLocationService = userLocationService;
+            this._userService = userService;
+            this._userSubscriptionService = userSubscriptionService;
+            this._bookingService = bookingService;
         }
 
         [ObservableProperty]
         Tricycle tricycle;
-
-        [ObservableProperty]
-        private bool isPopupVisible = false;
 
         /// <summary>
         /// Postal address of the tricycle following the format "street, city"
         /// </summary>
         [ObservableProperty]
         string tricycleAddress = "";
-
-        [ObservableProperty]
-        double distance;
 
         /// <summary>
         /// Sets the ObservableProperty of the postal address of the tricycle.
@@ -59,15 +65,27 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public async Task GoToTermsAndConditionsAsync()
         {
             await Shell.Current.GoToAsync(nameof(TermsAndConditionsPage), true);
-            IsPopupVisible = false;
         }
 
 
         [RelayCommand]
         public async Task GoToRatingPage(Tricycle tricycle)
         {
-            Distance = await userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
+            if (_userService.IsConnected && _userService.IsAuthenticated())
+            {
+                IsConnectedAndSignedIn = true;
+                var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
+                if (distance < 10)
+                {
+                    //await Shell.Current.GoToAsync(nameof(ttttt), true, new Dictionary<string, object>
+                    //{ {"Tricycle", tricycle } });
+                    
+                }
+            }
+            else
+            {
+                IsConnectedAndSignedIn = false;
+            }
         }
-
     }
 }

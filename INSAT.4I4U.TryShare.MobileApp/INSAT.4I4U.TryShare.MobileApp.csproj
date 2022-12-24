@@ -75,10 +75,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Services\User\IUserService.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\Vector.svg" />
 	</ItemGroup>
 

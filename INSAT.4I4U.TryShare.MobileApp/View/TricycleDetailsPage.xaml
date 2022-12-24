@@ -34,7 +34,7 @@
             <BoxView Color="White"
                      Grid.Row="0"
                      Grid.Column="1"/>
-            <Label Text="{Binding Distance}"
+            <Label Text="Tricycle Modèle 1"
                    FontAttributes="Bold"
                    FontSize="14"
                    TextColor="Black"

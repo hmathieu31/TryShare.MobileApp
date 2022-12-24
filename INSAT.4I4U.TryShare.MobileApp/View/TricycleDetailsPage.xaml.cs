@@ -6,10 +6,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.View;
 [QueryProperty(nameof(Tricycle),"Tricycle")]
 public partial class TricycleDetailsPage: ContentPage
 {
-
+    readonly TricycleDetailsViewModel _viewModel;
     public TricycleDetailsPage(TricycleDetailsViewModel viewModel)
     {
         InitializeComponent();
+        _viewModel = viewModel;
         BindingContext = viewModel;
     }
 
@@ -26,5 +27,12 @@ public partial class TricycleDetailsPage: ContentPage
     private async void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
     {
         await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
+    }
+    public async Task DisplayAlertNoInternetOrNoAccountFound()
+    {
+        if (!_viewModel.IsConnectedAndSignedIn)
+        {
+            await DisplayAlert("Alert", "You have been alerted", "OK");
+        }
     }
 }
