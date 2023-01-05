@@ -12,6 +12,9 @@ public partial class TricycleDetailsPage: ContentPage
         InitializeComponent();
         _viewModel = viewModel;
         BindingContext = viewModel;
+        viewModel.OnDetailsTryToNavigateWithoutConnectivity = async () => await DisplayConnectivityErrorPopup();
+        viewModel.OnDetailsTryToNavigateWithoutLocationEnabled = async () => await DisplayLocationUnabledErrorPopup();
+        viewModel.OnDetailsTryToNavigateWithoutLocationAuthorized= async () => await DisplayLocationUnauthorizedErrorPopup();
     }
 
     protected override async void OnAppearing()
@@ -28,11 +31,18 @@ public partial class TricycleDetailsPage: ContentPage
     {
         await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
     }
-    public async Task DisplayAlertNoInternetOrNoAccountFound()
+    public async Task DisplayConnectivityErrorPopup()
     {
-        if (!_viewModel.IsConnectedAndSignedIn)
-        {
-            await DisplayAlert("Alert", "You have been alerted", "OK");
-        }
+        await DisplayAlert("Alerte", "Aucune connection internet trouvée", "OK");
+    }
+
+    public async Task DisplayLocationUnabledErrorPopup()
+    {
+        await DisplayAlert("Alerte", "La localisation n'est pas activée", "OK");
+    }
+
+    public async Task DisplayLocationUnauthorizedErrorPopup()
+    {
+        await DisplayAlert("Alerte", "La localisation n'est pas autorisée", "OK");
     }
 }

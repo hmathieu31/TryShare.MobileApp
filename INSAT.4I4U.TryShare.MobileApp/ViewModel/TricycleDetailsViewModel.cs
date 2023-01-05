@@ -1,10 +1,8 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
-using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
-using System.Windows.Input;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -17,6 +15,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly IBookingService _bookingService;
 
         public bool IsConnectedAndSignedIn;
+        public Action OnDetailsTryToNavigateWithoutConnectivity { get; set; }
+        public Action OnDetailsTryToNavigateWithoutLocationEnabled { get; set; }
+        public Action OnDetailsTryToNavigateWithoutLocationAuthorized { get; set; }
         public TricycleDetailsViewModel(IUserLocationService userLocationService,
                                         IUserService userService,
                                         IUserSubscriptionService userSubscriptionService,
@@ -74,17 +75,33 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             if (_userService.IsConnected && _userService.IsAuthenticated())
             {
                 IsConnectedAndSignedIn = true;
-                var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
-                if (distance < 10)
+                try
                 {
-                    //await Shell.Current.GoToAsync(nameof(ttttt), true, new Dictionary<string, object>
-                    //{ {"Tricycle", tricycle } });
-                    
+                    var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
+                    if (distance < 10)
+                    {
+                        //await Shell.Current.GoToAsync(nameof(ttttt), true, new Dictionary<string, object>
+                        //{ {"Tricycle", tricycle } });
+                    }
                 }
+                catch (PermissionException)
+                {
+                    PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                    if (status is not PermissionStatus.Granted)
+                    {
+                        OnDetailsTryToNavigateWithoutLocationAuthorized.Invoke();
+                    }
+                }
+                catch (FeatureNotEnabledException)
+                {
+                    OnDetailsTryToNavigateWithoutLocationEnabled.Invoke();
+                }
+
             }
             else
             {
                 IsConnectedAndSignedIn = false;
+                OnDetailsTryToNavigateWithoutConnectivity.Invoke();
             }
         }
     }
