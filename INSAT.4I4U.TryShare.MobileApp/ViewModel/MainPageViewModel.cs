@@ -9,7 +9,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
-
+        readonly ITricycleService tricycleService;
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         [ObservableProperty]
@@ -18,11 +18,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
-        readonly ITricycleService tricycleService;
-
         public MainPageViewModel(ITricycleService tricycleService)
         {
-            //Title = "Accueil";
             this.tricycleService = tricycleService;
         }
 
