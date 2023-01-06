@@ -6,11 +6,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.View;
 [QueryProperty(nameof(Tricycle),"Tricycle")]
 public partial class TricycleDetailsPage: ContentPage
 {
-
     public TricycleDetailsPage(TricycleDetailsViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;
+        viewModel.OnDetailsTryToNavigateWithoutConnectivity = async () => await DisplayConnectivityErrorPopupAsync();
+        viewModel.OnDetailsTryToNavigateWithoutLocationEnabled = async () => await DisplayLocationUnabledErrorPopupAsync();
+        viewModel.OnDetailsTryToNavigateWithoutLocationAuthorized= async () => await DisplayLocationUnauthorizedErrorPopupAsync();
     }
 
     protected override async void OnAppearing()
@@ -26,5 +28,19 @@ public partial class TricycleDetailsPage: ContentPage
     private async void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
     {
         await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
+    }
+    public async Task DisplayConnectivityErrorPopupAsync()
+    {
+        await DisplayAlert("Alerte", "Aucune connection internet trouvée", "OK");
+    }
+
+    public async Task DisplayLocationUnabledErrorPopupAsync()
+    {
+        await DisplayAlert("Alerte", "La localisation n'est pas activée", "OK");
+    }
+
+    public async Task DisplayLocationUnauthorizedErrorPopupAsync()
+    {
+        await DisplayAlert("Alerte", "La localisation n'est pas autorisée", "OK");
     }
 }

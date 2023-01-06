@@ -4,6 +4,7 @@ using INSAT._4I4U.TryShare.MobileApp.Services;
 using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -67,7 +68,10 @@ public static class MauiProgram
 		builder.Services
 			.AddSingleton<ITricycleService, TricycleMockService>()
 			.AddSingleton<IRequestProvider, RequestProvider>()
-			.AddSingleton<IUserLocationService, UserLocationService>();
+			.AddSingleton<IUserLocationService, UserLocationService>()
+			.AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
+			.AddSingleton<IUserService, UserMockService>()
+			.AddSingleton<IBookingService, MockBookingService>();
         return builder;
     }
 }

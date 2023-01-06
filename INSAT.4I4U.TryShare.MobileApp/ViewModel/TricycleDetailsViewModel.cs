@@ -1,36 +1,42 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
-using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
-using System.Windows.Input;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     [QueryProperty(nameof(Tricycle), "Tricycle")]
     public partial class TricycleDetailsViewModel : BaseViewModel
     {
+        readonly IUserLocationService _userLocationService;
+        readonly IUserService _userService;
+        readonly IUserSubscriptionService _userSubscriptionService;
+        readonly IBookingService _bookingService;
 
-        readonly IUserLocationService userLocation;
-        public TricycleDetailsViewModel(IUserLocationService userLocationService)
+        public bool IsConnectedAndSignedIn;
+        public Action OnDetailsTryToNavigateWithoutConnectivity { get; set; }
+        public Action OnDetailsTryToNavigateWithoutLocationEnabled { get; set; }
+        public Action OnDetailsTryToNavigateWithoutLocationAuthorized { get; set; }
+        public TricycleDetailsViewModel(IUserLocationService userLocationService,
+                                        IUserService userService,
+                                        IUserSubscriptionService userSubscriptionService,
+                                        IBookingService bookingService)
         {
-            this.userLocation = userLocationService;
+            this._userLocationService = userLocationService;
+            this._userService = userService;
+            this._userSubscriptionService = userSubscriptionService;
+            this._bookingService = bookingService;
         }
 
         [ObservableProperty]
         Tricycle tricycle;
-
-        [ObservableProperty]
-        private bool isPopupVisible = false;
 
         /// <summary>
         /// Postal address of the tricycle following the format "street, city"
         /// </summary>
         [ObservableProperty]
         string tricycleAddress = "";
-
-        [ObservableProperty]
-        double distance;
 
         /// <summary>
         /// Sets the ObservableProperty of the postal address of the tricycle.
@@ -60,15 +66,44 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public async Task GoToTermsAndConditionsAsync()
         {
             await Shell.Current.GoToAsync(nameof(TermsAndConditionsPage), true);
-            IsPopupVisible = false;
         }
 
 
         [RelayCommand]
-        public void GoToRatingPage(Tricycle tricycle)
-        { 
-            Distance = userLocation.CalculateDistanceFromTricycle(tricycle);
-        }
+        public async Task GoToRatingPageAsync(Tricycle tricycle)
+        {
+            const int distanceMax = 10;
+            if (_userService.IsConnected && _userService.IsAuthenticated())
+            {
+                IsConnectedAndSignedIn = true;
+                try
+                {
+                    var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
+                    if (distance < distanceMax)
+                    {
+                        //await Shell.Current.GoToAsync(nameof(ttttt), true, new Dictionary<string, object>
+                        //{ {"Tricycle", tricycle } });
+                    }
+                }
+                catch (PermissionException)
+                {
+                    PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                    if (status is not PermissionStatus.Granted)
+                    {
+                        OnDetailsTryToNavigateWithoutLocationAuthorized.Invoke();
+                    }
+                }
+                catch (FeatureNotEnabledException)
+                {
+                    OnDetailsTryToNavigateWithoutLocationEnabled.Invoke();
+                }
 
+            }
+            else
+            {
+                IsConnectedAndSignedIn = false;
+                OnDetailsTryToNavigateWithoutConnectivity.Invoke();
+            }
+        }
     }
 }
