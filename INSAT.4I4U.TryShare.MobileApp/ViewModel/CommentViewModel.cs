@@ -12,7 +12,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         ICommentService commentService;
         public CommentViewModel(ICommentService commentService)
         {
-            this.commentService=commentService;
+            this.commentService = commentService;
         }
 
         [RelayCommand]
@@ -27,7 +27,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
                 var comments = await commentService.GetCommentAsync();
 
-                if(Comments.Count != 0)
+                if (Comments.Count != 0)
                 {
                     Comments.Clear();
                 }
@@ -48,8 +48,5 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                 IsBusy = false;
             }
         }
-
-        [ObservableProperty]
-        Comment comment;
     }
 }
