@@ -16,7 +16,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Comments
 		/// Gets the comments availables.
 		/// </summary>
 		/// <returns>A List of comment if the client is connected to the Internet</returns>
-		/// <exception cref="NotImplementedException">Offline functionality not implemented</exception>
 		public Task<List<Comment>> GetCommentAsync();
 
 		///// <summary>

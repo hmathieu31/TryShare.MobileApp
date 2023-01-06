@@ -1,13 +1,14 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 
-namespace INSAT._4I4U.TryShare.MobileApp.View;
-
-[QueryProperty(nameof(Tricycle), "Tricycle")]
-public partial class CommentPage : ContentPage
+namespace INSAT._4I4U.TryShare.MobileApp.View
 {
-    public CommentPage(CommentViewModel viewModel)
+    [QueryProperty(nameof(Tricycle), "Tricycle")]
+    public partial class CommentPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = viewModel;
+        public CommentPage(CommentViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
 }

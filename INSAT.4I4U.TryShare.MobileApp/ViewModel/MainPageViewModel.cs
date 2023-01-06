@@ -55,7 +55,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Unable to get tricycle {ex.Message}");
+                Debug.WriteLine($"Unable to get tricycles {ex.Message}");
                 await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
             }
             finally
