@@ -70,15 +70,16 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
 
         [RelayCommand]
-        public async Task GoToRatingPage(Tricycle tricycle)
+        public async Task GoToRatingPageAsync(Tricycle tricycle)
         {
+            const int distanceMax = 10;
             if (_userService.IsConnected && _userService.IsAuthenticated())
             {
                 IsConnectedAndSignedIn = true;
                 try
                 {
                     var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
-                    if (distance < 10)
+                    if (distance < distanceMax)
                     {
                         //await Shell.Current.GoToAsync(nameof(ttttt), true, new Dictionary<string, object>
                         //{ {"Tricycle", tricycle } });

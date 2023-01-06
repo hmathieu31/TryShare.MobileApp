@@ -37,11 +37,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             //   FeatureNotSupportedException
             //   FeatureNotEnabledException
             //   PermissionException
-            catch (Exception ex) when (ex is FeatureNotEnabledException )
-            {
-                // Unable to get location
-                throw;
-            }
             finally
             {
                 _isCheckingLocation = false;

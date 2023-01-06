@@ -6,15 +6,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.View;
 [QueryProperty(nameof(Tricycle),"Tricycle")]
 public partial class TricycleDetailsPage: ContentPage
 {
-    readonly TricycleDetailsViewModel _viewModel;
     public TricycleDetailsPage(TricycleDetailsViewModel viewModel)
     {
         InitializeComponent();
-        _viewModel = viewModel;
         BindingContext = viewModel;
-        viewModel.OnDetailsTryToNavigateWithoutConnectivity = async () => await DisplayConnectivityErrorPopup();
-        viewModel.OnDetailsTryToNavigateWithoutLocationEnabled = async () => await DisplayLocationUnabledErrorPopup();
-        viewModel.OnDetailsTryToNavigateWithoutLocationAuthorized= async () => await DisplayLocationUnauthorizedErrorPopup();
+        viewModel.OnDetailsTryToNavigateWithoutConnectivity = async () => await DisplayConnectivityErrorPopupAsync();
+        viewModel.OnDetailsTryToNavigateWithoutLocationEnabled = async () => await DisplayLocationUnabledErrorPopupAsync();
+        viewModel.OnDetailsTryToNavigateWithoutLocationAuthorized= async () => await DisplayLocationUnauthorizedErrorPopupAsync();
     }
 
     protected override async void OnAppearing()
@@ -31,17 +29,17 @@ public partial class TricycleDetailsPage: ContentPage
     {
         await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
     }
-    public async Task DisplayConnectivityErrorPopup()
+    public async Task DisplayConnectivityErrorPopupAsync()
     {
         await DisplayAlert("Alerte", "Aucune connection internet trouvée", "OK");
     }
 
-    public async Task DisplayLocationUnabledErrorPopup()
+    public async Task DisplayLocationUnabledErrorPopupAsync()
     {
         await DisplayAlert("Alerte", "La localisation n'est pas activée", "OK");
     }
 
-    public async Task DisplayLocationUnauthorizedErrorPopup()
+    public async Task DisplayLocationUnauthorizedErrorPopupAsync()
     {
         await DisplayAlert("Alerte", "La localisation n'est pas autorisée", "OK");
     }
