@@ -42,7 +42,7 @@ public static class MauiProgram
 		builder.Services
 			.AddSingleton<MainPage>()
 			.AddTransient<TricycleDetailsPage>()
-		    .AddSingleton<CommentPage>();
+		    .AddSingleton<CommentPage>()
 			.AddTransient<TricycleDetailsPage>()
 			.AddTransient<TermsAndConditionsPage>();
 		return builder;
@@ -72,7 +72,7 @@ public static class MauiProgram
 		builder.Services
 			.AddSingleton<ITricycleService, TricycleMockService>()
 			.AddSingleton<IRequestProvider, RequestProvider>()
-		    .AddSingleton<ICommentService, CommentMockService>();
+		    .AddSingleton<ICommentService, CommentMockService>()
 			.AddSingleton<IRequestProvider, RequestProvider>()
 			.AddSingleton<IUserLocationService, UserLocationService>()
 			.AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
