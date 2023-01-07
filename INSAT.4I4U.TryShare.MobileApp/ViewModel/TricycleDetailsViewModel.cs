@@ -14,7 +14,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly IUserSubscriptionService _userSubscriptionService;
         readonly IBookingService _bookingService;
 
-        public bool IsConnectedAndSignedIn;
+        public bool IsConnectedAndSignedIn { get; set; }
         public Action OnDetailsTryToNavigateWithoutConnectivity { get; set; }
         public Action OnDetailsTryToNavigateWithoutLocationEnabled { get; set; }
         public Action OnDetailsTryToNavigateWithoutLocationAuthorized { get; set; }
@@ -59,12 +59,21 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         }
 
         [RelayCommand]
-        public async Task GoToMoreCommentsAsync(Uri url) => await Launcher.OpenAsync(url);
+        public async Task GoToMoreCommentsAsync()
+        {
+            if (IsBusy)
+                return;
 
+            IsBusy = true;
+            await Shell.Current.GoToAsync(nameof(CommentPage), true, new Dictionary<string, object>
+            { {"tricycle", Tricycle}});
+            IsBusy = false;
+        }
 
         [RelayCommand]
         public async Task GoToTermsAndConditionsAsync()
         {
+
             await Shell.Current.GoToAsync(nameof(TermsAndConditionsPage), true);
         }
 

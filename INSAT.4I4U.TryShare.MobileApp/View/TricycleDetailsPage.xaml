@@ -125,8 +125,8 @@
                                   TextColor="Black"
                                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GoToMoreCommentsCommand}"
-                                                          CommandParameter="https://learn.microsoft.com/dotnet/maui"/>
+                                    <TapGestureRecognizer Tapped="GoToMoreComments_Tapped"
+                                                          NumberOfTapsRequired="1"/>
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
@@ -144,12 +144,12 @@
                    Grid.ColumnSpan="2"
                    VerticalOptions="Center"
                    Margin="25,0,0,0"
-                   Text="Conditions d'utilisation"
+                   Text="Conditions d'utilisation - POUR DEBUG: DIRIGE VERS LES COMMENTAIRES"
                    TextColor="DarkGrey"
                    TextDecorations="Underline"
                    FontSize="16">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnTermsAndConditionsTapped"
+                    <TapGestureRecognizer Tapped="GoToMoreComments_Tapped"
                                           NumberOfTapsRequired="1"/>
                 </Label.GestureRecognizers>
             </Label>

@@ -108,4 +108,10 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="View\CommentPage.xaml.cs">
+	    <DependentUpon>CommentPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
 </Project>
