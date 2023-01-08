@@ -4,6 +4,7 @@ using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 
 using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -21,11 +22,18 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private ReturnZone returnZone;
 
-        readonly ITricycleService tricycleService;
+        [ObservableProperty]
+        private Distance circleRadius = new(5000);
 
         public MainPageViewModel(ITricycleService tricycleService)
         {
             this.tricycleService = tricycleService;
+
+            // Debug purposes
+            ReturnZone = new()
+            {
+                IsVisible = true,
+            };
         }
 
         public void DisplayPopup(int id)

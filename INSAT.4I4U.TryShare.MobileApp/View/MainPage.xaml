@@ -15,7 +15,8 @@
     <Grid>
         <Map IsShowingUser="True"
              ItemsSource="{Binding Tricycles}"
-             MapClicked="OnMapClicked">
+             MapClicked="OnMapClicked" IsVisible="True"
+             x:Name="mainMap">
             <x:Arguments>
                 <MapSpan>
                     <x:Arguments>
@@ -37,39 +38,29 @@
                          MarkerClicked="PinMarkerClicked"/>
                 </DataTemplate>
             </Map.ItemTemplate>
-            
-            <Map.MapElements>
-                <maps:Polygon  StrokeColor="#FF9900"
-                          StrokeWidth="8"
-                          FillColor="#88FF9900">
-                    <Polygon.Geopath>
+
+            <!--<Map.MapElements>
+                <maps:Circle StrokeColor="#88FF2800"
+                             StrokeWidth="8"
+                             FillColor="#88FFC0CB"
+                             Radius="{Binding CircleRadius}">
+                    <maps:Circle.Center>
                         <sensors:Location>
                             <x:Arguments>
-                                <x:Double>43.558253</x:Double>
-                                <x:Double>1.491952</x:Double>
+                                <x:Double>43.599498414198386</x:Double>
+                                <x:Double>1.4372202194252555</x:Double>
                             </x:Arguments>
                         </sensors:Location>
-                        <sensors:Location>
+                    </maps:Circle.Center>
+                    --><!--<maps:Circle.Radius>
+                        <Distance>
                             <x:Arguments>
-                                <x:Double>43.645383</x:Double>
-                                <x:Double>1.468049</x:Double>
+                                <x:Double>50000</x:Double>
                             </x:Arguments>
-                        </sensors:Location>
-                        <sensors:Location>
-                            <x:Arguments>
-                                <x:Double>43.609230</x:Double>
-                                <x:Double>1.368447</x:Double>
-                            </x:Arguments>
-                        </sensors:Location>
-                        <sensors:Location>
-                            <x:Arguments>
-                                <x:Double>43.554773</x:Double>
-                                <x:Double>1.409388</x:Double>
-                            </x:Arguments>
-                        </sensors:Location>
-                    </Polygon.Geopath>
-                </maps:Polygon>
-            </Map.MapElements>
+                        </Distance>
+                    </maps:Circle.Radius>--><!--
+                </maps:Circle>
+            </Map.MapElements>-->
         </Map>
 
         <Button ImageSource="Resources/Images/refreshicon.svg"
