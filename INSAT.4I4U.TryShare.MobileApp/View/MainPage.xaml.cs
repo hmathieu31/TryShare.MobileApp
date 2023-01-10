@@ -15,32 +15,23 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         _viewModel = viewModel;
         BindingContext = viewModel;
-
-        SetReturnZoneCircleOnMap();
     }
 
-    private void SetReturnZoneCircleOnMap()
+    protected override void OnAppearing()
     {
-        var circle = new Circle()
-        {
-            StrokeColor = Color.FromArgb("#88FF2800"),
-            StrokeWidth = 8,
-            FillColor = Color.FromArgb("#88FFC0CB")
-        }.Bind(Circle.CenterProperty, nameof(_viewModel.ReturnZone.Center))
-         .Bind(Circle.RadiusProperty, nameof(_viewModel.ReturnZone.Radius));
-
-        mainMap.MapElements.Add(circle);
+        base.OnAppearing();
+        _viewModel.OnAppearing();
     }
 
-    private void PinMarkerClicked(object sender, Microsoft.Maui.Controls.Maps.PinClickedEventArgs e)
+    private void PinMarkerClicked(object sender, PinClickedEventArgs e)
     {
         e.HideInfoWindow = true;
         //appel méthodes viewmodel
-        _viewModel.DisplayPopup(Int32.Parse(((Pin)sender).Label));
+        _viewModel.DisplayPopup(int.Parse(((Pin)sender).Label));
 
     }
 
-    private void OnMapClicked(object sender, Microsoft.Maui.Controls.Maps.MapClickedEventArgs e)
+    private void OnMapClicked(object sender, MapClickedEventArgs e)
     {
         _viewModel.HidePopup();
     }

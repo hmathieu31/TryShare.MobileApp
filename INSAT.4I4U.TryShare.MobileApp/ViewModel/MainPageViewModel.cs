@@ -13,27 +13,52 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly ITricycleService tricycleService;
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
+        public ObservableCollection<CircleZone> ReturnZones { get; } = new();
+
         [ObservableProperty]
         private bool isPopupVisible = false;
 
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
-        [ObservableProperty]
-        private ReturnZone returnZone;
+        //[ObservableProperty]
+        //private ReturnZone returnZone;
 
         [ObservableProperty]
         private Distance circleRadius = new(5000);
 
+        [ObservableProperty]
+        private bool isMapReady;
         public MainPageViewModel(ITricycleService tricycleService)
         {
             this.tricycleService = tricycleService;
+        }
 
-            // Debug purposes
-            ReturnZone = new()
+        public void OnAppearing()
+        {
+            SetReturnZones();
+        }
+
+        private void SetReturnZones()
+        {
+            ReturnZones.Clear();
+            
+            // For current debug purposes
+            var toulouseRadius = new Distance(5000);
+            var toulouseCenter = new Location(43.599498414198386, 1.4372202194252555);
+
+            var toulouseReturnZone = new CircleZone
             {
+                Center = toulouseCenter,
+                Radius = toulouseRadius,
+                FillColor = Color.FromRgba(0, 0, 255, 0.2),
+                StrokeColor = Color.FromRgba(0, 0, 255, 0.5),
+                StrokeWidth = 2,
                 IsVisible = true,
             };
+
+            ReturnZones.Add(toulouseReturnZone);
+            IsMapReady = true;
         }
 
         public void DisplayPopup(int id)
@@ -84,8 +109,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                 { {"Tricycle", tricycle } });
             IsPopupVisible = false;
         }
-
-
     }
 }
 

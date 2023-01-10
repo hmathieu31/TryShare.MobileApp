@@ -6,6 +6,7 @@
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
              xmlns:model="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Model"
              xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
+             xmlns:behaviours="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Behaviours"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
              Title="Accueil"
@@ -38,6 +39,11 @@
                          MarkerClicked="PinMarkerClicked"/>
                 </DataTemplate>
             </Map.ItemTemplate>
+            <Map.Behaviors>
+                <behaviours:MapBehaviour
+                    IsReady="{Binding IsMapReady}"
+                    Zones="{Binding ReturnZones}"/>
+            </Map.Behaviors>
 
             <!--<Map.MapElements>
                 <maps:Circle StrokeColor="#88FF2800"
@@ -52,13 +58,15 @@
                             </x:Arguments>
                         </sensors:Location>
                     </maps:Circle.Center>
-                    --><!--<maps:Circle.Radius>
+                    -->
+            <!--<maps:Circle.Radius>
                         <Distance>
                             <x:Arguments>
                                 <x:Double>50000</x:Double>
                             </x:Arguments>
                         </Distance>
-                    </maps:Circle.Radius>--><!--
+                    </maps:Circle.Radius>-->
+            <!--
                 </maps:Circle>
             </Map.MapElements>-->
         </Map>
