@@ -7,7 +7,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.View;
 
 public partial class MainPage : ContentPage
 {
-    MainPageViewModel _viewModel;
+    readonly MainPageViewModel _viewModel;
 	public MainPage(MainPageViewModel viewModel)
 	{
 		InitializeComponent();
@@ -15,7 +15,7 @@ public partial class MainPage : ContentPage
         BindingContext = viewModel;
     }
 
-    private void Pin_MarkerClicked(object sender, Microsoft.Maui.Controls.Maps.PinClickedEventArgs e)
+    private void PinMarkerClicked(object sender, Microsoft.Maui.Controls.Maps.PinClickedEventArgs e)
     {
         e.HideInfoWindow = true;
         //appel méthodes viewmodel
@@ -27,6 +27,6 @@ public partial class MainPage : ContentPage
     {
         _viewModel.HidePopup();
     }
-
+    
 }
 

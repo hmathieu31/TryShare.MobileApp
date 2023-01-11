@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="INSAT._4I4U.TryShare.MobileApp.View.TermsAndConditionsPage"
+             Title="Conditions d'utilisation">
+
+    <VerticalStackLayout>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <BoxView Color="White"
+                     Grid.Row="0"
+                     Grid.Column="0"/>
+            <Label Text="Conditions d'utilisation"
+                   TextColor="Black"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+            <BoxView Color="White"
+                     Grid.Row="1"
+                     Grid.Column="0"/>
+            <ScrollView Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="10">
+                <StackLayout>
+                    <Label Text="......................................................................................................."
+                           TextColor="Black"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

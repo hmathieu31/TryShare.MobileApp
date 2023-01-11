@@ -3,6 +3,9 @@ using Microsoft.Maui.Controls.Hosting;
 using INSAT._4I4U.TryShare.MobileApp.Services;
 using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -39,6 +42,10 @@ public static class MauiProgram
 		builder.Services
 			.AddSingleton<MainPage>()
 			.AddTransient<TricycleDetailsPage>()
+		    .AddSingleton<CommentPage>()
+			.AddTransient<TricycleDetailsPage>()
+			.AddTransient<TermsAndConditionsPage>();
+			.AddTransient<TricycleDetailsPage>()
 			.AddTransient<TricycleUnlockingPage>();
 		return builder;
 	}
@@ -53,6 +60,8 @@ public static class MauiProgram
         builder.Services
 			.AddSingleton<MainPageViewModel>()
 		    .AddTransient<TricycleDetailsViewModel>()
+		    .AddSingleton<CommentViewModel>();
+		    .AddTransient<TricycleDetailsViewModel>()
 			.AddTransient<TricycleUnlockingViewModel>();
         return builder;
     }
@@ -66,7 +75,13 @@ public static class MauiProgram
     {
 		builder.Services
 			.AddSingleton<ITricycleService, TricycleMockService>()
-			.AddSingleton<IRequestProvider, RequestProvider>();
+			.AddSingleton<IRequestProvider, RequestProvider>()
+		    .AddSingleton<ICommentService, CommentMockService>()
+			.AddSingleton<IRequestProvider, RequestProvider>()
+			.AddSingleton<IUserLocationService, UserLocationService>()
+			.AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
+			.AddSingleton<IUserService, UserMockService>()
+			.AddSingleton<IBookingService, MockBookingService>();
         return builder;
     }
 }

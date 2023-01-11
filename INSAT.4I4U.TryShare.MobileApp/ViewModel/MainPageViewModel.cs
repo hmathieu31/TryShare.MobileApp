@@ -9,7 +9,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
-
+        readonly ITricycleService tricycleService;
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         [ObservableProperty]
@@ -18,11 +18,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
-        readonly ITricycleService tricycleService;
-
         public MainPageViewModel(ITricycleService tricycleService)
         {
-            //Title = "Accueil";
             this.tricycleService = tricycleService;
         }
 
@@ -58,7 +55,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Unable to get tricycle {ex.Message}");
+                Debug.WriteLine($"Unable to get tricycles {ex.Message}");
                 await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
             }
             finally
