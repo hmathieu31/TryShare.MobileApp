@@ -76,6 +76,18 @@
         <BoxView Color="Yellow"
                  Grid.Row="6"
                  Grid.Column="0"/>
+        <Button Text="Déverrouiller"
+                    Command="{Binding GoToMainPageCommand}"
+                    CommandParameter="{Binding Tricycle}"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    BackgroundColor="MediumPurple"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="300"
+                    HeightRequest="60"
+                    FontSize="22"/>
         <!--<Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
