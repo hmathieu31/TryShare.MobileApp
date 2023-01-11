@@ -90,8 +90,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                     var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
                     if (distance < distanceMax)
                     {
-                        //await Shell.Current.GoToAsync(nameof(ttttt), true, new Dictionary<string, object>
-                        //{ {"Tricycle", tricycle } });
+                        await Shell.Current.GoToAsync(nameof(TricycleUnlockingPage), true, new Dictionary<string, object>
+                        { {"Tricycle", tricycle } });
                     }
                 }
                 catch (PermissionException)

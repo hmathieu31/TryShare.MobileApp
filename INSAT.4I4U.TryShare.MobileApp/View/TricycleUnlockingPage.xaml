@@ -5,7 +5,7 @@
              xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
              x:DataType="viewmodel:TricycleUnlockingViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.TricycleUnlockingPage"
-             Title="Mais avant de déverouiller">
+             Title="Décrivez pour déverouiller">
     
     
     <Grid Padding="15"
@@ -19,7 +19,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <BoxView Color="White"
+        <BoxView Color="MediumPurple"
                  Grid.Row="0"
                  Grid.Column="0"/>
         <Label Text="Attribuez au tricycle une note générale:"
@@ -28,14 +28,15 @@
                VerticalOptions="Center"
                Margin="10,0,0,0"
                FontSize="16"
-               FontAttributes="Bold"/>
+               FontAttributes="Bold"
+               TextColor="White"/>
         <BoxView Color="White"
                  Grid.Row="1"
                  Grid.Column="0"/>
         <controls:Rating Value="1"
                          Grid.Row="1"/>
 
-        <BoxView Color="Green"
+        <BoxView Color="MediumPurple"
                  Grid.Row="2"
                  Grid.Column="0"/>
         <Label Text="Quel est l'élément du vélo cargo le plus endommagé ?"
@@ -44,7 +45,9 @@
                VerticalOptions="Center"
                Margin="10,0,0,0"
                FontSize="16"
-               FontAttributes="Bold"/>
+               FontAttributes="Bold"
+               BackgroundColor="MediumPurple"
+               TextColor="White"/>
         <BoxView Color="White"
                  Grid.Row="3"
                  Grid.Column="0"/>
@@ -63,9 +66,54 @@
             <Button Text="Selle"
                     Grid.Row="0"
                     Grid.Column="0"
-                    WidthRequest="60"
-                    HeightRequest="40"/>
-           
+                    WidthRequest="70"
+                    HeightRequest="50"
+                    TextColor="Black"
+                    BackgroundColor="White"
+                    BorderWidth="1"
+                    BorderColor="Black"/>
+            <Button Text="Freins"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    WidthRequest="70"
+                    HeightRequest="50"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    BackgroundColor="White"/>
+            <Button Text="Vitesses et roues"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="140"
+                    HeightRequest="50"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"/>
+            <Button Text="Assistance électrique"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    WidthRequest="170"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"/>
+            <Button Text="Eclairage"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    WidthRequest="140"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    BackgroundColor="White"
+                    HorizontalOptions="Start"/>
+
+
         </Grid>
         <BoxView Color="Yellow"
                  Grid.Row="4"
