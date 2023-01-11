@@ -45,11 +45,10 @@
                     Zones="{Binding ReturnZones}"/>
             </Map.Behaviors>
 
-            <!--<Map.MapElements>
+            <Map.MapElements>
                 <maps:Circle StrokeColor="#88FF2800"
                              StrokeWidth="8"
-                             FillColor="#88FFC0CB"
-                             Radius="{Binding CircleRadius}">
+                             FillColor="#88FFC0CB">
                     <maps:Circle.Center>
                         <sensors:Location>
                             <x:Arguments>
@@ -58,17 +57,17 @@
                             </x:Arguments>
                         </sensors:Location>
                     </maps:Circle.Center>
-                    -->
-            <!--<maps:Circle.Radius>
+                    
+            <maps:Circle.Radius>
                         <Distance>
                             <x:Arguments>
                                 <x:Double>50000</x:Double>
                             </x:Arguments>
                         </Distance>
-                    </maps:Circle.Radius>-->
-            <!--
+                    </maps:Circle.Radius>
+            
                 </maps:Circle>
-            </Map.MapElements>-->
+            </Map.MapElements>
         </Map>
 
         <Button ImageSource="Resources/Images/refreshicon.svg"
@@ -81,6 +80,20 @@
                 Style="{StaticResource ButtonOutline}"
                 Margin="0,10,0,0"/>
 
+        <Button Text="Retourner"
+                Command="{Binding GoToPostBookingCommand}"
+                CommandParameter="{Binding SelectedTricycle}"
+                IsVisible="{Binding IsReturnable}"
+                FontAttributes="Bold"
+                TextColor="White"
+                BackgroundColor="MediumPurple"
+                WidthRequest="300"
+                HeightRequest="60"
+                FontSize="22"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                />
+        
         <Grid IsVisible= "{Binding IsPopupVisible}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -157,6 +170,7 @@
                          Grid.Row="2"
                          Grid.Column="0"
                          Grid.ColumnSpan="2"/>
+                
                 <Button Text="Réserver"
                         FontAttributes="Bold"
                         TextColor="White"

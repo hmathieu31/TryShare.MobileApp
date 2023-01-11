@@ -33,6 +33,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
         /// </summary>
         /// <param name="tricycle">The tricycle.</param>
         /// <returns>true if the tricycle can be booked</returns>
-        public Task<bool> CanTricycleBeBooked(Tricycle tricycle);
+        public Task<bool> CanTricycleBeBookedAsync(Tricycle tricycle);
     }
 }

@@ -20,14 +20,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
 
         private async Task<bool> RequestTricycleBookingInternalAsync(Tricycle tricycle)
         {
-            if (!await CanTricycleBeBooked(tricycle))
+            if (!await CanTricycleBeBookedAsync(tricycle))
                 return false;
 
             Debug.WriteLine($"Booking tricycle {tricycle.Id}");
             return true;
         }
 
-        public Task<bool> CanTricycleBeBooked(Tricycle tricycle)
+        public Task<bool> CanTricycleBeBookedAsync(Tricycle tricycle)
         {
             Debug.WriteLine("Checking if the tricycle can be booked");
             return Task.FromResult(true);

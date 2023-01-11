@@ -5,12 +5,14 @@ using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
         readonly ITricycleService tricycleService;
+        readonly IBookingService bookingService;
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         public ObservableCollection<CircleZone> ReturnZones { get; } = new();
@@ -21,6 +23,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
+        [ObservableProperty]
+        private bool isReturnable;
+
         //[ObservableProperty]
         //private ReturnZone returnZone;
 
@@ -29,14 +34,15 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         private bool isMapReady;
-        public MainPageViewModel(ITricycleService tricycleService)
+        public MainPageViewModel(ITricycleService tricycleService, IBookingService bookingService)
         {
             this.tricycleService = tricycleService;
+            this.bookingService = bookingService;
         }
-
         public void OnAppearing()
         {
             SetReturnZones();
+            _ = JustBookedCheckAsync();
         }
 
         private void SetReturnZones()
@@ -72,6 +78,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             IsPopupVisible = false;
         }
 
+        public async Task JustBookedCheckAsync()
+        {
+            if (await bookingService.CanTricycleBeBookedAsync(selectedTricycle)) isReturnable = false;
+            else isReturnable=true;
+        }
+
         [RelayCommand]
         async Task GetTricyclesAsync()
         {
@@ -100,6 +112,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             {
                 IsBusy = false;
             }
+        }
+
+        [RelayCommand]
+        async Task GoToPostBookingAsync(Tricycle tricycle)
+        {
+            await Shell.Current.GoToAsync(nameof(PostBookingPage), true, new Dictionary<string, object>
+            { {"Tricycle", tricycle}});
+            isPopupVisible = false;
         }
 
         [RelayCommand]

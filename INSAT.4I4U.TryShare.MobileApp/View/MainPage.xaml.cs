@@ -21,6 +21,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
         _viewModel.OnAppearing();
+
     }
 
     private void PinMarkerClicked(object sender, PinClickedEventArgs e)
