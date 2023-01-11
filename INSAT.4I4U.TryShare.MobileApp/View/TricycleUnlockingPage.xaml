@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
+             xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
+             x:DataType="viewmodel:TricycleUnlockingViewModel"
+             x:Class="INSAT._4I4U.TryShare.MobileApp.View.TricycleUnlockingPage"
+             Title="Mais avant de déverouiller">
+    
+    
+    <Grid Padding="15"
+          BackgroundColor="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <BoxView Color="White"
+                 Grid.Row="0"
+                 Grid.Column="0"/>
+        <Label Text="Attribuez au tricycle une note générale:"
+               Grid.Row="0"
+               Grid.Column="0"
+               VerticalOptions="Center"
+               Margin="10,0,0,0"
+               FontSize="16"
+               FontAttributes="Bold"/>
+        <BoxView Color="White"
+                 Grid.Row="1"
+                 Grid.Column="0"/>
+        <controls:Rating Value="1"
+                         Grid.Row="1"/>
+
+        <BoxView Color="Green"
+                 Grid.Row="2"
+                 Grid.Column="0"/>
+        <Label Text="Quel est l'élément du vélo cargo le plus endommagé ?"
+               Grid.Row="2"
+               Grid.Column="0"
+               VerticalOptions="Center"
+               Margin="10,0,0,0"
+               FontSize="16"
+               FontAttributes="Bold"/>
+        <BoxView Color="White"
+                 Grid.Row="3"
+                 Grid.Column="0"/>
+        <Grid Grid.Row="3"
+              Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Selle"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    WidthRequest="60"
+                    HeightRequest="40"/>
+           
+        </Grid>
+        <BoxView Color="Yellow"
+                 Grid.Row="4"
+                 Grid.Column="0"/>
+        <BoxView Color="Pink"
+                 Grid.Row="5"
+                 Grid.Column="0"/>
+        <BoxView Color="Yellow"
+                 Grid.Row="6"
+                 Grid.Column="0"/>
+        <!--<Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />-->
+    </Grid>
+</ContentPage>
