@@ -1,12 +1,12 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.View;
-using Microsoft.Maui.Controls.Hosting;
-using INSAT._4I4U.TryShare.MobileApp.Services;
 using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Maui;
+using Microsoft.Identity.Client;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -19,7 +19,19 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
-			.ConfigureFonts(fonts =>
+            .ConfigureLifecycleEvents(events =>
+            {
+			#if ANDROID
+                events.AddAndroid(platform =>
+                {
+                    platform.OnActivityResult((activity, rc, result, data) =>
+                    {
+                        AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(rc, result, data);
+                    });
+                });
+			#endif
+            })
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");

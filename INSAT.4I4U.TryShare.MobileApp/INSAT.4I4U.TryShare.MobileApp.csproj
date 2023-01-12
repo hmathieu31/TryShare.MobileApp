@@ -91,10 +91,11 @@
 	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="2.1.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="IdentityModel" Version="6.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.1">
+	  <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.2">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	  <PackageReference Include="Microsoft.Identity.Client" Version="4.49.1" />
 	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	  <PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
