@@ -1,10 +1,7 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.Exceptions;
 using INSAT._4I4U.TryShare.MobileApp.Loggers;
-using INSAT._4I4U.TryShare.MobileApp.Settings;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Abstractions;
-using static INSAT._4I4U.TryShare.MobileApp.GlobalSettings;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Helpers
 {
@@ -13,9 +10,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
         public IPublicClientApplication PublicClientApplication { get; }
         public AuthenticationResult AuthResult { get; private set; }
 
-        public MsalHelper(IConfiguration config)
+        public MsalHelper()
         {
-            var b2cConfig = config.GetRequiredSection("AzureAdB2C").Get<AzureAdB2C>();
+            var b2cConfig = GlobalSettings.AzureB2CSettings;
 
             this.PublicClientApplication = PublicClientApplicationBuilder
                 .Create(b2cConfig.ClientId)

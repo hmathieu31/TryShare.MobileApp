@@ -35,11 +35,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         private bool isMapReady;
-        public MainPageViewModel(ITricycleService tricycleService, MsalHelper msal, IConfiguration config)
+        public MainPageViewModel(ITricycleService tricycleService, MsalHelper msal)
         {
             this.tricycleService = tricycleService;
             this.msal = msal;
-            this.b2cConfig = config.GetRequiredSection("AzureAdB2C").Get<AzureAdB2C>();
+            this.b2cConfig = GlobalSettings.AzureB2CSettings;
         }
 
         public void OnAppearing()

@@ -79,10 +79,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.json" />
 	  <None Remove="Resources\Images\battery.svg" />
 	  <None Remove="Resources\Images\bike.svg" />
 	  <None Remove="Resources\Images\RefreshIcon.svg" />
 	  <None Remove="Resources\Images\Vector.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
