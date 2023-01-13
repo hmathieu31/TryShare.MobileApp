@@ -33,11 +33,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
         /// <returns> Access Token</returns>
         public async Task<string> SignInUserAndAcquireAccessToken(string[] scopes)
         {
-
+            
             if (this.PublicClientApplication is null)
                 throw new MsalClientApplicationException("MSAL PCA is null");
 
-            IAccount existingUser = null;
+            var existingUser = (await this.PublicClientApplication.GetAccountsAsync())
+                                        .FirstOrDefault();
 
             try
             {
@@ -89,13 +90,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
                     .ConfigureAwait(false);
             }
 
-            // If the operating system does not have UI (e.g. SSH into Linux), you can fallback to device code, however this
-            // flow will not satisfy the "device is managed" CA policy.
-            return await this.PublicClientApplication.AcquireTokenWithDeviceCode(scopes, (dcr) =>
-            {
-                Console.WriteLine(dcr.Message);
-                return Task.CompletedTask;
-            }).ExecuteAsync().ConfigureAwait(false);
+            // If the device does not support UI
+            throw new NotSupportedException("Device needs to support UI to acquire token interactively");
         }
     }
 }
