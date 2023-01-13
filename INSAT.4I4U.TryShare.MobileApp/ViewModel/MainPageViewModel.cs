@@ -5,12 +5,18 @@ using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using INSAT._4I4U.TryShare.MobileApp.Helpers;
+using Microsoft.Extensions.Configuration;
+using INSAT._4I4U.TryShare.MobileApp.Settings;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
         readonly ITricycleService tricycleService;
+        private readonly MsalHelper msal;
+        private readonly AzureAdB2C b2cConfig;
+
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         public ObservableCollection<CircleZone> ReturnZones { get; } = new();
@@ -29,9 +35,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         private bool isMapReady;
-        public MainPageViewModel(ITricycleService tricycleService)
+        public MainPageViewModel(ITricycleService tricycleService, MsalHelper msal, IConfiguration config)
         {
             this.tricycleService = tricycleService;
+            this.msal = msal;
+            this.b2cConfig = config.GetRequiredSection("AzureAdB2C").Get<AzureAdB2C>();
         }
 
         public void OnAppearing()
@@ -70,6 +78,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public void HidePopup()
         {
             IsPopupVisible = false;
+        }
+
+        [RelayCommand]
+        async Task Authenticate()
+        {
+            await msal.SignInUserInteractivelyAsync(b2cConfig.Scopes);
         }
 
         [RelayCommand]

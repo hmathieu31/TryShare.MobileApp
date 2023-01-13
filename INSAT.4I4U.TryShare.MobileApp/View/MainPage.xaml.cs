@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Maps;
 using Microsoft.Identity.Client;
 using System.Diagnostics;
+using INSAT._4I4U.TryShare.MobileApp.Helpers;
 
 namespace INSAT._4I4U.TryShare.MobileApp.View;
 

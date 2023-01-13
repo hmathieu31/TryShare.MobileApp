@@ -14,6 +14,7 @@
 
 
     <Grid>
+        <Button Text="Click me" Command="{Binding }" />
         <Map IsShowingUser="True"
              ItemsSource="{Binding Tricycles}"
              MapClicked="OnMapClicked" IsVisible="True"
