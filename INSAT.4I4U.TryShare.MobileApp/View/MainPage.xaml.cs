@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls.Maps;
-using Microsoft.Datasync.Client;
 using Microsoft.Identity.Client;
 using System.Diagnostics;
 

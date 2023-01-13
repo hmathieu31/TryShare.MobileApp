@@ -21,15 +21,15 @@ public static class MauiProgram
 			.UseMauiCommunityToolkit()
             .ConfigureLifecycleEvents(events =>
             {
-			#if ANDROID
-                events.AddAndroid(platform =>
+#if ANDROID
+            events.AddAndroid(platform =>
+            {
+                platform.OnActivityResult((activity, rc, result, data) =>
                 {
-                    platform.OnActivityResult((activity, rc, result, data) =>
-                    {
-                        AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(rc, result, data);
-                    });
+                    AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(rc, result, data);
                 });
-			#endif
+            });
+#endif
             })
             .ConfigureFonts(fonts =>
 			{
