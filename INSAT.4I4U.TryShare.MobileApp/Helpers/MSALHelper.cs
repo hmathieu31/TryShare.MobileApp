@@ -1,20 +1,29 @@
-﻿using Microsoft.Identity.Client;
+﻿using INSAT._4I4U.TryShare.MobileApp.Exceptions;
+using INSAT._4I4U.TryShare.MobileApp.Loggers;
+using INSAT._4I4U.TryShare.MobileApp.Settings;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Abstractions;
 using static INSAT._4I4U.TryShare.MobileApp.GlobalSettings;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Helpers
 {
-    public class MSALHelper
+    public class MsalHelper
     {
-        public  IPublicClientApplication PublicClientApplication { get; }
+        public IPublicClientApplication PublicClientApplication { get; }
         public AuthenticationResult AuthResult { get; private set; }
-        private static readonly AzureADb2c b2cConfig;
 
-        public MSALHelper()
+        public MsalHelper(IConfiguration config)
         {
-            
+            var b2cConfig = config.GetRequiredSection("AzureAdB2C").Get<AzureAdB2C>();
 
-            var builder = PublicClientApplicationBuilder
-                .Create();
+            this.PublicClientApplication = PublicClientApplicationBuilder
+                .Create(b2cConfig.ClientId)
+                .WithB2CAuthority($"{b2cConfig.Instance}/tfp/{b2cConfig.Domain}/{b2cConfig.SignUpSignInPolicyId}")
+                .WithLogging(new IdentityLogger(EventLogLevel.Warning), enablePiiLogging: false)
+                // This is the currently recommended way to log MSAL message. For more info refer to https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/logging. Set Identity Logging level to Warning which is a middle ground
+                .WithRedirectUri($"msal{b2cConfig.ClientId}://auth")
+                .Build();
         }
 
         /// <summary>
@@ -24,18 +33,16 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
         /// <returns> Access Token</returns>
         public async Task<string> SignInUserAndAcquireAccessToken(string[] scopes)
         {
-            
-            if (this.PublicClientApplication is null) 
-            {
-                throw new NullReferenceException("Public Client application not initialized");
-            }
+
+            if (this.PublicClientApplication is null)
+                throw new MsalClientApplicationException("MSAL PCA is null");
 
             IAccount existingUser = null;
 
             try
             {
                 // 1. Try to sign-in the previously signed-in account
-                if (existingUser != null)
+                if (existingUser is not null)
                 {
                     this.AuthResult = await this.PublicClientApplication
                         .AcquireTokenSilent(scopes, existingUser)
@@ -69,14 +76,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
         /// Shows a pattern to sign-in a user interactively in applications that are input constrained and would need to fall-back on device code flow.
         /// </summary>
         /// <param name="scopes">The scopes.</param>
-        /// <param name="existingAccount">The existing account.</param>
         /// <returns></returns>
-        public async Task<AuthenticationResult> SignInUserInteractivelyAsync(string[] scopes, IAccount existingAccount = null)
+        public async Task<AuthenticationResult> SignInUserInteractivelyAsync(string[] scopes)
         {
             if (this.PublicClientApplication is null)
-            {
-                throw new NullReferenceException("Public Client application not initialized");
-            }
+                throw new MsalClientApplicationException("Public Client application not initialized");
 
             if (this.PublicClientApplication.IsUserInteractive())
             {
@@ -92,15 +96,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
                 Console.WriteLine(dcr.Message);
                 return Task.CompletedTask;
             }).ExecuteAsync().ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Removes the first signed-in user's record from token cache
-        /// </summary>
-        public async Task SignOutUserAsync()
-        {
-            var existingUser = await FetchSignedInUserFromCache().ConfigureAwait(false);
-            await this.SignOutUserAsync(existingUser).ConfigureAwait(false);
         }
     }
 }

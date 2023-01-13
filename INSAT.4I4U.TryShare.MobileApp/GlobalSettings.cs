@@ -63,7 +63,6 @@
         public string GatewayShoppingEndpoint { get; set; }
 
         public string GatewayMarketingEndpoint { get; set; }
-        public static AzureADb2c AzureADb2C { get => azureADb2C; }
 
         private void UpdateEndpoint(string endpoint)
         {
@@ -105,24 +104,5 @@
                 return DefaultEndpoint;
             }
         }
-
-        private static AzureADb2c azureADb2C;
-
-        public class AzureADb2c
-        {
-            public const string CacheDir = "C:/temp";
-            public const string CacheFileName = "netcore_winui_cache.txt";
-            public const string ClientId = "5e36f510-a31b-4ff3-9aa5-b254d8f63505";
-            public const string Domain = "insatryshare.onmicrosoft.com";
-            public const string EditProfilePolicyId = "b2c_1_edit_profile";
-            public const string Instance = "https://insatryshare.b2clogin.com";
-            public const string ResetPasswordPolicyId = "b2c_1_reset";
-            public const string SignUpSignInPolicyId = "B2C_1_SignupSignin1";
-            public const string TenantId = "8e77bc5e-3720-4cf3-a728-757a7ba5d100";
-            public const string Scopes = "https://insatryshare.onmicrosoft.com/de4639ac-b011-4071-ad70-cd4dcba3bc40/access_as_user";
-        }
-
     }
-
-
 }

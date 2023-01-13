@@ -7,6 +7,8 @@ using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Maui;
 using Microsoft.Identity.Client;
 using Microsoft.Maui.LifecycleEvents;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -15,6 +17,15 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
+
+
+		// Import configuration from appsettings
+		var a = Assembly.GetExecutingAssembly();
+		using var stream = a.GetManifestResourceStream("INSAT._4I4U.TryShare.MobileApp.appsettings.json");
+
+		var config = new ConfigurationBuilder()
+			.AddJsonStream(stream)
+			.Build();
 
 		builder
 			.UseMauiApp<App>()
@@ -37,6 +48,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			})
 			.UseMauiMaps();
+
+		builder.Configuration.AddConfiguration(config);
 
 		builder
 			.RegisterViews()
