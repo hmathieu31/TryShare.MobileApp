@@ -27,7 +27,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
         public async Task<UserIdentity> GetUserIdentityAsync()
         {
             var authResult = await _msalHelper.SignInUserAndAcquireAccessTokenAsync(GlobalSettings.Scopes);
-             return authResult.ToModel();
+            return authResult.ToModel();
         }
 
         public bool IsAuthenticated()
