@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 {
-    internal class UserService
+    public class UserService : IUserService
     {
+        public bool IsAuthenticated()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
