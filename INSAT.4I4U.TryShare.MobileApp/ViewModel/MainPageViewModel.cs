@@ -2,15 +2,17 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-
-using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using INSAT._4I4U.TryShare.MobileApp.Helpers;
+using INSAT._4I4U.TryShare.MobileApp.Settings;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
         readonly ITricycleService tricycleService;
+        private readonly MsalHelper msal;
+
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         public ObservableCollection<CircleZone> ReturnZones { get; } = new();
@@ -29,9 +31,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         private bool isMapReady;
-        public MainPageViewModel(ITricycleService tricycleService)
+        public MainPageViewModel(ITricycleService tricycleService, MsalHelper msal)
         {
             this.tricycleService = tricycleService;
+            this.msal = msal;
         }
 
         public void OnAppearing()
