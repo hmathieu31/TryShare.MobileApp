@@ -14,7 +14,6 @@
 
 
     <Grid>
-        <Button Text="Click me" Command="{Binding }" />
         <Map IsShowingUser="True"
              ItemsSource="{Binding Tricycles}"
              MapClicked="OnMapClicked" IsVisible="True"
@@ -71,6 +70,8 @@
                 </maps:Circle>
             </Map.MapElements>-->
         </Map>
+
+        <Button Text="Click me" Command="{Binding AuthenticateCommand}" />
 
         <Button ImageSource="Resources/Images/refreshicon.svg"
                 Command="{Binding GetTricyclesCommand}"

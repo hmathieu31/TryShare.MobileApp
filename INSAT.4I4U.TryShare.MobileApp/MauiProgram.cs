@@ -9,6 +9,7 @@ using Microsoft.Identity.Client;
 using Microsoft.Maui.LifecycleEvents;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using INSAT._4I4U.TryShare.MobileApp.Helpers;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -93,7 +94,8 @@ public static class MauiProgram
             .AddSingleton<IUserLocationService, UserLocationService>()
             .AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
             .AddSingleton<IUserService, UserMockService>()
-            .AddSingleton<IBookingService, MockBookingService>();
+            .AddSingleton<IBookingService, MockBookingService>()
+            .AddSingleton<MsalHelper>();
         return builder;
     }
 }

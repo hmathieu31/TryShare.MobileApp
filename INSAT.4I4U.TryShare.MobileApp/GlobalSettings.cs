@@ -29,7 +29,7 @@ namespace INSAT._4I4U.TryShare.MobileApp
             ClientId = "5e36f510-a31b-4ff3-9aa5-b254d8f63505",
             Domain = "insatryshare.onmicrosoft.com",
             EditProfilePolicyId = "b2c_1_edit_profile",
-            Instance = "https =//insatryshare.b2clogin.com",
+            Instance = "https://insatryshare.b2clogin.com",
             ResetPasswordPolicyId = "b2c_1_reset",
             SignUpSignInPolicyId = "B2C_1_SignupSignin1",
             TenantId = "8e77bc5e-3720-4cf3-a728-757a7ba5d100"

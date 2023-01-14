@@ -17,6 +17,5 @@ namespace INSAT._4I4U.TryShare.MobileApp.Settings
         public string ResetPasswordPolicyId { get; set; }
         public string SignUpSignInPolicyId { get; set; }
         public string TenantId { get; set; }
-        public string[] Scopes { get; set; }
     }
 }

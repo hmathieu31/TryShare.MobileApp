@@ -20,6 +20,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
                 .WithLogging(new IdentityLogger(EventLogLevel.Warning), enablePiiLogging: false)
                 // This is the currently recommended way to log MSAL message. For more info refer to https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/logging. Set Identity Logging level to Warning which is a middle ground
                 .WithRedirectUri($"msal{b2cConfig.ClientId}://auth")
+#if ANDROID
+                .WithParentActivityOrWindow(() => Platform.CurrentActivity)
+#endif
                 .Build();
         }
 
@@ -28,9 +31,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
         /// </summary>
         /// <param name="scopes"></param>
         /// <returns> Access Token</returns>
-        public async Task<string> SignInUserAndAcquireAccessToken(string[] scopes)
+        public async Task<string> SignInUserAndAcquireAccessTokenAsync(string[] scopes)
         {
-            
+
             if (this.PublicClientApplication is null)
                 throw new MsalClientApplicationException("MSAL PCA is null");
 

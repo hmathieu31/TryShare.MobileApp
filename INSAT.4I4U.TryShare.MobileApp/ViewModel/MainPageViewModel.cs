@@ -83,7 +83,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         async Task Authenticate()
         {
-            await msal.SignInUserInteractivelyAsync(b2cConfig.Scopes);
+            var result = await msal.SignInUserAndAcquireAccessTokenAsync(GlobalSettings.Scopes);
+            Debug.WriteLine(result);
         }
 
         [RelayCommand]
