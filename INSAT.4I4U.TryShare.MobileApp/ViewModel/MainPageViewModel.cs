@@ -12,6 +12,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     {
         readonly ITricycleService tricycleService;
         private readonly MsalHelper msal;
+        [RelayCommand]
+        async Task Authenticate()
+        {
+            var result = await msal.SignInUserAndAcquireAccessTokenAsync(GlobalSettings.Scopes);
+            Debug.WriteLine(result);
+        }
+
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 

@@ -71,6 +71,8 @@
             </Map.MapElements>-->
         </Map>
 
+        <Button Text="Click me" Command="{Binding AuthenticateCommand}" />
+
         <Button ImageSource="Resources/Images/refreshicon.svg"
                 Command="{Binding GetTricyclesCommand}"
                 IsEnabled="{Binding IsNotBusy}"
