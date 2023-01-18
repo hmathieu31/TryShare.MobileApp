@@ -163,13 +163,19 @@
                     CommandParameter="{Binding Tricycle}"
                     FontAttributes="Bold"
                     TextColor="White"
-                    BackgroundColor="MediumPurple"
+                    BackgroundColor="{StaticResource Primary}"
                     Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     WidthRequest="300"
                     HeightRequest="60"
-                    FontSize="22"/>
+                    FontSize="22">
+                <Button.Shadow>
+                    <Shadow Brush="{StaticResource Primary}"
+                            Radius="20"/>
+                </Button.Shadow>
+            </Button>
+
         </Grid>
     </Grid>
 </ContentPage>

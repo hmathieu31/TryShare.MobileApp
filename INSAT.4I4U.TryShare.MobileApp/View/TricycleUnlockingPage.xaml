@@ -8,17 +8,17 @@
              Title="Décrivez pour déverouiller">
     
     
-    <Grid BackgroundColor="Gray">
+    <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="120"/>
             <RowDefinition/>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <BoxView Color="MediumPurple"
+        <BoxView Color="White"
                  Grid.Row="0"
                  Grid.Column="0"/>
         <Label Text="Attribuez au triporteur une note générale *"
@@ -28,14 +28,14 @@
                Margin="10,0,0,0"
                FontSize="16"
                FontAttributes="Bold"
-               TextColor="White"/>
-        <BoxView Color="LightGrey"
+               TextColor="{StaticResource Primary}"/>
+        <BoxView Color="White"
                  Grid.Row="1"
                  Grid.Column="0"/>
         <controls:Rating Value="1"
                          Grid.Row="1"/>
 
-        <BoxView Color="MediumPurple"
+        <BoxView Color="White"
                  Grid.Row="2"
                  Grid.Column="0"/>
         <Label Text="Quel est l'élément le plus endommagé ? *"
@@ -45,9 +45,9 @@
                Margin="10,0,0,0"
                FontSize="16"
                FontAttributes="Bold"
-               BackgroundColor="MediumPurple"
-               TextColor="White"/>
-        <BoxView Color="LightGrey"
+               BackgroundColor="White"
+               TextColor="{StaticResource Primary}"/>
+        <BoxView Color="White"
                  Grid.Row="3"
                  Grid.Column="0"/>
         <Grid Grid.Row="3"
@@ -116,7 +116,8 @@
 
 
         </Grid>
-        <BoxView Color="MediumPurple"
+        <BoxView Color="White"
+                 BackgroundColor="White"
                  Grid.Row="4"
                  Grid.Column="0"/>
         <Label Text="Commentaire supplémentaire "
@@ -126,31 +127,41 @@
                Margin="10,0,0,0"
                FontSize="16"
                FontAttributes="Bold"
-               BackgroundColor="MediumPurple"
-               TextColor="White"/>
-        <BoxView Color="LightGrey"
+               BackgroundColor="White"
+               TextColor="{StaticResource Primary}"/>
+        <BoxView Color="#22512BD4"
+                 BackgroundColor="#22512BD4"
                  Grid.Row="5"
-                 Grid.Column="0"/>
+                 Grid.Column="0"
+                 CornerRadius="10"
+                 Margin="10,10,10,10"/>
         <Entry x:Name="entry"
                Grid.Row="5"
-               Grid.Column="2"
+               Grid.Column="0"
+               Margin="10,10,10,10"
                MaxLength="200"
+               BackgroundColor="#22512BD4"
                Placeholder="Signalez d'autres dommages ici"
                PlaceholderColor="White"
                TextColor="Black"/>
-        <BoxView Color="LightGrey"
+        <BoxView Color="White"
                  Grid.Row="6"
                  Grid.Column="0"/>
         <Button Text="Déverrouiller"
                 FontAttributes="Bold"
                 TextColor="White"
-                BackgroundColor="MediumPurple"
+                BackgroundColor="{StaticResource Primary}"
                 Grid.Row="6"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 WidthRequest="300"
                 HeightRequest="60"
-                FontSize="22"/>
+                FontSize="22">
+            <Button.Shadow>
+                <Shadow Brush="{StaticResource Primary}"
+                        Radius="20"/>
+            </Button.Shadow>
+        </Button>
 
     </Grid>
 </ContentPage>
