@@ -11,7 +11,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers
             return new UserIdentity
             {
                 Email = ReturnTypeFromIndex("emails", authResult),
-                DisplayName = ReturnTypeFromIndex("name", authResult)
+                DisplayName = ReturnTypeFromIndex("name", authResult),
+                FirstName = ReturnTypeFromIndex("givename", authResult),
+                LastName = ReturnTypeFromIndex("lastname", authResult),
+                City = ReturnTypeFromIndex("city", authResult)
             };
         }
 
