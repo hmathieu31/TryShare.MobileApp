@@ -120,11 +120,6 @@
                     </BoxView.Shadow>
                 </BoxView>
                          
-
-                <!--<BoxView Color="LightGray"
-                         Grid.Row="0"
-                         Grid.Column="0"
-                         CornerRadius="25,0,0,0"/>-->
                 <Image Source="Resources/Images/bike.svg"
                        Grid.Row="0"
                        Grid.Column="0"
@@ -132,10 +127,7 @@
                        VerticalOptions="Center"
                        HeightRequest="40"
                        Margin="0,0,0,0"/>
-                <!--<BoxView Color="LightGray"
-                         Grid.Row="1"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="2"/>-->
+
                 <controls:Rating Value="4"
                                  Grid.Row="1"
                                  Grid.Column="0"
@@ -145,10 +137,7 @@
                                 Opacity="0.2"/>
                     </controls:Rating.Shadow>
                 </controls:Rating>
-                <!--<BoxView Color="LightGray"
-                         Grid.Row="0"
-                         Grid.Column="1"
-                         CornerRadius="0,25,0,0"/>-->
+
                 <Image Source="Resources/Images/battery.svg"
                        Grid.Row="0"
                        Grid.Column="1"
@@ -175,19 +164,6 @@
                        Margin="0,0,10,0"
                        FontAttributes="Bold"
                        FontSize="18"/>
-
-                <!--<BoxView Color="LightGray"
-                         Grid.Row="2"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="2"
-                         CornerRadius="0,0,25,25">
-                    <BoxView.Shadow>
-                        <Shadow Brush="Black"
-                                Opacity="0.7"
-                                Offset="0,15"/>
-                    </BoxView.Shadow>
-                </BoxView>-->
-
 
                 <Button Text="Réserver"
                         FontAttributes="Bold"
