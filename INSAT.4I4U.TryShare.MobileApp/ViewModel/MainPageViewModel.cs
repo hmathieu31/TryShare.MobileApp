@@ -6,6 +6,12 @@ using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
+using CommunityToolkit.Mvvm.Messaging;
+using INSAT._4I4U.TryShare.MobileApp.Message;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -34,21 +40,54 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         private bool isMapReady;
+
         public MainPageViewModel(ITricycleService tricycleService, IBookingService bookingService)
         {
             this.tricycleService = tricycleService;
             this.bookingService = bookingService;
         }
+
+        public void ShowReturnZoneToast()
+        {
+
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            string text = "La zone de retour du Tricyle apparait en rouge";
+            ToastDuration duration = ToastDuration.Long;
+            double fontSize = 20;
+
+            var toast = Toast.Make(text, duration, fontSize);
+            toast.Show(cancellationTokenSource.Token);
+        }
+
+        public void ShowReturnZoneCircle()
+        {
+            ReturnZones.First().IsVisible = true;
+        }
         public void OnAppearing()
         {
             SetReturnZones();
             _ = JustBookedCheckAsync();
+            try
+            {
+                WeakReferenceMessenger.Default.Register<MainPageViewModel, BookingCompletedMessage>(this, (r, m) =>
+                {
+                    ShowReturnZoneToast();
+                    ShowReturnZoneCircle();
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+
+                Debug.WriteLine(ex);
+            }
+            
         }
 
         private void SetReturnZones()
         {
             ReturnZones.Clear();
-            
+
             // For current debug purposes
             var toulouseRadius = new Distance(5000);
             var toulouseCenter = new Location(43.599498414198386, 1.4372202194252555);
@@ -81,7 +120,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public async Task JustBookedCheckAsync()
         {
             if (await bookingService.CanTricycleBeBookedAsync(selectedTricycle)) isReturnable = false;
-            else isReturnable=true;
+            else isReturnable = true;
         }
 
         [RelayCommand]
