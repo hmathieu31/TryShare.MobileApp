@@ -9,6 +9,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class TricycleUnlockingViewModel : BaseViewModel
     {
-
+        [RelayCommand]
+        async static Task GoBackToHome()
+        {
+            // TODO: Debugging return
+            Debug.WriteLine("Returning to main page default");
+            await Shell.Current.Navigation.PopToRootAsync();
+        }
     }
 }

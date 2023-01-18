@@ -77,8 +77,8 @@ public static class MauiProgram
 			.AddSingleton<MainPageViewModel>()
 		    .AddTransient<TricycleDetailsViewModel>()
 		    .AddTransient<CommentViewModel>()
-			.AddTransient<TricycleUnlockingViewModel>();
             .AddTransient<ProfileFlyoutViewModel>()
+			.AddTransient<TricycleUnlockingViewModel>();
         return builder;
     }
 

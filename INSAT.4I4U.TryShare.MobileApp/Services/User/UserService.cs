@@ -26,7 +26,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 
         public bool IsAuthenticated()
         {
-            throw new NotImplementedException();
+            // TODO: Implement IsAuthenticated
+            Debug.WriteLine("IsAuthenticated not implemented returns true");
+            return true;
         }
 
         public Task SignInUserAsync()
