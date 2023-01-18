@@ -13,5 +13,7 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(TermsAndConditionsPage), typeof(TermsAndConditionsPage));
         Routing.RegisterRoute(nameof(CommentPage), typeof(CommentPage));
         Routing.RegisterRoute(nameof(TricycleUnlockingPage), typeof(TricycleUnlockingPage));
+		Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
+		Routing.RegisterRoute(nameof(PostBookingPage), typeof(PostBookingPage));
     }
 }

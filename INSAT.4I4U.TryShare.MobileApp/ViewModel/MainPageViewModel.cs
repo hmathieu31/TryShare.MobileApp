@@ -6,6 +6,13 @@ using Microsoft.Maui.Maps;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.Settings;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
+using CommunityToolkit.Mvvm.Messaging;
+using INSAT._4I4U.TryShare.MobileApp.Message;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -13,6 +20,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     {
         readonly ITricycleService tricycleService;
         private readonly MsalHelper msal;
+        private readonly IBookingService bookingService;
+
         [RelayCommand]
         async Task Authenticate()
         {
@@ -30,29 +39,65 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
-        //[ObservableProperty]
-        //private ReturnZone returnZone;
+        [ObservableProperty]
+        private bool isReturnable;
 
         [ObservableProperty]
         private Distance circleRadius = new(5000);
 
         [ObservableProperty]
         private bool isMapReady;
-        public MainPageViewModel(ITricycleService tricycleService, MsalHelper msal)
+        public MainPageViewModel(ITricycleService tricycleService,
+                                 MsalHelper msal,
+                                 IBookingService bookingService)
         {
             this.tricycleService = tricycleService;
             this.msal = msal;
+            this.bookingService = bookingService;
+        }
+
+        static void ShowReturnZoneToast()
+        {
+
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            string text = "La zone de retour du Tricyle apparait en rouge";
+            ToastDuration duration = ToastDuration.Long;
+            double fontSize = 20;
+
+            var toast = Toast.Make(text, duration, fontSize);
+            toast.Show(cancellationTokenSource.Token);
+        }
+
+        public void ShowReturnZoneCircle()
+        {
+            ReturnZones.First().IsVisible = true;
         }
 
         public void OnAppearing()
         {
             SetReturnZones();
+            _ = JustBookedCheckAsync();
+            try
+            {
+                WeakReferenceMessenger.Default.Register<MainPageViewModel, BookingCompletedMessage>(this, (r, m) =>
+                {
+                    ShowReturnZoneToast();
+                    ShowReturnZoneCircle();
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+
+                Debug.WriteLine(ex);
+            }
+
         }
 
         private void SetReturnZones()
         {
             ReturnZones.Clear();
-            
+
             // For current debug purposes
             var toulouseRadius = new Distance(5000);
             var toulouseCenter = new Location(43.599498414198386, 1.4372202194252555);
@@ -80,6 +125,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public void HidePopup()
         {
             IsPopupVisible = false;
+        }
+
+        public async Task JustBookedCheckAsync()
+        {
+            if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
+                IsReturnable = false;
+            else IsReturnable = true;
         }
 
         [RelayCommand]
@@ -110,6 +162,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             {
                 IsBusy = false;
             }
+        }
+
+        [RelayCommand]
+        async Task GoToPostBookingAsync(Tricycle tricycle)
+        {
+            await Shell.Current.GoToAsync(nameof(PostBookingPage), true, new Dictionary<string, object>
+            { {"Tricycle", tricycle}});
+            IsPopupVisible = false;
         }
 
         [RelayCommand]

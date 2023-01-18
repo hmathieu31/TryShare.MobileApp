@@ -142,6 +142,8 @@
                  Grid.Row="6"
                  Grid.Column="0"/>
         <Button Text="Déverrouiller"
+               Command="{Binding GoToMainPageCommand}"
+               CommandParameter="{Binding Tricycle}"
                 FontAttributes="Bold"
                 TextColor="White"
                 BackgroundColor="MediumPurple"

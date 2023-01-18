@@ -1,20 +1,30 @@
-﻿using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using INSAT._4I4U.TryShare.MobileApp.Message;
+using INSAT._4I4U.TryShare.MobileApp.Model;
+using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
+using INSAT._4I4U.TryShare.MobileApp.View;
+using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class TricycleUnlockingViewModel : BaseViewModel
     {
+
+        public ObservableCollection<Tricycle> Tricycles { get; } = new();
+
+        [ObservableProperty]
+        private bool isPopupVisible = false;
+
+        [ObservableProperty]
+        private Tricycle tricycle;
+
         [RelayCommand]
-        async static Task GoBackToHome()
+        public async Task GoToMainPageAsync(Tricycle tricycle)
         {
-            // TODO: Debugging return
-            Debug.WriteLine("Returning to main page default");
             await Shell.Current.Navigation.PopToRootAsync();
+            IsPopupVisible = false;
+
+            WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
         }
     }
 }

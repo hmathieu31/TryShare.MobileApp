@@ -118,13 +118,14 @@ public class RequestProvider : IRequestProvider
 
     private static void AddBasicAuthenticationHeader(HttpClient httpClient, string clientId, string clientSecret)
     {
-        if (httpClient == null)
-            return;
+        //if (httpClient == null)
+        //    return;
 
-        if (string.IsNullOrWhiteSpace(clientId) || string.IsNullOrWhiteSpace(clientSecret))
-            return;
+        //if (string.IsNullOrWhiteSpace(clientId) || string.IsNullOrWhiteSpace(clientSecret))
+        //    return;
 
-        httpClient.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
+        //httpClient.DefaultRequestHeaders.Authorization = new Authent(clientId, clientSecret);
+        Debug.WriteLine("Va te faire toi et toutes tes dependencies, acculé!!!!");
     }
 
     private static async Task HandleResponse(HttpResponseMessage response)
