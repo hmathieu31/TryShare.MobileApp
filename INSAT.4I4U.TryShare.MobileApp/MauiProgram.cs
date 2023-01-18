@@ -4,13 +4,11 @@ using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
-using CommunityToolkit.Maui;
 using Microsoft.Identity.Client;
 using Microsoft.Maui.LifecycleEvents;
-using System.Reflection;
-using Microsoft.Extensions.Configuration;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader;
+using CommunityToolkit.Maui;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 

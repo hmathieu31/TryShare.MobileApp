@@ -129,8 +129,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public async Task JustBookedCheckAsync()
         {
-            if (await bookingService.CanTricycleBeBookedAsync(selectedTricycle)) isReturnable = false;
-            else isReturnable = true;
+            if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
+                IsReturnable = false;
+            else IsReturnable = true;
         }
 
         [RelayCommand]
@@ -168,7 +169,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await Shell.Current.GoToAsync(nameof(PostBookingPage), true, new Dictionary<string, object>
             { {"Tricycle", tricycle}});
-            isPopupVisible = false;
+            IsPopupVisible = false;
         }
 
         [RelayCommand]
