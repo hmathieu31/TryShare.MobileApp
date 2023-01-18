@@ -9,7 +9,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 {
     public interface IUserLocationService
     {
-        /// <exception cref="NotImplementedException">Offline functionality not implemented</exception>
         public Task<double> CalculateDistanceFromTricycleAsync(Tricycle tricycle);
     }
 }

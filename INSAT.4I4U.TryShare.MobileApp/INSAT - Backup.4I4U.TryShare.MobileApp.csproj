@@ -91,10 +91,12 @@
 	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="2.1.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="IdentityModel" Version="6.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.1">
+	  <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.2">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.2" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 	  <PackageReference Include="Microsoft.Identity.Client" Version="4.49.1" />
 	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
@@ -109,7 +111,7 @@
 	  <MauiXaml Update="Controls\ProfileFlyoutFooter.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\PostBookingPage.xaml">
+	  <MauiXaml Update="Controls\ProfileFlyoutHeader.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\TermsAndConditionsPage.xaml">
@@ -118,8 +120,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\PostBookingPage.xaml.cs">
-	    <DependentUpon>PostBookingPage.xaml</DependentUpon>
+	  <Compile Update="Controls\ProfileFlyoutHeader.xaml.cs">
+	    <DependentUpon>ProfileFlyoutHeader.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\CommentPage.xaml.cs">
 	    <DependentUpon>CommentPage.xaml</DependentUpon>

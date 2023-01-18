@@ -2,9 +2,10 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-
-using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using INSAT._4I4U.TryShare.MobileApp.Helpers;
+using INSAT._4I4U.TryShare.MobileApp.Settings;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
@@ -18,7 +19,16 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     public partial class MainPageViewModel : BaseViewModel
     {
         readonly ITricycleService tricycleService;
-        readonly IBookingService bookingService;
+        private readonly MsalHelper msal;
+        private readonly IBookingService bookingService;
+
+        [RelayCommand]
+        async Task Authenticate()
+        {
+            var result = await msal.SignInUserAndAcquireAccessTokenAsync(GlobalSettings.Scopes);
+            Debug.WriteLine(result);
+        }
+
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
         public ObservableCollection<CircleZone> ReturnZones { get; } = new();
@@ -32,22 +42,21 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private bool isReturnable;
 
-        //[ObservableProperty]
-        //private ReturnZone returnZone;
-
         [ObservableProperty]
         private Distance circleRadius = new(5000);
 
         [ObservableProperty]
         private bool isMapReady;
-
-        public MainPageViewModel(ITricycleService tricycleService, IBookingService bookingService)
+        public MainPageViewModel(ITricycleService tricycleService,
+                                 MsalHelper msal,
+                                 IBookingService bookingService)
         {
             this.tricycleService = tricycleService;
+            this.msal = msal;
             this.bookingService = bookingService;
         }
 
-        public void ShowReturnZoneToast()
+        static void ShowReturnZoneToast()
         {
 
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -64,6 +73,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             ReturnZones.First().IsVisible = true;
         }
+
         public void OnAppearing()
         {
             SetReturnZones();
@@ -81,7 +91,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
                 Debug.WriteLine(ex);
             }
-            
+
         }
 
         private void SetReturnZones()
