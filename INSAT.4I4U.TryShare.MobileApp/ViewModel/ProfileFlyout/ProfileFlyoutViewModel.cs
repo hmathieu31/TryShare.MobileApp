@@ -20,7 +20,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader
         string connectionButtonText = "Connection";
 
         [RelayCommand]
-        Task LogInOut()
+        Task LogInOutAsync()
         {
             ConnectionButtonText = "Connection";
             return Task.CompletedTask;
