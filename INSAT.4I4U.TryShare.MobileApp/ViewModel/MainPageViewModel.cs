@@ -43,7 +43,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                                  MsalHelper msal,
                                  IBookingService bookingService)
         {
-            this.tricycleService = tricycleService;
+            this._tricycleService = tricycleService;
             this.msal = msal;
             this.bookingService = bookingService;
         }
@@ -136,7 +136,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             try
             {
                 IsBusy = true;
-                var list = await tricycleService.GetTricyclesAsync();
+                var list = await _tricycleService.GetTricyclesAsync();
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();

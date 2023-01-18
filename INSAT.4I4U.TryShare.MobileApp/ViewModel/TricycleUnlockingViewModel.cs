@@ -1,8 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using INSAT._4I4U.TryShare.MobileApp.Model;
-using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-using INSAT._4I4U.TryShare.MobileApp.View;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
@@ -25,8 +24,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public async Task GoToMainPageAsync(Tricycle tricycle)
         {
             await Shell.Current.Navigation.PopToRootAsync();
-            IsPopupVisible = false;
-
             WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
         }
 

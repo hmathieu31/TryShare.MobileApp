@@ -19,7 +19,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
             this._userService = userService;
         }
 
-        public Task<bool> CanTricycleBeBooked(Tricycle tricycle)
+        public Task<bool> CanTricycleBeBookedAsync(Tricycle tricycle)
         {
             throw new NotImplementedException();
         }
