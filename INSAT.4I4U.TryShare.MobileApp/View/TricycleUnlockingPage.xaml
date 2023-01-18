@@ -5,17 +5,17 @@
              xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
              x:DataType="viewmodel:TricycleUnlockingViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.TricycleUnlockingPage"
-             Title="Décrivez pour déverouiller">
+             Title="Décrivez pour déverrouiller">
     
     
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="120"/>
-            <RowDefinition/>
-            <RowDefinition Height="200"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <BoxView Color="White"
@@ -33,12 +33,17 @@
                  Grid.Row="1"
                  Grid.Column="0"/>
         <controls:Rating Value="1"
-                         Grid.Row="1"/>
+                         Grid.Row="1">
+            <controls:Rating.Shadow>
+                <Shadow Brush="Black"
+                            Opacity="0.2"/>
+            </controls:Rating.Shadow>
+        </controls:Rating>
 
         <BoxView Color="White"
                  Grid.Row="2"
                  Grid.Column="0"/>
-        <Label Text="Quel est l'élément le plus endommagé ? *"
+        <Label Text="Quels sont les éléments les plus endommagés ? *"
                Grid.Row="2"
                Grid.Column="0"
                VerticalOptions="Center"
@@ -66,22 +71,47 @@
             <Button Text="Selle"
                     Grid.Row="0"
                     Grid.Column="0"
-                    WidthRequest="70"
+                    WidthRequest="80"
                     HeightRequest="40"
                     BorderWidth="1"
                     TextColor="Black"
                     BackgroundColor="White"
-                    BorderColor="Black"/>
+                    BorderColor="Black"
+                    Margin="10,0,0,0"/>
             <Button Text="Freins"
                     Grid.Row="0"
                     Grid.Column="1"
-                    WidthRequest="70"
+                    WidthRequest="80"
                     HeightRequest="40"
                     TextColor="Black"
                     BorderColor="Black"
                     BorderWidth="1"
-                    BackgroundColor="White"/>
+                    BackgroundColor="White"
+                    Margin="10,0,0,0"/>
             <Button Text="Vitesses et roues"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="150"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    BackgroundColor="White"
+                    Margin="15,0,0,0"
+                    HorizontalOptions="Start"/>
+            <Button Text="Assistance électrique"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="180"
+                    HeightRequest="40"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    BackgroundColor="White"
+                    Margin="10,0,0,0"/>
+            <Button Text="Eclairage"
                     Grid.Row="0"
                     Grid.Column="2"
                     Grid.ColumnSpan="2"
@@ -91,28 +121,8 @@
                     BorderColor="Black"
                     BorderWidth="1"
                     BackgroundColor="White"
-                    HorizontalOptions="Center"/>
-            <Button Text="Assistance électrique"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    WidthRequest="170"
-                    HeightRequest="40"
-                    TextColor="Black"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    BackgroundColor="White"
-                    HorizontalOptions="End"/>
-            <Button Text="Eclairage"
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Grid.ColumnSpan="2"
-                    WidthRequest="140"
-                    HeightRequest="40"
-                    TextColor="Black"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    BackgroundColor="White"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Start"
+                    Margin="15,0,0,0"/>
 
 
         </Grid>
@@ -129,18 +139,17 @@
                FontAttributes="Bold"
                BackgroundColor="White"
                TextColor="{StaticResource Primary}"/>
-        <BoxView Color="#22512BD4"
-                 BackgroundColor="#22512BD4"
+        <BoxView Color="#50512DB4"
+                 BackgroundColor="Transparent"
+                 CornerRadius="20,20,20,20"
+                 Margin="10,10,10,10"
                  Grid.Row="5"
-                 Grid.Column="0"
-                 CornerRadius="10"
-                 Margin="10,10,10,10"/>
+                 Grid.Column="0"/>
         <Entry x:Name="entry"
                Grid.Row="5"
                Grid.Column="0"
-               Margin="10,10,10,10"
+               Margin="20,20,20,20"
                MaxLength="200"
-               BackgroundColor="#22512BD4"
                Placeholder="Signalez d'autres dommages ici"
                PlaceholderColor="White"
                TextColor="Black"/>
