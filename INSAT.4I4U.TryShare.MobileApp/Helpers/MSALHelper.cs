@@ -31,7 +31,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
         /// </summary>
         /// <param name="scopes"></param>
         /// <returns> Access Token</returns>
-        public async Task<string> SignInUserAndAcquireAccessTokenAsync(string[] scopes)
+        public async Task<AuthenticationResult> SignInUserAndAcquireAccessTokenAsync(string[] scopes)
         {
 
             if (this.PublicClientApplication is null)
@@ -70,7 +70,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
                 Debug.WriteLine($"Error Acquiring Token interactively:{Environment.NewLine}{msalEx}");
             }
 
-            return this.AuthResult.AccessToken;
+            return this.AuthResult;
         }
 
         /// <summary>

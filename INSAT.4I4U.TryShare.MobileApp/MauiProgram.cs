@@ -95,7 +95,7 @@ public static class MauiProgram
             .AddSingleton<IRequestProvider, RequestProvider>()
             .AddSingleton<IUserLocationService, UserLocationService>()
             .AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
-            .AddSingleton<IUserService, UserMockService>()
+            .AddSingleton<IUserService, UserService>()
             .AddSingleton<IBookingService, MockBookingService>()
             .AddSingleton<MsalHelper>();
         return builder;
