@@ -76,7 +76,8 @@
                 </Grid.ColumnDefinitions>
                 <BoxView Color="LightGray"
                          Grid.Row="0"
-                         Grid.Column="0"/>
+                         Grid.Column="0"
+                         CornerRadius="10"/>
                 <Image Source="Resources/Images/bike.svg"
                        Grid.Row="0"
                        Grid.Column="0"
