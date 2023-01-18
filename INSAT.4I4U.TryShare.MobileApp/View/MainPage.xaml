@@ -107,7 +107,7 @@
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid BackgroundColor="AliceBlue"
+            <Grid BackgroundColor="Transparent"
                   Grid.Row="2"
                   Grid.Column="1">
                 <Grid.RowDefinitions>
