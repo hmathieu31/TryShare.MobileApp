@@ -14,7 +14,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly IUserSubscriptionService _userSubscriptionService;
         readonly IBookingService _bookingService;
 
-        public bool IsConnectedAndSignedIn { get; set; }
         public Action OnDetailsTryToNavigateWithoutConnectivity { get; set; }
         public Action OnDetailsTryToNavigateWithoutLocationEnabled { get; set; }
         public Action OnDetailsTryToNavigateWithoutLocationAuthorized { get; set; }
@@ -73,7 +72,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         public async Task GoToTermsAndConditionsAsync()
         {
-
             await Shell.Current.GoToAsync(nameof(TermsAndConditionsPage), true);
         }
 
@@ -84,7 +82,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             const int distanceMax = 10;
             if (_userService.IsConnected && _userService.IsAuthenticated())
             {
-                IsConnectedAndSignedIn = true;
                 try
                 {
                     var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
@@ -110,7 +107,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             }
             else
             {
-                IsConnectedAndSignedIn = false;
                 OnDetailsTryToNavigateWithoutConnectivity.Invoke();
             }
         }

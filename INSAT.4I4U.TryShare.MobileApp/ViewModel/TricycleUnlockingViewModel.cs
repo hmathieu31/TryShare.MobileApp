@@ -7,16 +7,19 @@ using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
+    [QueryProperty(nameof(Tricycle), "Tricycle")]
     public partial class TricycleUnlockingViewModel : BaseViewModel
     {
 
-        public ObservableCollection<Tricycle> Tricycles { get; } = new();
+        public IBookingService _bookingService;
 
         [ObservableProperty]
-        private bool isPopupVisible = false;
+        Tricycle tricycle;
 
-        [ObservableProperty]
-        private Tricycle tricycle;
+        public TricycleUnlockingViewModel(IBookingService bookingService)
+        {
+            this._bookingService = bookingService;
+        }
 
         [RelayCommand]
         public async Task GoToMainPageAsync(Tricycle tricycle)
@@ -25,6 +28,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             IsPopupVisible = false;
 
             WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
+        }
+
+        [RelayCommand]
+        public async Task GoToReturnPageAsync()
+        {
+            await _bookingService.RequestTricycleBookingAsync(Tricycle);
         }
     }
 }

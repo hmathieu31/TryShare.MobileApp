@@ -88,14 +88,14 @@ public static class MauiProgram
     private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services
-            .AddSingleton<ITricycleService, TricycleMockService>()
+            .AddSingleton<ITricycleService, TricycleService>()
             .AddSingleton<IRequestProvider, RequestProvider>()
             .AddSingleton<ICommentService, CommentMockService>()
             .AddSingleton<IRequestProvider, RequestProvider>()
             .AddSingleton<IUserLocationService, UserLocationService>()
             .AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
             .AddSingleton<IUserService, UserService>()
-            .AddSingleton<IBookingService, MockBookingService>()
+            .AddSingleton<IBookingService, BookingService>()
             .AddSingleton<MsalHelper>();
         return builder;
     }

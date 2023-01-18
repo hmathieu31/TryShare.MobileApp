@@ -26,7 +26,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
         /// Request the end of the current tricycle booking for the user.
         /// </summary>
         /// <returns>False if the end of the booking was not allowed</returns>
-        public Task<bool> RequestTricycleBookingEndAsync();
+        public Task<bool> RequestEndOfBookingAsync(Tricycle tricycle);
 
         /// <summary>
         /// Determines whether the tricycle can be booked the specified tricycle.

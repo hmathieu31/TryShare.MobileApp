@@ -33,7 +33,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
             return Task.FromResult(true);
         }
 
-        public Task<bool> RequestTricycleBookingEndAsync()
+        public Task<bool> RequestEndOfBookingAsync(Tricycle tricycle)
         {
             
             Debug.WriteLine("User requesting the end of its booking");
