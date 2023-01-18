@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="INSAT._4I4U.TryShare.MobileApp.Controls.ProfileFlyoutHeader"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader"
+             x:DataType="vm:ProfileFlyoutViewModel">
+    <VerticalStackLayout >
+        <Grid RowDefinitions="*, *"
+              Margin="10,30,5,30"
+              ColumnDefinitions="*, 1.5*">
+            <toolkit:AvatarView Grid.Column="0"
+                   Grid.RowSpan="2"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center">
+                <toolkit:AvatarView.ImageSource>
+                    <toolkit:GravatarImageSource
+                    CacheValidity="1"
+                    CachingEnabled="True"
+                    Email="hugo.mathieu97310@gmail.com"
+                    Image="Identicon"/>
+                </toolkit:AvatarView.ImageSource>
+            </toolkit:AvatarView>
+            <Label Text="Hugo"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   VerticalOptions="End"/>
+            <Label Text="MATHIEU"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   VerticalOptions="Start"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentView>
