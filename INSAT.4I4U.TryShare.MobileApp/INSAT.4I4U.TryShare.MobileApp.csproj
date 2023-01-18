@@ -108,12 +108,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\ProfileFlyoutFooter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\ProfileFlyoutHeader.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\TermsAndConditionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\ProfileFlyoutHeader.xaml.cs">
+	    <DependentUpon>ProfileFlyoutHeader.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\CommentPage.xaml.cs">
 	    <DependentUpon>CommentPage.xaml</DependentUpon>
 	  </Compile>
