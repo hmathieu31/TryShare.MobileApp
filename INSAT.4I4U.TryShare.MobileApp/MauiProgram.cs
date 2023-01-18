@@ -1,36 +1,54 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.View;
-using Microsoft.Maui.Controls.Hosting;
-using INSAT._4I4U.TryShare.MobileApp.Services;
 using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
+using CommunityToolkit.Maui;
+using Microsoft.Identity.Client;
+using Microsoft.Maui.LifecycleEvents;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using INSAT._4I4U.TryShare.MobileApp.Helpers;
+using INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
 
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
-			.UseMauiMaps();
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .ConfigureLifecycleEvents(events =>
+            {
+#if ANDROID
+            events.AddAndroid(platform =>
+            {
+                platform.OnActivityResult((activity, rc, result, data) =>
+                {
+                    AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(rc, result, data);
+                });
+            });
+#endif
+            })
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            })
+            .UseMauiMaps();
 
-		builder
-			.RegisterViews()
-			.RegisterServices()
-			.RegisterViewModels();
+        builder
+            .RegisterViews()
+            .RegisterServices()
+            .RegisterViewModels();
 
-		return builder.Build();
-	}
+        return builder.Build();
+    }
 
 	/// <summary>
 	/// Register the Views.
@@ -60,6 +78,7 @@ public static class MauiProgram
 		    .AddTransient<TricycleDetailsViewModel>()
 		    .AddTransient<CommentViewModel>()
 			.AddTransient<TricycleUnlockingViewModel>();
+            .AddTransient<ProfileFlyoutViewModel>()
         return builder;
     }
 
@@ -70,15 +89,16 @@ public static class MauiProgram
 	/// <returns></returns>
     private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
-		builder.Services
-			.AddSingleton<ITricycleService, TricycleMockService>()
-			.AddSingleton<IRequestProvider, RequestProvider>()
-		    .AddSingleton<ICommentService, CommentMockService>()
-			.AddSingleton<IRequestProvider, RequestProvider>()
-			.AddSingleton<IUserLocationService, UserLocationService>()
-			.AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
-			.AddSingleton<IUserService, UserMockService>()
-			.AddSingleton<IBookingService, MockBookingService>();
+        builder.Services
+            .AddSingleton<ITricycleService, TricycleMockService>()
+            .AddSingleton<IRequestProvider, RequestProvider>()
+            .AddSingleton<ICommentService, CommentMockService>()
+            .AddSingleton<IRequestProvider, RequestProvider>()
+            .AddSingleton<IUserLocationService, UserLocationService>()
+            .AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
+            .AddSingleton<IUserService, UserService>()
+            .AddSingleton<IBookingService, MockBookingService>()
+            .AddSingleton<MsalHelper>();
         return builder;
     }
 }

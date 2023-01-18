@@ -87,28 +87,42 @@
 
 	<ItemGroup>
 	  <PackageReference Include="AlohaKit" Version="1.0.74" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
+	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="2.1.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="IdentityModel" Version="6.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="3.0.0">
+	  <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.2">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.49" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-	  <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5">
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.2" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+	  <PackageReference Include="Microsoft.Identity.Client" Version="4.49.1" />
+	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+	  <PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-	  <PackageReference Include="System.Text.Json" Version="7.0.0" />
+	  <PackageReference Include="System.Text.Json" Version="7.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\ProfileFlyoutFooter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\ProfileFlyoutHeader.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\TermsAndConditionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\ProfileFlyoutHeader.xaml.cs">
+	    <DependentUpon>ProfileFlyoutHeader.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\CommentPage.xaml.cs">
 	    <DependentUpon>CommentPage.xaml</DependentUpon>
 	  </Compile>

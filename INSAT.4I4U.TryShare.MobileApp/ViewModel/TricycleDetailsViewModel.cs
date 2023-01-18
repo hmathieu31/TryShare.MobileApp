@@ -40,7 +40,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         /// <summary>
         /// Sets the ObservableProperty of the postal address of the tricycle.
-        /// Asynchronously uses the Geocoding Service to get the address from the tricycle's location.
+        /// Asynchronously uses the Geocoding Service to get the address from the tricycle's toulouseCenter.
         /// </summary>
         /// <remarks>
         /// The address set is follows the format : "Street, City"

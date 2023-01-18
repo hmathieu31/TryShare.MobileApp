@@ -2,15 +2,27 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-
-using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
+using INSAT._4I4U.TryShare.MobileApp.Helpers;
+using INSAT._4I4U.TryShare.MobileApp.Settings;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
         readonly ITricycleService tricycleService;
+        private readonly MsalHelper msal;
+        [RelayCommand]
+        async Task Authenticate()
+        {
+            var result = await msal.SignInUserAndAcquireAccessTokenAsync(GlobalSettings.Scopes);
+            Debug.WriteLine(result);
+        }
+
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
+
+        public ObservableCollection<CircleZone> ReturnZones { get; } = new();
 
         [ObservableProperty]
         private bool isPopupVisible = false;
@@ -18,9 +30,45 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
-        public MainPageViewModel(ITricycleService tricycleService)
+        //[ObservableProperty]
+        //private ReturnZone returnZone;
+
+        [ObservableProperty]
+        private Distance circleRadius = new(5000);
+
+        [ObservableProperty]
+        private bool isMapReady;
+        public MainPageViewModel(ITricycleService tricycleService, MsalHelper msal)
         {
             this.tricycleService = tricycleService;
+            this.msal = msal;
+        }
+
+        public void OnAppearing()
+        {
+            SetReturnZones();
+        }
+
+        private void SetReturnZones()
+        {
+            ReturnZones.Clear();
+            
+            // For current debug purposes
+            var toulouseRadius = new Distance(5000);
+            var toulouseCenter = new Location(43.599498414198386, 1.4372202194252555);
+
+            var toulouseReturnZone = new CircleZone
+            {
+                Center = toulouseCenter,
+                Radius = toulouseRadius,
+                FillColor = Color.FromRgba(0, 0, 255, 0.2),
+                StrokeColor = Color.FromRgba(0, 0, 255, 0.5),
+                StrokeWidth = 2,
+                IsVisible = true,
+            };
+
+            ReturnZones.Add(toulouseReturnZone);
+            IsMapReady = true;
         }
 
         public void DisplayPopup(int id)
