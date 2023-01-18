@@ -4,7 +4,7 @@
              x:Class="INSAT._4I4U.TryShare.MobileApp.Controls.ProfileFlyoutHeader"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader"
-             x:DataType="vm:ProfileFlyoutHeaderViewModel">
+             x:DataType="vm:ProfileFlyoutViewModel">
     <VerticalStackLayout >
         <Grid RowDefinitions="*, *"
               Margin="10,30,5,30"

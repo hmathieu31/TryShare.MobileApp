@@ -11,19 +11,19 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader
     {
         public ProfileFlyoutViewModel()
         {
-            ConnectionButtonText = "Connexion";
         }
         
         [ObservableProperty]
         string email;
 
         [ObservableProperty]
-        string connectionButtonText;
+        string connectionButtonText = "Connection";
 
         [RelayCommand]
         Task LogInOut()
         {
-            throw new NotImplementedException();
+            ConnectionButtonText = "Connection";
+            return Task.CompletedTask;
         }
     }
 }
