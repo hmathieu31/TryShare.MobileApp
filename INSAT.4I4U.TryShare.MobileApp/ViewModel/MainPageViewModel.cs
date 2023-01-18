@@ -5,6 +5,7 @@ using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using Microsoft.Maui.Maps;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.Settings;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -18,7 +19,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             var result = await msal.SignInUserAndAcquireAccessTokenAsync(GlobalSettings.Scopes);
             Debug.WriteLine(result);
         }
-
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 

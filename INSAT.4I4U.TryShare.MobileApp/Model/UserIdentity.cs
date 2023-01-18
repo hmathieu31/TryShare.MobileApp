@@ -10,10 +10,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.Model
     {
         public string Email { get; set; }
         public string AccessToken { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string DisplayName { get; set; }
-        public string City { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? DisplayName { get; set; }
+        public string? City { get; set; }
 
     }
 }

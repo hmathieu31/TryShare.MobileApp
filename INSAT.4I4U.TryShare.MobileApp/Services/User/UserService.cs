@@ -1,12 +1,6 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers;
 using INSAT._4I4U.TryShare.MobileApp.Model;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 {
