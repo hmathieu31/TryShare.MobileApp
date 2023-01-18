@@ -7,12 +7,11 @@
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.TricycleDetailsPage"
              Title="Détails Tricycle">
 
-
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="90"/>
                 <RowDefinition/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="100"/>
@@ -21,7 +20,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <BoxView Color="MediumPurple"
+            <BoxView Color="White"
                      Grid.Row="0"
                      Grid.Column="0"/>
             <Image Source="Resources/Images/bike.svg"
@@ -29,15 +28,15 @@
                    Grid.Column="0"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
-                   HeightRequest="60"
+                   HeightRequest="80"
                    Margin="0,0,0,0"/>
             <BoxView Color="White"
                      Grid.Row="0"
                      Grid.Column="1"/>
-            <Label Text="Tricycle Modèle 1"
+            <Label Text="Modèle 1"
                    FontAttributes="Bold"
-                   FontSize="14"
-                   TextColor="Black"
+                   FontSize="28"
+                   TextColor="{StaticResource Primary}"
                    Grid.Row="0"
                    Grid.Column="1"
                    HorizontalOptions="Center"
@@ -49,17 +48,23 @@
                              Grid.Column="1"
                              HorizontalOptions="Center"
                              VerticalOptions="End"
-                             Margin="0,0,0,25"/>
-            <BoxView Color="LightGrey"
+                             Margin="0,0,0,25">
+                <controls:Rating.Shadow>
+                    <Shadow Brush="Black"
+                            Opacity="0.2"/>
+                </controls:Rating.Shadow>
+            </controls:Rating>
+            <BoxView Color="White"
                      Grid.Row="1"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"/>
 
             <!-- Either one of those Labels should be deleted I might have added one by mistake-->
             <!-- Below, note StringFormat is a powerfool tool to cleanly combine text and variables (bindings) -->
-            <Label Text="Adresse :"
-                   TextColor="Black"
+            <Label Text="Adresse"
+                   TextColor="{StaticResource Primary}"
                    FontAttributes="Bold"
+                   FontSize="16"
                    Grid.Row="1"
                    Grid.Column="0"
                    Margin="10,20,0,0"/>
@@ -79,7 +84,7 @@
                   Grid.Column="0"
                   Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition Height="40"/>
@@ -90,29 +95,43 @@
                 <BoxView Color="White"
                          Grid.Row="0"
                          Grid.Column="0"/>
-                <Label Text="Commentaires :"
-                       TextColor="Black"
+                <Label Text="Commentaires"
+                       TextColor="{StaticResource Primary}"
                        FontAttributes="Bold"
-                       FontSize="14"
+                       FontSize="16"
                        Grid.Row="0"
                        Grid.Column="0"
                        Padding="10"/>
-                <BoxView Color="LightGrey"
+                <BoxView Color="#15512DB4"
                          Grid.Row="1"
                          Grid.Column="0"
                          Grid.RowSpan="3"
                          CornerRadius="10"
                          Margin="10,10,10,10"/>
-                <Label Text="Clément S. : 15/12/2022"
+                <Label Text="Clément S. : 17/01/2023"
                        TextColor="Black"
-                       FontSize="14"
+                       FontAttributes="Bold"
+                       FontSize="15"
                        Grid.Row="1"
                        Grid.Column="0"
                        Padding="15"/>
                 <Label Text="Pas ouf, mais pratique pour le retour PK avec 3 personnes à l'avant !"
                        TextColor="Black"
-                       FontSize="16"
+                       FontSize="14"
                        Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="15,50,15,0"/>
+                <Label Text="Isaure B. : 15/12/2022"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="15"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       Padding="15"/>
+                <Label Text="Balade très agréable, cependant vérifier les freins. "
+                       TextColor="Black"
+                       FontSize="14"
+                       Grid.Row="2"
                        Grid.Column="0"
                        Margin="15,50,15,0"/>
 
@@ -163,7 +182,7 @@
                     CommandParameter="{Binding Tricycle}"
                     FontAttributes="Bold"
                     TextColor="White"
-                    BackgroundColor="MediumPurple"
+                    BackgroundColor="{StaticResource Primary}"
                     Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
