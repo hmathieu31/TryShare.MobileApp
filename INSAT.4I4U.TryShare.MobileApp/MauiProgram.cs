@@ -50,21 +50,21 @@ public static class MauiProgram
         return builder.Build();
     }
 
-    /// <summary>
-    /// Register the Views.
-    /// </summary>
-    /// <param name="builder"></param>
-    /// <returns></returns>
-    private static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
-    {
-        builder.Services
-            .AddSingleton<MainPage>()
-            .AddTransient<TricycleDetailsPage>()
-            .AddSingleton<CommentPage>()
-            .AddTransient<TricycleDetailsPage>()
-            .AddTransient<TermsAndConditionsPage>();
-        return builder;
-    }
+	/// <summary>
+	/// Register the Views.
+	/// </summary>
+	/// <param name="builder"></param>
+	/// <returns></returns>
+	private static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
+	{
+		builder.Services
+			.AddSingleton<MainPage>()
+			.AddTransient<TricycleDetailsPage>()
+		    .AddTransient<CommentPage>()
+			.AddTransient<TermsAndConditionsPage>()
+			.AddTransient<TricycleUnlockingPage>();
+		return builder;
+	}
 
     /// <summary>
 	/// Register the ViewModels.
@@ -74,10 +74,11 @@ public static class MauiProgram
     private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
     {
         builder.Services
-            .AddSingleton<MainPageViewModel>()
-            .AddTransient<TricycleDetailsViewModel>()
+			.AddSingleton<MainPageViewModel>()
+		    .AddTransient<TricycleDetailsViewModel>()
+		    .AddTransient<CommentViewModel>()
             .AddTransient<ProfileFlyoutViewModel>()
-            .AddTransient<CommentViewModel>();
+			.AddTransient<TricycleUnlockingViewModel>();
         return builder;
     }
 
