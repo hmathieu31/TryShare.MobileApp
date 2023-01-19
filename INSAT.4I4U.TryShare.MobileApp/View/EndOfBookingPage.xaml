@@ -4,7 +4,7 @@
              xmlns:model="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Model"
              xmlns:viewmodel="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel"
              x:DataType="viewmodel:CommentViewModel"
-             x:Class="INSAT._4I4U.TryShare.MobileApp.View.PostBookingPage">
+             x:Class="INSAT._4I4U.TryShare.MobileApp.View.EndOfBookingPage">
 
     <Grid
         ColumnDefinitions="*,*"

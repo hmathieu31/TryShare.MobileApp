@@ -156,9 +156,8 @@
         <BoxView Color="White"
                  Grid.Row="6"
                  Grid.Column="0"/>
-        <Button Text="Déverrouiller"
-               Command="{Binding GoToMainPageCommand}"
-               CommandParameter="{Binding Tricycle}"
+        <Button Command="{Binding GoToMainPageCommand}"
+                Text="Déverrouiller"
                 FontAttributes="Bold"
                 TextColor="White"
                 BackgroundColor="{StaticResource Primary}"

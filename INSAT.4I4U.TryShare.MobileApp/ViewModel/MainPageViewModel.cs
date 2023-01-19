@@ -4,7 +4,6 @@ using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using Microsoft.Maui.Maps;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
-using INSAT._4I4U.TryShare.MobileApp.Settings;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Mvvm.Messaging;
@@ -18,16 +17,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
-        readonly ITricycleService tricycleService;
+        readonly ITricycleService _tricycleService;
         private readonly MsalHelper msal;
         private readonly IBookingService bookingService;
-
-        [RelayCommand]
-        async Task Authenticate()
-        {
-            var result = await msal.SignInUserAndAcquireAccessTokenAsync(GlobalSettings.Scopes);
-            Debug.WriteLine(result);
-        }
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
@@ -51,7 +43,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                                  MsalHelper msal,
                                  IBookingService bookingService)
         {
-            this.tricycleService = tricycleService;
+            this._tricycleService = tricycleService;
             this.msal = msal;
             this.bookingService = bookingService;
         }
@@ -144,7 +136,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             try
             {
                 IsBusy = true;
-                var list = await tricycleService.GetTricyclesAsync();
+                var list = await _tricycleService.GetTricyclesAsync();
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();
@@ -167,7 +159,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         async Task GoToPostBookingAsync(Tricycle tricycle)
         {
-            await Shell.Current.GoToAsync(nameof(PostBookingPage), true, new Dictionary<string, object>
+            await Shell.Current.GoToAsync(nameof(EndOfBookingPage), true, new Dictionary<string, object>
             { {"Tricycle", tricycle}});
             IsPopupVisible = false;
         }

@@ -1,30 +1,38 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using INSAT._4I4U.TryShare.MobileApp.Model;
-using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-using INSAT._4I4U.TryShare.MobileApp.View;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
+    [QueryProperty(nameof(Tricycle), "Tricycle")]
     public partial class TricycleUnlockingViewModel : BaseViewModel
     {
 
-        public ObservableCollection<Tricycle> Tricycles { get; } = new();
+        public IBookingService _bookingService;
 
         [ObservableProperty]
-        private bool isPopupVisible = false;
+        Tricycle tricycle;
 
-        [ObservableProperty]
-        private Tricycle tricycle;
+        public TricycleUnlockingViewModel(IBookingService bookingService)
+        {
+            this._bookingService = bookingService;
+        }
 
         [RelayCommand]
-        public async Task GoToMainPageAsync(Tricycle tricycle)
+        public async Task GoToMainPageAsync()
         {
-            await Shell.Current.Navigation.PopToRootAsync();
-            IsPopupVisible = false;
-
-            WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
+            var result = await _bookingService.RequestTricycleBookingAsync(Tricycle);
+            if (!result)
+            {
+                Debug.WriteLine("Authentication was invalid");
+            }
+            else
+            {
+                await Shell.Current.Navigation.PopToRootAsync();
+                WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
+            }
         }
     }
 }

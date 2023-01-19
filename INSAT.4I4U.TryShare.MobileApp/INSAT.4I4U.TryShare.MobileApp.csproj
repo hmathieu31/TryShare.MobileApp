@@ -29,6 +29,7 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
@@ -107,7 +108,7 @@
 	  <MauiXaml Update="Controls\ProfileFlyoutFooter.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\PostBookingPage.xaml">
+	  <MauiXaml Update="View\EndOfBookingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\TermsAndConditionsPage.xaml">
@@ -116,8 +117,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\PostBookingPage.xaml.cs">
-	    <DependentUpon>PostBookingPage.xaml</DependentUpon>
+	  <Compile Update="View\EndOfBookingPage.xaml.cs">
+	    <DependentUpon>EndOfBookingPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\CommentPage.xaml.cs">
 	    <DependentUpon>CommentPage.xaml</DependentUpon>
