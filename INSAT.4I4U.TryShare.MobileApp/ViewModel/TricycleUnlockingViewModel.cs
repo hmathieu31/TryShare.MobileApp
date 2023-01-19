@@ -21,11 +21,18 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         }
 
         [RelayCommand]
-        public async Task GoToMainPageAsync(Tricycle tricycle)
+        public async Task GoToMainPageAsync()
         {
-            await Shell.Current.Navigation.PopToRootAsync();
-            WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
-            await _bookingService.RequestTricycleBookingAsync(Tricycle);
+            var result = await _bookingService.RequestTricycleBookingAsync(Tricycle);
+            if (!result)
+            {
+                Debug.WriteLine("Authentication was invalid");
+            }
+            else
+            {
+                await Shell.Current.Navigation.PopToRootAsync();
+                WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
+            }
         }
     }
 }
