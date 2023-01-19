@@ -24,7 +24,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers
                 DisplayName = ReturnTypeFromIndex("name", authResult),
                 FirstName = ReturnTypeFromIndex("given_name", authResult),
                 LastName = ReturnTypeFromIndex("family_name", authResult),
-                City = ReturnTypeFromIndex("city", authResult)
+                City = ReturnTypeFromIndex("city", authResult),
                 AccessToken = accessToken
             };
         }
