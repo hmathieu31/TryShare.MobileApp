@@ -141,7 +141,7 @@
         <BoxView Color="LightGrey"
                  Grid.Row="6"
                  Grid.Column="0"/>
-        <Button Command="{Binding GoToReturnPageCommand}"
+        <Button Command="{Binding GoToMainPageCommand}"
                 Text="Déverrouiller"
                 FontAttributes="Bold"
                 TextColor="White"

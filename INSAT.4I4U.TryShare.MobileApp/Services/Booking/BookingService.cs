@@ -36,7 +36,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
 
                 try
                 {
-                    await _requestProvider.PostAsync(uri, tricycle, shouldReturnContent: false);
+                    await _requestProvider.PostAsync(uri, tricycle, token, shouldReturnContent: false);
                     return true;
                 }
                 catch (ServiceAuthentificationException)

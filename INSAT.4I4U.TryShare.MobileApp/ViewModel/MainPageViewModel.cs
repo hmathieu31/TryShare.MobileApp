@@ -159,7 +159,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         async Task GoToPostBookingAsync(Tricycle tricycle)
         {
-            await Shell.Current.GoToAsync(nameof(PostBookingPage), true, new Dictionary<string, object>
+            await Shell.Current.GoToAsync(nameof(EndOfBookingPage), true, new Dictionary<string, object>
             { {"Tricycle", tricycle}});
             IsPopupVisible = false;
         }
