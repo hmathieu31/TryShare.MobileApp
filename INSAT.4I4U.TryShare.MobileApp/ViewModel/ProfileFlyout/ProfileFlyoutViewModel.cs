@@ -17,7 +17,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader
         string email;
 
         [ObservableProperty]
-        string connectionButtonText = "Connection";
+        string connectionButtonText = "Connexion";
 
         [RelayCommand]
         Task LogInOutAsync()

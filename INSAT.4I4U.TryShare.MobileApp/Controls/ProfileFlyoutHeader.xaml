@@ -5,14 +5,17 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader"
              x:DataType="vm:ProfileFlyoutViewModel">
-    <VerticalStackLayout >
-        <Grid RowDefinitions="*, *"
+    <VerticalStackLayout BackgroundColor="#512DB4">
+        <Grid RowDefinitions="*, *, *, *, *"
               Margin="10,30,5,30"
-              ColumnDefinitions="*, 1.5*">
+              ColumnDefinitions="*">
             <toolkit:AvatarView Grid.Column="0"
-                   Grid.RowSpan="2"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center">
+                                Grid.RowSpan="2"
+                                WidthRequest="70"
+                                HeightRequest="70"
+                                CornerRadius="100"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center">
                 <toolkit:AvatarView.ImageSource>
                     <toolkit:GravatarImageSource
                     CacheValidity="1"
@@ -21,14 +24,18 @@
                     Image="Identicon"/>
                 </toolkit:AvatarView.ImageSource>
             </toolkit:AvatarView>
-            <Label Text="Hugo"
-                   Grid.Column="1"
-                   Grid.Row="0"
-                   VerticalOptions="End"/>
-            <Label Text="MATHIEU"
-                   Grid.Column="1"
-                   Grid.Row="1"
-                   VerticalOptions="Start"/>
+            <Label Text="Hugo MATHIEU"
+                   Grid.Row="3"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"/>
+            <Label Text="TrySharer depuis janvier 2023"
+                   Grid.Row="4"
+                   FontAttributes="Italic"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
         </Grid>
     </VerticalStackLayout>
 </ContentView>

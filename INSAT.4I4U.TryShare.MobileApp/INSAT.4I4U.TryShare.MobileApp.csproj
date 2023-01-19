@@ -81,7 +81,14 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\battery.svg" />
 	  <None Remove="Resources\Images\bike.svg" />
+	  <None Remove="Resources\Images\home.svg" />
+	  <None Remove="Resources\Images\journey.svg" />
+	  <None Remove="Resources\Images\logout.svg" />
+	  <None Remove="Resources\Images\newspaper.svg" />
+	  <None Remove="Resources\Images\pen.svg" />
 	  <None Remove="Resources\Images\RefreshIcon.svg" />
+	  <None Remove="Resources\Images\suscribe.svg" />
+	  <None Remove="Resources\Images\terms.svg" />
 	  <None Remove="Resources\Images\Vector.svg" />
 	</ItemGroup>
 

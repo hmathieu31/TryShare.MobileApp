@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Controls"
     Shell.FlyoutBehavior="Flyout">
 
+
     <Shell.FlyoutHeader>
         <controls:ProfileFlyoutHeader />
     </Shell.FlyoutHeader>
@@ -14,9 +15,49 @@
         <controls:ProfileFlyoutFooter />
     </Shell.FlyoutFooter>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate view:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Home"
+                Icon="home.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
+                  Route="MainPage" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Mes trajets"
+                Icon="journey.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
+                  Route="MainPage" />
+        </Tab>
+        
+    </FlyoutItem>
+
+    <FlyoutItem Title="Mes abonnements"
+                Icon="suscribe.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
+                  Route="MainPage" />
+        </Tab>
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="Modifier profil"
+                Icon="pen.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
+                  Route="MainPage" />
+        </Tab>
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="Conditions d'utilisation"
+                Icon="pen.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
+                  Route="MainPage" />
+        </Tab>
+
+    </FlyoutItem>
+
 
 </Shell>
