@@ -3,9 +3,9 @@ using INSAT._4I4U.TryShare.MobileApp.Model;
 namespace INSAT._4I4U.TryShare.MobileApp.View
 {
     [QueryProperty(nameof(Tricycle), "Tricycle")]
-    public partial class PostBookingPage : ContentPage
+    public partial class EndOfBookingPage : ContentPage
     {
-        public PostBookingPage(CommentViewModel viewModel)
+        public EndOfBookingPage(CommentViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
