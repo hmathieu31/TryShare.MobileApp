@@ -8,12 +8,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.Model
 {
     public class UserIdentity
     {
-        public string Email { get; set; }
-        public string AccessToken { get; set; }
+        public required string Email { get; set; }
+        public required string AccessToken { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? DisplayName { get; set; }
         public string? City { get; set; }
-
+        
     }
 }
