@@ -18,9 +18,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
-        readonly ITricycleService tricycleService;
+        readonly ITricycleService _tricycleService;
         private readonly MsalHelper msal;
-        private readonly IBookingService bookingService;
+        private readonly IBookingService _bookingService;
 
         [RelayCommand]
         async Task Authenticate()
@@ -51,9 +51,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                                  MsalHelper msal,
                                  IBookingService bookingService)
         {
-            this.tricycleService = tricycleService;
+            this._tricycleService = tricycleService;
             this.msal = msal;
-            this.bookingService = bookingService;
+            this._bookingService = bookingService;
         }
 
         static void ShowReturnZoneToast()
@@ -129,7 +129,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public async Task JustBookedCheckAsync()
         {
-            if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
+            if (await _bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
                 IsReturnable = false;
             else IsReturnable = true;
         }
@@ -144,7 +144,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             try
             {
                 IsBusy = true;
-                var list = await tricycleService.GetTricyclesAsync();
+                var list = await _tricycleService.GetTricyclesAsync();
 
                 if (Tricycles.Count != 0)
                     Tricycles.Clear();
