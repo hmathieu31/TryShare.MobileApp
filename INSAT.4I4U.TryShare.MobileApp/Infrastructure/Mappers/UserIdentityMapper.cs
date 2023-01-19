@@ -8,13 +8,17 @@ namespace INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers
 
         public static UserIdentity ToModel(this AuthenticationResult authResult)
         {
+            var email = ReturnTypeFromIndex("emails", authResult);
+            if (email is null)
+                throw new InvalidOperationException("Email claim not found in the token");
+
             return new UserIdentity
             {
-                Email = ReturnTypeFromIndex("emails", authResult),
+                Email = email,
                 DisplayName = ReturnTypeFromIndex("name", authResult),
                 FirstName = ReturnTypeFromIndex("given_name", authResult),
                 LastName = ReturnTypeFromIndex("family_name", authResult),
-                //City = ReturnTypeFromIndex("city", authResult)
+                City = ReturnTypeFromIndex("city", authResult)
             };
         }
 
