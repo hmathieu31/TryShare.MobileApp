@@ -10,7 +10,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider
     {
         Task<TResult> GetAsync<TResult>(Uri uri, string token = "");
         
-        Task<TResult> PostAsync<TResult>(Uri uri, TResult data, string token = "", string header = "");
+        Task<TResult> PostAsync<TResult>(Uri uri, TResult data, string token = "", string header = "", bool shouldReturnContent = false);
         
         Task<TResult> PostAsync<TResult>(Uri uri, string data, string clientId, string clientSecret);
 
