@@ -25,11 +25,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await Shell.Current.Navigation.PopToRootAsync();
             WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
-        }
-
-        [RelayCommand]
-        public async Task GoToReturnPageAsync()
-        {
             await _bookingService.RequestTricycleBookingAsync(Tricycle);
         }
     }
