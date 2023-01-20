@@ -51,7 +51,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
             IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
 
-            Placemark placemark = placemarks?.FirstOrDefault();
+            var placemark = placemarks?.FirstOrDefault();
 
             if (placemark is not null)
                 TricycleAddress = $"{placemark.Thoroughfare}, {placemark.Locality}";
