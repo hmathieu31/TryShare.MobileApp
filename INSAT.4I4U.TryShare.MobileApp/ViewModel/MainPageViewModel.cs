@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -132,7 +133,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             if (SelectedTricycle is null)
                 throw new InvalidOperationException("SelectedTricycle should not be null");
 
-            if (await _bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
+            if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
                 IsReturnable = false;
             else
                 IsReturnable = true;
