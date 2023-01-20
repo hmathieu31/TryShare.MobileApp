@@ -63,6 +63,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             ReturnZones.First().IsVisible = true;
         }
 
+        public async void OnNavigatedFrom(TricycleUnlockingPage tricycleUnlockingPage)
+        {
+            await GetTricyclesAsync();
+        }
         public async void OnAppearing()
         {
             await GetTricyclesAsync();
