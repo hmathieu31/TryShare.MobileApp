@@ -54,5 +54,22 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             return Location.CalculateDistance(location, tricycle.Location, DistanceUnits.Kilometers);
         }
 
+        /// <summary>
+        /// Checks if the user is in the given returnZone by calculating the distance to the center of the zone then checking if this distance is inferior to the given radius. 
+        /// </summary>
+        /// <param name="returnZone"></param>
+        /// <returns>bool</returns>
+
+        public async Task<bool> IsUserInReturnZoneAsync(ReturnZone returnZone)
+        {
+            var location = await GetCurrentLocationAsync();
+            if (Location.CalculateDistance(location, returnZone.Center, DistanceUnits.Kilometers) <= returnZone.Radius.Kilometers)
+            {
+                return true;
+            }
+            else { return false; }
+            
+        }
+
     }
 }

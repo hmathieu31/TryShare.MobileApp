@@ -90,9 +90,9 @@
         </Button>
 
         <Button Text="Retourner"
-                Command="{Binding GoToPostBookingCommand}"
-                CommandParameter="{Binding SelectedTricycle}"
-                IsVisible="{Binding IsReturnable}"
+                Command="{Binding GoToEndOfBookingCommand}"
+                CommandParameter="{Binding BookedTricycle}"
+                IsVisible="{Binding IsReturnButtonVisible}"
                 FontAttributes="Bold"
                 TextColor="White"
                 BackgroundColor="MediumPurple"
