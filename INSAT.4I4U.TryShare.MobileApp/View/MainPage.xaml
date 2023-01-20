@@ -9,7 +9,7 @@
              xmlns:behaviours="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Behaviours"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
-             Title="Accueil"
+             Title="TryShare"
              BackgroundColor="White">
 
 

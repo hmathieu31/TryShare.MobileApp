@@ -4,15 +4,16 @@
              xmlns:vm="clr-namespace:INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader"
              x:DataType="vm:ProfileFlyoutViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.Controls.ProfileFlyoutFooter">
+    
     <VerticalStackLayout VerticalOptions="Center"
                          HorizontalOptions="Center">
         <Button Text="{Binding ConnectionButtonText}"
                 Command="{Binding LogInOutCommand}"
-                BackgroundColor="Red"
+                BackgroundColor="#512DB4"
                 TextColor="White"
                 CornerRadius="10"
                 Margin="0,0,0,10"
-                WidthRequest="100"
+                WidthRequest="110"
                 HeightRequest="40" />
     </VerticalStackLayout>
 </ContentView>
