@@ -35,6 +35,18 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             {
                 return false;
             }
+            Debug.WriteLine("IsAuthenticated not implemented returns true");
+            return true;
+        }
+
+        public void MapTricycleToUser(Tricycle tricycle, UserIdentity userIdentity)
+        {
+            userIdentity.BookedTricycle = tricycle;
+        }
+
+        public Task SignInUserAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public Task SignOutUserAsync()

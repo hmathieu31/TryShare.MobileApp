@@ -14,6 +14,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Model
         public string? LastName { get; set; }
         public string? DisplayName { get; set; }
         public string? City { get; set; }
+        public Tricycle? BookedTricycle { get; set; }
         
     }
 }
