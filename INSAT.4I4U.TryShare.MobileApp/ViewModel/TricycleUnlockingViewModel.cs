@@ -10,19 +10,22 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     public partial class TricycleUnlockingViewModel : BaseViewModel
     {
 
-        public IBookingService _bookingService;
+        private readonly IBookingService _bookingService;
 
         [ObservableProperty]
-        Tricycle tricycle;
+        Tricycle? tricycle;
 
         public TricycleUnlockingViewModel(IBookingService bookingService)
         {
-            this._bookingService = bookingService;
+            _bookingService = bookingService;
         }
 
         [RelayCommand]
         public async Task GoToMainPageAsync()
         {
+            if (Tricycle is null)
+                throw new InvalidOperationException("Tricycle should not be null");
+
             var result = await _bookingService.RequestTricycleBookingAsync(Tricycle);
             if (!result)
             {

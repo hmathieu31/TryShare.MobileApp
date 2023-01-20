@@ -4,14 +4,11 @@ using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using Microsoft.Maui.Maps;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
-using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -29,7 +26,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         private bool isPopupVisible = false;
 
         [ObservableProperty]
-        private Tricycle selectedTricycle;
+        private Tricycle? selectedTricycle;
 
         [ObservableProperty]
         private bool isReturnable;
@@ -51,7 +48,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         static void ShowReturnZoneToast()
         {
 
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationTokenSource cancellationTokenSource = new();
 
             string text = "La zone de retour du Tricyle apparait en rouge";
             ToastDuration duration = ToastDuration.Long;
@@ -122,9 +119,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public async Task JustBookedCheckAsync()
         {
+            if (SelectedTricycle is null)
+                throw new InvalidOperationException("SelectedTricycle should not be null");
+
             if (await _bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
                 IsReturnable = false;
-            else IsReturnable = true;
+            else
+                IsReturnable = true;
         }
 
         [RelayCommand]
