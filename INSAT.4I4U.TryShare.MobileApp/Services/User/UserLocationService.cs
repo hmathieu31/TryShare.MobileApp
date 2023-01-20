@@ -12,12 +12,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
     public class UserLocationService : IUserLocationService
     {
 
-        private CancellationTokenSource _cancelTokenSource;
+        private CancellationTokenSource? _cancelTokenSource;
         private bool _isCheckingLocation;
-
-        public UserLocationService()
-        {
-        }
 
         private async Task<Location> GetCurrentLocationAsync()
         {
@@ -28,8 +24,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
                 GeolocationRequest request = new (GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
 
                 _cancelTokenSource = new CancellationTokenSource();
+                
+                var location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
 
-                Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
+                if (location is null)
+                    throw new InvalidOperationException("Location should not be null");
 
                 return location;
             }

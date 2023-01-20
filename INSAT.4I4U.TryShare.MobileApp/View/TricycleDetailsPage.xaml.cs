@@ -22,12 +22,12 @@ public partial class TricycleDetailsPage: ContentPage
 
         // Cast the BindingContext to a TricycleDetailsViewModel (this cast is safe because the BindingContext is set in the constructor)
         // and call the SetTricycleAddressLabelAsync method defined in the ViewModel
-        await (BindingContext as TricycleDetailsViewModel).SetTricycleAddressLabelAsync();
+        await ((TricycleDetailsViewModel)BindingContext).SetTricycleAddressLabelAsync();
     }
 
     private async void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
     {
-        await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
+        await ((TricycleDetailsViewModel)BindingContext).GoToTermsAndConditionsAsync();
     }
     public async Task DisplayConnectivityErrorPopupAsync()
     {
@@ -46,6 +46,6 @@ public partial class TricycleDetailsPage: ContentPage
 
     private async void GoToMoreComments_Tapped(object sender, TappedEventArgs e)
     {
-        await (BindingContext as TricycleDetailsViewModel).GoToMoreCommentsAsync();
+        await ((TricycleDetailsViewModel)BindingContext).GoToMoreCommentsAsync();
     }
 }

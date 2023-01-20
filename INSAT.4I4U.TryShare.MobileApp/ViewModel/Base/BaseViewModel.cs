@@ -16,7 +16,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel.Base
         bool isBusy;
 
         [ObservableProperty]
-        string title;
+        string? title;
         public bool IsNotBusy => !IsBusy;
     }
 }

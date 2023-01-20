@@ -29,7 +29,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         private bool isPopupVisible = false;
 
         [ObservableProperty]
-        private Tricycle selectedTricycle;
+        private Tricycle? selectedTricycle;
 
         [ObservableProperty]
         private bool isReturnable;
@@ -51,7 +51,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         static void ShowReturnZoneToast()
         {
 
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationTokenSource cancellationTokenSource = new();
 
             string text = "La zone de retour du Tricyle apparait en rouge";
             ToastDuration duration = ToastDuration.Long;
@@ -122,9 +122,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public async Task JustBookedCheckAsync()
         {
-            if (await _bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
+            if (SelectedTricycle is null)
+                throw new InvalidOperationException("SelectedTricycle should not be null");
+
+            if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
                 IsReturnable = false;
-            else IsReturnable = true;
+            else
+                IsReturnable = true;
         }
 
         [RelayCommand]

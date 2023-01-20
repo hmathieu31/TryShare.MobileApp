@@ -8,14 +8,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.Settings
 {
     public class AzureAdB2C
     {
-        public string CacheDir { get; set; }
-        public string CacheFileName { get; set; }
-        public string ClientId { get; set; }
-        public string Domain { get; set; }
-        public string EditProfilePolicyId { get; set; }
-        public string Instance { get; set; }
-        public string ResetPasswordPolicyId { get; set; }
-        public string SignUpSignInPolicyId { get; set; }
-        public string TenantId { get; set; }
+        public required string CacheDir { get; set; }
+        public required string CacheFileName { get; set; }
+        public required string ClientId { get; set; }
+        public required string Domain { get; set; }
+        public required string EditProfilePolicyId { get; set; }
+        public required string Instance { get; set; }
+        public required string ResetPasswordPolicyId { get; set; }
+        public required string SignUpSignInPolicyId { get; set; }
+        public required string TenantId { get; set; }
     }
 }
