@@ -17,5 +17,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
         {
             return Task.FromResult(Location.CalculateDistance(new Location(43.56, 1.47), tricycle.Location, DistanceUnits.Kilometers));
         }
+
+        public Task<bool> IsUserInReturnZoneAsync(ReturnZone returnZone)
+        {
+            return Task.FromResult(true);
+        }
     }
 }
