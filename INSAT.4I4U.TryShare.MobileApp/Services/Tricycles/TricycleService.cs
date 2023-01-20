@@ -32,6 +32,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
                 var uri = UriHelper.CombineUri(GlobalSettings.DefaultEndpoint, $"{apiUrlTricycle}");
 
                 var dtos =  await _requestProvider.GetAsync<List<TricycleDto>>(uri);
+                foreach (TricycleDto tricycle in dtos)
+                {
+                    if (tricycle.IsAvailable is false)
+                    {
+                        dtos.Remove(tricycle);
+                    }
+                }
                 return dtos.Select(dto => dto.ToModel()).ToList();
             }
             else
