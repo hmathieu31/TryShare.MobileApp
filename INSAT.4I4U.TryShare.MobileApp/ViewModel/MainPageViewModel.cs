@@ -43,7 +43,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [NotifyPropertyChangedFor(nameof(IsReturnButtonVisible))]
         private Tricycle? bookedTricycle = new Tricycle { BatteryPercentage=44, Id=4,  Location=new Location(59,7.44)};
         
-        public bool IsReturnButtonVisible => bookedTricycle is not null;
+        public bool IsReturnButtonVisible => BookedTricycle is not null;
 
         public MainPageViewModel(ITricycleService tricycleService,
                                  MsalHelper msal,
