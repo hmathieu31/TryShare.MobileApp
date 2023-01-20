@@ -20,7 +20,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <BoxView Color="White"
+            <BoxView Color="#f1eeF9"
                      Grid.Row="0"
                      Grid.Column="0"/>
             <Image Source="Resources/Images/bike.svg"
@@ -28,14 +28,15 @@
                    Grid.Column="0"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
-                   HeightRequest="80"
+                   HeightRequest="70"
                    Margin="0,0,0,0"/>
-            <BoxView Color="White"
+
+            <BoxView Color="#f1eeF9"
                      Grid.Row="0"
                      Grid.Column="1"/>
             <Label Text="Modèle 1"
                    FontAttributes="Bold"
-                   FontSize="28"
+                   FontSize="24"
                    TextColor="{StaticResource Primary}"
                    Grid.Row="0"
                    Grid.Column="1"
@@ -144,7 +145,7 @@
                                   TextColor="Black"
                                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="GoToMoreComments_Tapped"
+                                    <TapGestureRecognizer Tapped="GoToMoreCommentsTapped"
                                                           NumberOfTapsRequired="1"/>
                                 </Span.GestureRecognizers>
                             </Span>
@@ -168,7 +169,7 @@
                    TextDecorations="Underline"
                    FontSize="16">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="GoToMoreComments_Tapped"
+                    <TapGestureRecognizer Tapped="OnTermsAndConditionsTapped"
                                           NumberOfTapsRequired="1"/>
                 </Label.GestureRecognizers>
             </Label>

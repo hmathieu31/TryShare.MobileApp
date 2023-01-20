@@ -60,7 +60,8 @@ public static class MauiProgram
 			.AddTransient<TricycleDetailsPage>()
 		    .AddTransient<CommentPage>()
 			.AddTransient<TermsAndConditionsPage>()
-			.AddTransient<TricycleUnlockingPage>();
+			.AddTransient<TricycleUnlockingPage>()
+            .AddTransient<EndOfBookingPage>();
 		return builder;
 	}
 
@@ -75,7 +76,8 @@ public static class MauiProgram
 			.AddSingleton<MainPageViewModel>()
 		    .AddTransient<TricycleDetailsViewModel>()
             .AddTransient<ProfileFlyoutViewModel>()
-		    .AddSingleton<CommentViewModel>()
+		    .AddTransient<CommentViewModel>()
+            .AddTransient<EndOfBookingViewModel>()
 			.AddTransient<TricycleUnlockingViewModel>();
         return builder;
     }

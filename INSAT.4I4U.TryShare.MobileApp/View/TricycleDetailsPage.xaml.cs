@@ -25,10 +25,6 @@ public partial class TricycleDetailsPage: ContentPage
         await (BindingContext as TricycleDetailsViewModel).SetTricycleAddressLabelAsync();
     }
 
-    private async void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
-    {
-        await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
-    }
     public async Task DisplayConnectivityErrorPopupAsync()
     {
         await DisplayAlert("Alerte", "Aucune connection internet trouvée", "OK");
@@ -44,8 +40,12 @@ public partial class TricycleDetailsPage: ContentPage
         await DisplayAlert("Alerte", "La localisation n'est pas autorisée", "OK");
     }
 
-    private async void GoToMoreComments_Tapped(object sender, TappedEventArgs e)
+    private async void GoToMoreCommentsTapped(object sender, TappedEventArgs e)
     {
         await (BindingContext as TricycleDetailsViewModel).GoToMoreCommentsAsync();
+    }
+    private async void OnTermsAndConditionsTapped(object sender, TappedEventArgs args)
+    {
+        await (BindingContext as TricycleDetailsViewModel).GoToTermsAndConditionsAsync();
     }
 }

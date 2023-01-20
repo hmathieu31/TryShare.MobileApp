@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
 using INSAT._4I4U.TryShare.MobileApp.View;
@@ -15,7 +16,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             this.commentService = commentService;
         }
-        
+
+        [RelayCommand]
+        public async Task GoToMainPageAsync()
+        {
+            await Shell.Current.Navigation.PopToRootAsync();
+        }
+
+
         [RelayCommand]
         async Task GetCommentsAsync()
         {

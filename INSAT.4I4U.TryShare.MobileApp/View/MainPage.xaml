@@ -80,6 +80,7 @@
                 Style="{StaticResource ButtonOutline}"
                 Margin="0,10,0,0"/>
 
+
         <Button Text="Retourner"
                 Command="{Binding GoToPostBookingCommand}"
                 CommandParameter="{Binding SelectedTricycle}"
@@ -87,6 +88,19 @@
                 FontAttributes="Bold"
                 TextColor="White"
                 BackgroundColor="MediumPurple"
+                WidthRequest="300"
+                HeightRequest="60"
+                FontSize="22"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                />
+
+        <Button Text="Debug"
+                Command="{Binding GoToEndOfBookingCommand}"
+                IsVisible="{Binding IsNotBusy}"
+                FontAttributes="Bold"
+                TextColor="White"
+                BackgroundColor="#512DB4"
                 WidthRequest="300"
                 HeightRequest="60"
                 FontSize="22"
@@ -183,7 +197,7 @@
                 <Button Text="Réserver"
                         FontAttributes="Bold"
                         TextColor="White"
-                        BackgroundColor="MediumPurple"
+                        BackgroundColor="#512DB4"
                         Grid.Row="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
