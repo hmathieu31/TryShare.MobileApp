@@ -73,12 +73,21 @@
         <Button ImageSource="Resources/Images/refreshicon.svg"
                 Command="{Binding GetTricyclesCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                BackgroundColor="White"
-                HeightRequest="40"
+                BackgroundColor="#FFFFFF"
+                Opacity="0.85"
+                BorderColor="Black"
+                HeightRequest="38"
+                WidthRequest="38"
                 VerticalOptions="Start"
-                HorizontalOptions="Center"
+                HorizontalOptions="End"
+                CornerRadius="1"
                 Style="{StaticResource ButtonOutline}"
-                Margin="0,10,0,0"/>
+                Margin="0,12,65,0">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Opacity="0.1"/>
+            </Button.Shadow>
+        </Button>
 
         <Button Text="Retourner"
                 Command="{Binding GoToPostBookingCommand}"

@@ -66,8 +66,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             ReturnZones.First().IsVisible = true;
         }
 
-        public void OnAppearing()
+        public async void OnAppearing()
         {
+            await GetTricyclesAsync();
             SetReturnZones();
             _ = JustBookedCheckAsync();
             try
