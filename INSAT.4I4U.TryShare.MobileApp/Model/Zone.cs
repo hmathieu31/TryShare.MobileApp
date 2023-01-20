@@ -7,13 +7,13 @@ namespace INSAT._4I4U.TryShare.MobileApp
     /// </summary>
     public class CircleZone
     {
-        public Color FillColor { get; set; }
+        public required Color FillColor { get; set; }
 
-        public Color StrokeColor { get; set; }
+        public required Color StrokeColor { get; set; }
 
         public float StrokeWidth { get; set; }
 
-        public Location Center { get; set; }
+        public required Location Center { get; set; }
 
         public Distance Radius { get; set; }
 

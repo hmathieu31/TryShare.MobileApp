@@ -14,9 +14,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly IUserSubscriptionService _userSubscriptionService;
         readonly IBookingService _bookingService;
 
-        public Action OnDetailsTryToNavigateWithoutConnectivity { get; set; }
-        public Action OnDetailsTryToNavigateWithoutLocationEnabled { get; set; }
-        public Action OnDetailsTryToNavigateWithoutLocationAuthorized { get; set; }
+        public Action? OnDetailsTryToNavigateWithoutConnectivity { get; set; }
+        public Action? OnDetailsTryToNavigateWithoutLocationEnabled { get; set; }
+        public Action? OnDetailsTryToNavigateWithoutLocationAuthorized { get; set; }
         public TricycleDetailsViewModel(IUserLocationService userLocationService,
                                         IUserService userService,
                                         IUserSubscriptionService userSubscriptionService,
@@ -51,7 +51,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
             IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
 
-            Placemark placemark = placemarks?.FirstOrDefault();
+            var placemark = placemarks?.FirstOrDefault();
 
             if (placemark is not null)
                 TricycleAddress = $"{placemark.Thoroughfare}, {placemark.Locality}";

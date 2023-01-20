@@ -8,7 +8,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
     public class MsalHelper
     {
         public IPublicClientApplication PublicClientApplication { get; }
-        public AuthenticationResult AuthResult { get; private set; }
+        public AuthenticationResult? AuthResult { get; private set; }
 
         public MsalHelper()
         {
@@ -70,7 +70,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
                 Debug.WriteLine($"Error Acquiring Token interactively:{Environment.NewLine}{msalEx}");
             }
 
-            return this.AuthResult;
+            if (this.AuthResult is null)
+                throw new MsalClientApplicationException("Authentication Result is null");
+
+            return AuthResult;
         }
 
         /// <summary>

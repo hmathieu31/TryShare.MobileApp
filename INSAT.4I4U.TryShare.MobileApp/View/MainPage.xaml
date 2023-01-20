@@ -74,11 +74,19 @@
                 Command="{Binding GetTricyclesCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 BackgroundColor="White"
+                Opacity="0.9"
                 HeightRequest="40"
+                WidthRequest="40"
+                CornerRadius="2"
                 VerticalOptions="Start"
-                HorizontalOptions="Center"
+                HorizontalOptions="End"
                 Style="{StaticResource ButtonOutline}"
-                Margin="0,10,0,0"/>
+                Margin="0,10,70,0">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Opacity="0.1"/>
+            </Button.Shadow>
+        </Button>
 
         <Button Text="Retourner"
                 Command="{Binding GoToEndOfBookingCommand}"
