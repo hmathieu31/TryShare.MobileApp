@@ -138,19 +138,14 @@
 
                 <Label Grid.Row="3"
                        Grid.Column="0"
-                       Margin="25,0,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Voir plus de commentaires"
-                                  TextColor="Black"
-                                  TextDecorations="Underline">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="GoToMoreCommentsTapped"
-                                                          NumberOfTapsRequired="1"/>
-                                </Span.GestureRecognizers>
-                            </Span>
-                        </FormattedString>
-                    </Label.FormattedText>
+                       Margin="25,0,0,0"
+                       Text="Voir plus de commentaires"
+                       TextColor="Black"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="GoToMoreCommentsTapped"
+                                              NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
                 </Label>
 
             </Grid>
