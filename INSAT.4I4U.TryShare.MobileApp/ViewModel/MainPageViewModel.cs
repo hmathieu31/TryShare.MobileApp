@@ -4,14 +4,11 @@ using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using Microsoft.Maui.Maps;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
-using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -125,7 +122,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             if (SelectedTricycle is null)
                 throw new InvalidOperationException("SelectedTricycle should not be null");
 
-            if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
+            if (await _bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
                 IsReturnable = false;
             else
                 IsReturnable = true;
