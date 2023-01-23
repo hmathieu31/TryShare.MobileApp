@@ -24,7 +24,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         public async Task GoToMainPageAsync()
         {
-            await _bookingService.RequestEndOfBookingAsync(selectedTricycle);
+            await _bookingService.RequestEndOfBookingAsync(SelectedTricycle);
             await Shell.Current.Navigation.PopToRootAsync();
         }
 
