@@ -1,9 +1,6 @@
-using CommunityToolkit.Mvvm.Messaging;
-using Foundation;
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
-using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
@@ -27,7 +24,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         public async Task GoToMainPageAsync()
         {
-            _bookingService.RequestEndOfBookingAsync(selectedTricycle);
+            await _bookingService.RequestEndOfBookingAsync(selectedTricycle);
             await Shell.Current.Navigation.PopToRootAsync();
         }
 
