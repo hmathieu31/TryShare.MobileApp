@@ -5,10 +5,13 @@ using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
-    [QueryProperty(nameof(Tricycle), "Tricycle")]
+    [QueryProperty(nameof(SelectedTricycle), "Tricycle")]
     public partial class CommentViewModel : BaseViewModel
     {
         public ObservableCollection<Comment> Comments { get; } = new();
+
+        [ObservableProperty]
+        Tricycle selectedTricycle;
 
         readonly ICommentService commentService;
         public CommentViewModel(ICommentService commentService)

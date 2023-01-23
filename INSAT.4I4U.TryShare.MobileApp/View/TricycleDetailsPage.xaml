@@ -43,7 +43,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Start"
                    Margin="0,25,0,0"/>
-            <controls:Rating Value="{Binding Tricycle.Rating}"
+            <controls:Rating Value="{Binding SelectedTricycle.Rating}"
                              IsReadOnly="True"
                              Grid.Row="0"
                              Grid.Column="1"
@@ -175,7 +175,7 @@
                      Grid.ColumnSpan="2"/>
             <Button Text="Déverrouiller"
                     Command="{Binding GoToRatingPageCommand}"
-                    CommandParameter="{Binding Tricycle}"
+                    CommandParameter="{Binding SelectedTricycle}"
                     FontAttributes="Bold"
                     TextColor="White"
                     BackgroundColor="{StaticResource Primary}"

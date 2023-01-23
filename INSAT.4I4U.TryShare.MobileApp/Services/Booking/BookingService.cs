@@ -1,5 +1,6 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.Exceptions;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
+using INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers;
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.RequestProvider;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
@@ -36,7 +37,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
 
                 try
                 {
-                    await _requestProvider.PostAsync(uri, tricycle, token, shouldReturnContent: false);
+                    await _requestProvider.PostAsync(uri, tricycle.ToDto(), token, shouldReturnContent: false);
                     return true;
                 }
                 catch (ServiceAuthentificationException)
@@ -63,7 +64,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Booking
 
                 try
                 {
-                    await _requestProvider.PostAsync(uri, "", token, shouldReturnContent: false);
+                    await _requestProvider.PostAsync(uri, tricycle.ToDto(), token, shouldReturnContent: false);
                     return true;
                 }
                 catch (ServiceAuthentificationException)

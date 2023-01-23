@@ -32,7 +32,7 @@
         <BoxView Color="White"
                  Grid.Row="1"
                  Grid.Column="0"/>
-        <controls:Rating Value="1"
+        <controls:Rating Value="{Binding RatingControlValue}"
                          Grid.Row="1">
             <controls:Rating.Shadow>
                 <Shadow Brush="Black"
@@ -156,7 +156,7 @@
         <BoxView Color="White"
                  Grid.Row="6"
                  Grid.Column="0"/>
-        <Button Command="{Binding GoToMainPageCommand}"
+        <Button Command="{Binding BookAndGoToMainPageCommand}"
                 Text="Déverrouiller"
                 FontAttributes="Bold"
                 TextColor="White"

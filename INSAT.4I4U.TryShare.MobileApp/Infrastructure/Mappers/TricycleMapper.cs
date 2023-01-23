@@ -12,6 +12,19 @@ namespace INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers
                 Id = tricycleDto.Id,
                 Location = new Location(tricycleDto.LastKnownLatitude, tricycleDto.LastKnownLongitude),
                 BatteryPercentage = tricycleDto.BatteryPercentage,
+                Rating = tricycleDto.Rating,
+            };
+        }
+
+        public static TricycleDto ToDto(this Tricycle tricycle)
+        {
+            return new TricycleDto
+            {
+                Id = tricycle.Id,
+                LastKnownLatitude = tricycle.Location.Latitude,
+                LastKnownLongitude = tricycle.Location.Longitude,
+                BatteryPercentage = tricycle.BatteryPercentage,
+                Rating = tricycle.Rating,
             };
         }
     }
