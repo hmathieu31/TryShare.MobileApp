@@ -104,8 +104,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
             // For current debug purposes
             var toulouseRadius = new Distance(50000);
-            //var toulouseCenter = new Location(43.570565, 1.466504);//Toulouse
-            var toulouseCenter = new Location(59, 5.7);//Norvège
+            var toulouseCenter = new Location(43.570565, 1.466504);//Toulouse
+            //var toulouseCenter = new Location(59, 5.7);//Norvège
 
             var toulouseReturnZone = new ReturnZone
             {
