@@ -44,7 +44,7 @@ public partial class TricycleDetailsPage: ContentPage
         await DisplayAlert("Alerte", "La localisation n'est pas autorisée", "OK");
     }
 
-    private async void GoToMoreComments_Tapped(object sender, TappedEventArgs e)
+    private async void GoToMoreCommentsTapped(object sender, TappedEventArgs e)
     {
         await ((TricycleDetailsViewModel)BindingContext).GoToMoreCommentsAsync();
     }

@@ -49,5 +49,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                 IsBusy = false;
             }
         }
+
+        public async void OnAppearing()
+        {
+            await GetCommentsAsync();
+        }
     }
 }
