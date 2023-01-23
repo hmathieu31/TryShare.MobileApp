@@ -11,15 +11,15 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public ObservableCollection<Comment> Comments { get; } = new();
 
         [ObservableProperty]
-        Tricycle selectedTricycle;
+        Tricycle? selectedTricycle;
 
         readonly ICommentService commentService;
+        
         public CommentViewModel(ICommentService commentService)
         {
             this.commentService = commentService;
         }
 
-        [RelayCommand]
         async Task GetCommentsAsync()
         {
             if (IsBusy)

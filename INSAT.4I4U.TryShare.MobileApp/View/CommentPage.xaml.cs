@@ -10,5 +10,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.View
             InitializeComponent();
             BindingContext = viewModel;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ((CommentViewModel)BindingContext).OnAppearing();
+        }
     }
 }
