@@ -6,14 +6,16 @@ using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
-    [QueryProperty(nameof(Tricycle), "Tricycle")]
+    [QueryProperty(nameof(SelectedTricycle), "Tricycle")]
     public partial class TricycleUnlockingViewModel : BaseViewModel
     {
-
         private readonly IBookingService _bookingService;
 
         [ObservableProperty]
-        Tricycle? tricycle;
+        Tricycle? selectedTricycle;
+
+        [ObservableProperty]
+        int ratingControlValue;
 
         public TricycleUnlockingViewModel(IBookingService bookingService)
         {
@@ -21,12 +23,15 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         }
 
         [RelayCommand]
-        public async Task GoToMainPageAsync()
+        public async Task BookAndGoToMainPageAsync()
         {
-            if (Tricycle is null)
+            if (SelectedTricycle is null)
                 throw new InvalidOperationException("Tricycle should not be null");
 
-            var result = await _bookingService.RequestTricycleBookingAsync(Tricycle);
+            // Set the Rating of the tricycle to book to the value of the RatingControl
+            SelectedTricycle.Rating = RatingControlValue;
+
+            var result = await _bookingService.RequestTricycleBookingAsync(SelectedTricycle);
             if (!result)
             {
                 Debug.WriteLine("Authentication was invalid");

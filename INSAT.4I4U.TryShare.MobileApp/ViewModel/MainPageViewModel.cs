@@ -34,9 +34,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         private bool isReturnable;
 
         [ObservableProperty]
-        private Distance circleRadius = new(5000);
-
-        [ObservableProperty]
         private bool isMapReady;
 
         [ObservableProperty]

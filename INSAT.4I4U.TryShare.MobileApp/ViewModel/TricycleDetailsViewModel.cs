@@ -6,13 +6,11 @@ using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
-    [QueryProperty(nameof(Tricycle), "Tricycle")]
+    [QueryProperty(nameof(SelectedTricycle), "Tricycle")]
     public partial class TricycleDetailsViewModel : BaseViewModel
     {
         readonly IUserLocationService _userLocationService;
         readonly IUserService _userService;
-        readonly IUserSubscriptionService _userSubscriptionService;
-        readonly IBookingService _bookingService;
 
         public TricycleDetailsViewModel(IUserLocationService userLocationService,
                                         IUserService userService,
@@ -21,30 +19,28 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             this._userLocationService = userLocationService;
             this._userService = userService;
-            this._userSubscriptionService = userSubscriptionService;
-            this._bookingService = bookingService;
         }
 
         [ObservableProperty]
-        Tricycle tricycle;
+        private Tricycle selectedTricycle;
 
         /// <summary>
-        /// Postal address of the tricycle following the format "street, city"
+        /// Postal address of the selectedTricycle following the format "street, city"
         /// </summary>
         [ObservableProperty]
         string tricycleAddress = "";
 
         /// <summary>
-        /// Sets the ObservableProperty of the postal address of the tricycle.
-        /// Asynchronously uses the Geocoding Service to get the address from the tricycle's toulouseCenter.
+        /// Sets the ObservableProperty of the postal address of the selectedTricycle.
+        /// Asynchronously uses the Geocoding Service to get the address from the selectedTricycle's toulouseCenter.
         /// </summary>
         /// <remarks>
         /// The address set is follows the format : "Street, City"
         /// </remarks>
         public async Task SetTricycleAddressLabelAsync()
         {
-            double latitude = Tricycle.Location.Latitude;
-            double longitude = Tricycle.Location.Longitude;
+            double latitude = SelectedTricycle.Location.Latitude;
+            double longitude = SelectedTricycle.Location.Longitude;
 
             IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
 
@@ -62,7 +58,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
             IsBusy = true;
             await Shell.Current.GoToAsync(nameof(CommentPage), true, new Dictionary<string, object>
-            { {"tricycle", Tricycle} });
+            { {"selectedTricycle", SelectedTricycle} });
             IsBusy = false;
         }
 
@@ -97,18 +93,18 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                     PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                     if (status is not PermissionStatus.Granted)
                     {
-                        OnDetailsTryToNavigateWithoutLocationAuthorized.Invoke();
+                        OnDetailsTryToNavigateWithoutLocationAuthorized?.Invoke();
                     }
                 }
                 catch (FeatureNotEnabledException)
                 {
-                    OnDetailsTryToNavigateWithoutLocationEnabled.Invoke();
+                    OnDetailsTryToNavigateWithoutLocationEnabled?.Invoke();
                 }
 
             }
             if (!_userService.IsConnected)
             {
-                OnDetailsTryToNavigateWithoutConnectivity.Invoke();
+                OnDetailsTryToNavigateWithoutConnectivity?.Invoke();
             }
             else
             {
