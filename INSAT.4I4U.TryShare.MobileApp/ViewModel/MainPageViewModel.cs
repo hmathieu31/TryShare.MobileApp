@@ -80,6 +80,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
+            
             SetReturnZones();
             _ = JustBookedCheckAsync();
             try
@@ -120,23 +121,34 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             IsMapReady = true;
         }
 
-        public void DisplayPopup(int id)
+        /// <summary>
+        /// Displays the popup for the selected tricycle when a pin is clicked on the map.
+        /// The popup is displayed only if the user has no ongoing booking.
+        /// </summary>
+        /// <param name="id">ID of the SelectedTricycle</param>
+        public void DisplaySelectedTricyclePopup(int id)
         {
+            if (BookedTricycle is not null)
+                return;
+            
             SelectedTricycle = Tricycles.First(x => x.Id == id);
             IsPopupVisible = true;
         }
 
-        public void HidePopup()
+        /// <summary>
+        /// Hides the popup for the selected tricycle.
+        /// </summary>
+        public void HideSelectedTricyclePopup()
         {
             IsPopupVisible = false;
         }
 
         public async Task JustBookedCheckAsync()
         {
-            if (SelectedTricycle is null)
-                throw new InvalidOperationException("SelectedTricycle should not be null");
+            if (BookedTricycle is null)
+                throw new InvalidOperationException($"{nameof(BookedTricycle)} should not be null");
 
-            if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
+            if (await bookingService.CanTricycleBeBookedAsync(BookedTricycle))
                 IsReturnable = false;
             else
                 IsReturnable = true;
