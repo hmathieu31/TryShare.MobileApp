@@ -26,13 +26,13 @@ public partial class MainPage : ContentPage
     {
         e.HideInfoWindow = true;
         //appel méthodes viewmodel
-        _viewModel.DisplayPopup(int.Parse(((Pin)sender).Label));
+        _viewModel.DisplaySelectedTricyclePopup(int.Parse(((Pin)sender).Label));
 
     }
 
     private void OnMapClicked(object sender, MapClickedEventArgs e)
     {
-        _viewModel.HidePopup();
+        _viewModel.HideSelectedTricyclePopup();
     }
 
 }
