@@ -13,6 +13,7 @@ public partial class TricycleDetailsPage: ContentPage
         viewModel.OnDetailsTryToNavigateWithoutConnectivity = async () => await DisplayConnectivityErrorPopupAsync();
         viewModel.OnDetailsTryToNavigateWithoutLocationEnabled = async () => await DisplayLocationUnabledErrorPopupAsync();
         viewModel.OnDetailsTryToNavigateWithoutLocationAuthorized= async () => await DisplayLocationUnauthorizedErrorPopupAsync();
+        viewModel.OnDetailsTryToUnlockTooFarFromTheVehicule = async () => await DisplayDistanceFromTricycleErrorPopupAsync();
     }
 
     protected override async void OnAppearing()
@@ -42,6 +43,11 @@ public partial class TricycleDetailsPage: ContentPage
     public async Task DisplayLocationUnauthorizedErrorPopupAsync()
     {
         await DisplayAlert("Alerte", "La localisation n'est pas autorisée", "OK");
+    }
+
+    public async Task DisplayDistanceFromTricycleErrorPopupAsync()
+    {
+        await DisplayAlert("Alerte", "Vous êtes trop loin du véhicule", "OK");
     }
 
     private async void GoToMoreCommentsTapped(object sender, TappedEventArgs e)
