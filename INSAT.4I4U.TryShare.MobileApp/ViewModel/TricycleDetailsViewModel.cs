@@ -14,10 +14,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly IUserSubscriptionService _userSubscriptionService;
         readonly IBookingService _bookingService;
 
-        public Action? OnDetailsTryToNavigateWithoutConnectivity { get; set; }
-        public Action? OnDetailsTryToNavigateWithoutLocationEnabled { get; set; }
-        public Action? OnDetailsTryToNavigateWithoutLocationAuthorized { get; set; }
-        public Action? OnDetailsTryToUnlockTooFarFromTheVehicule { get; set; }
         public TricycleDetailsViewModel(IUserLocationService userLocationService,
                                         IUserService userService,
                                         IUserSubscriptionService userSubscriptionService,
