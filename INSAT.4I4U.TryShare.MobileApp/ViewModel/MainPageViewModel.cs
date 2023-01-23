@@ -17,7 +17,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     public partial class MainPageViewModel : BaseViewModel
     {
         readonly ITricycleService _tricycleService;
-        private readonly IBookingService bookingService;
         private readonly IUserLocationService _userLocationService;
         private readonly IReturnZonesService _returnZonesService;
 
@@ -49,7 +48,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                                  IReturnZonesService returnZonesService)
         {
             this._tricycleService = tricycleService;
-            this.bookingService = bookingService;
             this._userLocationService = userLocationService;
             this._returnZonesService = returnZonesService;
         }
@@ -78,13 +76,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
         }
+        
         public async void OnAppearing()
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
             GetReturnZones();
 
-            await JustBookedCheckAsync();
             try
             {
                 WeakReferenceMessenger.Default.Register<MainPageViewModel, BookingCompletedMessage>(this, (r, m) =>
@@ -122,17 +120,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             IsPopupVisible = false;
         }
 
-        public async Task JustBookedCheckAsync()
-        {
-            if (BookedTricycle is null)
-                throw new InvalidOperationException($"{nameof(BookedTricycle)} should not be null");
-
-            if (await bookingService.CanTricycleBeBookedAsync(BookedTricycle))
-                IsReturnable = false;
-            else
-                IsReturnable = true;
-        }
-
+        /// <summary>
+        /// Get the return zones from the service and set the Property
+        /// </summary>
         void GetReturnZones()
         {
             if (IsBusy)
@@ -149,6 +139,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Get the tricycles from the service and sets the Property
+        /// </summary>
+        /// <returns></returns>
         [RelayCommand]
         async Task GetTricyclesAsync()
         {
