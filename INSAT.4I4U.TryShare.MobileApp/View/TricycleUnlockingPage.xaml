@@ -139,7 +139,7 @@
                FontAttributes="Bold"
                BackgroundColor="White"
                TextColor="{StaticResource Primary}"/>
-        <BoxView Color="#50512DB4"
+        <BoxView Color="#f1eeF9"
                  BackgroundColor="Transparent"
                  CornerRadius="20,20,20,20"
                  Margin="10,10,10,10"
@@ -151,7 +151,7 @@
                Margin="20,20,20,20"
                MaxLength="200"
                Placeholder="Signalez d'autres dommages ici"
-               PlaceholderColor="White"
+               PlaceholderColor="LightGrey"
                TextColor="Black"/>
         <BoxView Color="White"
                  Grid.Row="6"

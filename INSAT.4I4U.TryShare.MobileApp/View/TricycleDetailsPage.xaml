@@ -20,7 +20,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <BoxView Color="White"
+            <BoxView Color="#f1eeF9"
                      Grid.Row="0"
                      Grid.Column="0"/>
             <Image Source="Resources/Images/bike.svg"
@@ -28,14 +28,15 @@
                    Grid.Column="0"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
-                   HeightRequest="80"
+                   HeightRequest="70"
                    Margin="0,0,0,0"/>
-            <BoxView Color="White"
+
+            <BoxView Color="#f1eeF9"
                      Grid.Row="0"
                      Grid.Column="1"/>
             <Label Text="Modèle 1"
                    FontAttributes="Bold"
-                   FontSize="28"
+                   FontSize="24"
                    TextColor="{StaticResource Primary}"
                    Grid.Row="0"
                    Grid.Column="1"
@@ -137,19 +138,14 @@
 
                 <Label Grid.Row="3"
                        Grid.Column="0"
-                       Margin="25,0,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Voir plus de commentaires"
-                                  TextColor="Black"
-                                  TextDecorations="Underline">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="GoToMoreComments_Tapped"
-                                                          NumberOfTapsRequired="1"/>
-                                </Span.GestureRecognizers>
-                            </Span>
-                        </FormattedString>
-                    </Label.FormattedText>
+                       Margin="25,0,0,0"
+                       Text="Voir plus de commentaires"
+                       TextColor="Black"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="GoToMoreCommentsTapped"
+                                              NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
                 </Label>
 
             </Grid>
@@ -168,7 +164,7 @@
                    TextDecorations="Underline"
                    FontSize="16">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="GoToMoreComments_Tapped"
+                    <TapGestureRecognizer Tapped="OnTermsAndConditionsTapped"
                                           NumberOfTapsRequired="1"/>
                 </Label.GestureRecognizers>
             </Label>

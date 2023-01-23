@@ -6,11 +6,11 @@
              x:DataType="viewmodel:CommentViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.CommentPage">
 
-    <Grid
-        ColumnDefinitions="*,*"
-        ColumnSpacing="5"
-        RowDefinitions="*,Auto"
-        RowSpacing="0">
+    <Grid BackgroundColor="White"
+          ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto"
+          RowSpacing="0">
         
         <CollectionView ItemsSource="{Binding Comments}"
                          SelectionMode="None"

@@ -62,7 +62,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
             IsBusy = true;
             await Shell.Current.GoToAsync(nameof(CommentPage), true, new Dictionary<string, object>
-            { {"tricycle", Tricycle}});
+            { {"tricycle", Tricycle} });
             IsBusy = false;
         }
 
