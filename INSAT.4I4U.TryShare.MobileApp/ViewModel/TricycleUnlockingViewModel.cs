@@ -28,6 +28,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             if (SelectedTricycle is null)
                 throw new InvalidOperationException("Tricycle should not be null");
 
+            // Set the Rating of the tricycle to book to the value of the RatingControl
+            SelectedTricycle.Rating = RatingControlValue;
+
             var result = await _bookingService.RequestTricycleBookingAsync(SelectedTricycle);
             if (!result)
             {
