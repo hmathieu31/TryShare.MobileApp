@@ -27,7 +27,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public TricycleUnlockingViewModel(IBookingService bookingService, PreferenceService preferenceService, IUserService userService)
         {
             this._bookingService = bookingService;
-            this._preferenceService = preferenceService;
             this._userService = userService;
         }
 
@@ -48,7 +47,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             }
             else
             {
-                _preferenceService.StoreBookedTricycle(await _userService.GetUserIdentityAsync(), Tricycle);
+                _userService.MapTricycleToUser(SelectedTricycle, await _userService.GetUserIdentityAsync());
                 await Shell.Current.Navigation.PopToRootAsync();
                 WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
 

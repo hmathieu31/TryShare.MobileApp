@@ -34,41 +34,5 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             IsActivityIndicatorRunning= false;
         }
 
-
-        [RelayCommand]
-        async Task GetCommentsAsync()
-        {
-            IsActivityIndicatorRunning = true;
-            if (IsBusy)
-                return;
-
-            try
-            {
-                IsBusy = true;
-
-                var comments = await _commentService.GetCommentAsync();
-
-                if (Comments.Count != 0)
-                {
-                    Comments.Clear();
-                }
-
-                foreach (var comment in comments)
-                {
-                    Comments.Add(comment);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Unable to get comment: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-            IsActivityIndicatorRunning = false;
-        }
     }
 }

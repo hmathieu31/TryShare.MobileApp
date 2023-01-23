@@ -1,16 +1,19 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers;
 using INSAT._4I4U.TryShare.MobileApp.Model;
+using INSAT._4I4U.TryShare.MobileApp.Services.Preference;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 {
     public class UserService : IUserService
     {
         private readonly MsalHelper _msalHelper;
+        private readonly PreferenceService _preferenceService;
 
-        public UserService(MsalHelper msalHelper)
+        public UserService(MsalHelper msalHelper, PreferenceService preferenceService)
         {
-                this._msalHelper = msalHelper;
+            this._msalHelper = msalHelper;
+            this._preferenceService = preferenceService;
         }
 
         public Task EditUserProfile()
@@ -42,6 +45,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
         public void MapTricycleToUser(Tricycle tricycle, UserIdentity userIdentity)
         {
             userIdentity.BookedTricycle = tricycle;
+            _preferenceService.StoreBookedTricycle(userIdentity, tricycle);
         }
 
         public Task SignInUserAsync()

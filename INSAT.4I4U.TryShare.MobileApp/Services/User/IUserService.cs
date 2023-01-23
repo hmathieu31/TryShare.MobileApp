@@ -20,5 +20,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 
         public Task EditUserProfile();
 
+        public void MapTricycleToUser(Tricycle tricycle, UserIdentity userIdentity);
     }
 }

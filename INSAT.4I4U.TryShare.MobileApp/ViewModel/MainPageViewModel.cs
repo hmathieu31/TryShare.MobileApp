@@ -176,7 +176,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             if (await _userLocationService.IsUserInReturnZoneAsync(ReturnZones.First()))
             {
                 await Shell.Current.GoToAsync(nameof(EndOfBookingPage), true, new Dictionary<string, object>
-            { {"Tricycle", tricycle}});
+                { {"Tricycle", tricycle}});
                 IsPopupVisible = false;
             }
             else
