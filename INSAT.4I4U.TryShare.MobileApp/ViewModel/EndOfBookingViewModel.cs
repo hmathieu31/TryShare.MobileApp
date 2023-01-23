@@ -1,7 +1,6 @@
-using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Model;
+using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
-using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
@@ -11,19 +10,21 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     {
         public ObservableCollection<Comment> Comments { get; } = new();
 
-        readonly ICommentService commentService;
+        readonly ICommentService _commentService;
+        readonly IBookingService _bookingService;
 
         [ObservableProperty]
         Tricycle? selectedTricycle;
-
-        public EndOfBookingViewModel(ICommentService commentService)
+        public EndOfBookingViewModel(ICommentService commentService, IBookingService bookingService)
         {
-            this.commentService = commentService;
+            this._commentService = commentService;
+            this._bookingService = bookingService;
         }
 
         [RelayCommand]
         public async Task GoToMainPageAsync()
         {
+            await _bookingService.RequestEndOfBookingAsync(SelectedTricycle);
             await Shell.Current.Navigation.PopToRootAsync();
         }
 
@@ -38,7 +39,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             {
                 IsBusy = true;
 
-                var comments = await commentService.GetCommentAsync();
+                var comments = await _commentService.GetCommentAsync();
 
                 if (Comments.Count != 0)
                 {
