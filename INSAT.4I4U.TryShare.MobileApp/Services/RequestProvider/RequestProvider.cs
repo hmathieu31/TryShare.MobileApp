@@ -18,19 +18,19 @@ public class RequestProvider : IRequestProvider
         },
             LazyThreadSafetyMode.ExecutionAndPublication);
 
-    public async Task<TResult> GetAsync<TResult>(Uri uri, string token = "")
+    public async Task<TResult?> GetAsync<TResult>(Uri uri, string token = "")
     {
         HttpClient httpClient = GetOrCreateHttpClient(token);
         HttpResponseMessage response = await httpClient.GetAsync(uri).ConfigureAwait(false);
 
         await RequestProvider.HandleResponse(response).ConfigureAwait(false);
 
-        TResult result = await response.Content.ReadFromJsonAsync<TResult>();
+        var result = await response.Content.ReadFromJsonAsync<TResult?>();
 
         return result;
     }
 
-    public async Task<TResult> PostAsync<TResult>(Uri uri, TResult data, string token = "", string header = "", bool shouldReturnContent = true)
+    public async Task<TResult?> PostAsync<TResult>(Uri uri, TResult data, string token = "", string header = "", bool shouldReturnContent = false)
     {
         HttpClient httpClient = GetOrCreateHttpClient(token);
 
@@ -45,17 +45,17 @@ public class RequestProvider : IRequestProvider
 
         await RequestProvider.HandleResponse(response).ConfigureAwait(false);
 
-        TResult result = default;
+        TResult? result = default;
 
         if (shouldReturnContent)
         {
-            result = await response.Content.ReadFromJsonAsync<TResult>();
+            result = await response.Content.ReadFromJsonAsync<TResult?>();
         }
         
         return result;
     }
 
-    public async Task<TResult> PostAsync<TResult>(Uri uri, string data, string clientId, string clientSecret)
+    public async Task<TResult?> PostAsync<TResult>(Uri uri, string data, string clientId, string clientSecret)
     {
         HttpClient httpClient = GetOrCreateHttpClient(string.Empty);
 
@@ -67,14 +67,14 @@ public class RequestProvider : IRequestProvider
         var content = new StringContent(data);
         content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
         HttpResponseMessage response = await httpClient.PostAsync(uri, content).ConfigureAwait(false);
-
-        await RequestProvider.HandleResponse(response).ConfigureAwait(false);
-        TResult result = await response.Content.ReadFromJsonAsync<TResult>();
+        
+        await HandleResponse(response).ConfigureAwait(false);
+        var result = await response.Content.ReadFromJsonAsync<TResult?>();
 
         return result;
     }
 
-    public async Task<TResult> PutAsync<TResult>(Uri uri, TResult data, string token = "", string header = "")
+    public async Task<TResult?> PutAsync<TResult>(Uri uri, TResult data, string token = "", string header = "")
     {
         HttpClient httpClient = GetOrCreateHttpClient(token);
 
@@ -86,9 +86,9 @@ public class RequestProvider : IRequestProvider
         var content = new StringContent(JsonSerializer.Serialize(data));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         HttpResponseMessage response = await httpClient.PutAsync(uri, content).ConfigureAwait(false);
-
+        
         await RequestProvider.HandleResponse(response).ConfigureAwait(false);
-        TResult result = await response.Content.ReadFromJsonAsync<TResult>();
+        var result = await response.Content.ReadFromJsonAsync<TResult?>();
 
         return result;
     }

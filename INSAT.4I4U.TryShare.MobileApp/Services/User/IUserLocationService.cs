@@ -10,5 +10,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
     public interface IUserLocationService
     {
         public Task<double> CalculateDistanceFromTricycleAsync(Tricycle tricycle);
+
+        public Task<bool> IsUserInReturnZoneAsync(ReturnZone returnZone);
     }
 }

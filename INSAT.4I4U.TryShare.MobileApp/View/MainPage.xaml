@@ -9,7 +9,7 @@
              xmlns:behaviours="clr-namespace:INSAT._4I4U.TryShare.MobileApp.Behaviours"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="INSAT._4I4U.TryShare.MobileApp.View.MainPage"
-             Title="Accueil"
+             Title="TryShare"
              BackgroundColor="White">
 
 
@@ -73,18 +73,27 @@
         <Button ImageSource="Resources/Images/refreshicon.svg"
                 Command="{Binding GetTricyclesCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                BackgroundColor="White"
-                HeightRequest="40"
+                BackgroundColor="#FFFFFF"
+                Opacity="0.9"
+                BorderColor="Black"
+                HeightRequest="38"
+                WidthRequest="38"
                 VerticalOptions="Start"
-                HorizontalOptions="Center"
+                HorizontalOptions="End"
+                CornerRadius="1"
                 Style="{StaticResource ButtonOutline}"
-                Margin="0,10,0,0"/>
+                Margin="0,12,65,0">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                        Opacity="0.1"/>
+            </Button.Shadow>
+        </Button>
 
 
         <Button Text="Retourner"
-                Command="{Binding GoToPostBookingCommand}"
-                CommandParameter="{Binding SelectedTricycle}"
-                IsVisible="{Binding IsReturnable}"
+                Command="{Binding GoToEndOfBookingCommand}"
+                CommandParameter="{Binding BookedTricycle}"
+                IsVisible="{Binding IsReturnButtonVisible}"
                 FontAttributes="Bold"
                 TextColor="White"
                 BackgroundColor="MediumPurple"

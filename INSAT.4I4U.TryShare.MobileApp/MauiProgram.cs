@@ -9,6 +9,7 @@ using Microsoft.Maui.LifecycleEvents;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader;
 using CommunityToolkit.Maui;
+using INSAT._4I4U.TryShare.MobileApp.ViewModel;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -76,9 +77,9 @@ public static class MauiProgram
 			.AddSingleton<MainPageViewModel>()
 		    .AddTransient<TricycleDetailsViewModel>()
             .AddTransient<ProfileFlyoutViewModel>()
-		    .AddTransient<CommentViewModel>()
-            .AddTransient<EndOfBookingViewModel>()
-			.AddTransient<TricycleUnlockingViewModel>();
+		    .AddSingleton<CommentViewModel>()
+			.AddTransient<TricycleUnlockingViewModel>()
+            .AddTransient<EndOfBookingViewModel>();
         return builder;
     }
 

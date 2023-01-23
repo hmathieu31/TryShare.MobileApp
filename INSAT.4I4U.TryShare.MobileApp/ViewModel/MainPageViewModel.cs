@@ -4,14 +4,12 @@ using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
 using Microsoft.Maui.Maps;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
-using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using System.Threading.Tasks;
-using System.Threading;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -20,16 +18,17 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly ITricycleService _tricycleService;
         private readonly MsalHelper msal;
         private readonly IBookingService bookingService;
+        private readonly IUserLocationService _userLocationService;
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
-        public ObservableCollection<CircleZone> ReturnZones { get; } = new();
+        public ObservableCollection<ReturnZone> ReturnZones { get; } = new();
 
         [ObservableProperty]
         private bool isPopupVisible = false;
 
         [ObservableProperty]
-        private Tricycle selectedTricycle;
+        private Tricycle? selectedTricycle;
 
         [ObservableProperty]
         private bool isReturnable;
@@ -39,21 +38,30 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         private bool isMapReady;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsReturnButtonVisible))]
+        private Tricycle? bookedTricycle = new Tricycle { BatteryPercentage=44, Id=4,  Location=new Location(59,7.44)};
+        
+        public bool IsReturnButtonVisible => BookedTricycle is not null;
+
         public MainPageViewModel(ITricycleService tricycleService,
                                  MsalHelper msal,
-                                 IBookingService bookingService)
+                                 IBookingService bookingService, IUserLocationService userLocationService)
         {
             this._tricycleService = tricycleService;
             this.msal = msal;
             this.bookingService = bookingService;
+            this._userLocationService= userLocationService;
         }
 
-        static void ShowReturnZoneToast()
+
+        static void ShowReturnZoneToast( string message)
         {
 
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationTokenSource cancellationTokenSource = new();
 
-            string text = "La zone de retour du Tricyle apparait en rouge";
+            string text = message;
             ToastDuration duration = ToastDuration.Long;
             double fontSize = 20;
 
@@ -66,15 +74,20 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             ReturnZones.First().IsVisible = true;
         }
 
-        public void OnAppearing()
+        public async void OnNavigatedFrom(TricycleUnlockingPage tricycleUnlockingPage)
         {
+            await GetTricyclesAsync();
+        }
+        public async void OnAppearing()
+        {
+            await GetTricyclesAsync();
             SetReturnZones();
             _ = JustBookedCheckAsync();
             try
             {
                 WeakReferenceMessenger.Default.Register<MainPageViewModel, BookingCompletedMessage>(this, (r, m) =>
                 {
-                    ShowReturnZoneToast();
+                    ShowReturnZoneToast("La zone de retour du Tricyle apparait en rouge.");
                     ShowReturnZoneCircle();
                 });
             }
@@ -83,7 +96,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
                 Debug.WriteLine(ex);
             }
-
         }
 
         private void SetReturnZones()
@@ -91,10 +103,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             ReturnZones.Clear();
 
             // For current debug purposes
-            var toulouseRadius = new Distance(5000);
-            var toulouseCenter = new Location(43.599498414198386, 1.4372202194252555);
+            var toulouseRadius = new Distance(50000);
+            //var toulouseCenter = new Location(43.570565, 1.466504);//Toulouse
+            var toulouseCenter = new Location(59, 5.7);//Norvège
 
-            var toulouseReturnZone = new CircleZone
+            var toulouseReturnZone = new ReturnZone
             {
                 Center = toulouseCenter,
                 Radius = toulouseRadius,
@@ -121,9 +134,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         public async Task JustBookedCheckAsync()
         {
+            if (SelectedTricycle is null)
+                throw new InvalidOperationException("SelectedTricycle should not be null");
+
             if (await bookingService.CanTricycleBeBookedAsync(SelectedTricycle))
                 IsReturnable = false;
-            else IsReturnable = true;
+            else
+                IsReturnable = true;
         }
 
         [RelayCommand]
@@ -157,11 +174,20 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         }
 
         [RelayCommand]
-        async Task GoToPostBookingAsync(Tricycle tricycle)
+        async Task GoToEndOfBookingAsync(Tricycle tricycle)
         {
-            await Shell.Current.GoToAsync(nameof(EndOfBookingPage), true, new Dictionary<string, object>
+            if (await _userLocationService.IsUserInReturnZoneAsync(ReturnZones.First()))
+            {
+                await Shell.Current.GoToAsync(nameof(EndOfBookingPage), true, new Dictionary<string, object>
             { {"Tricycle", tricycle}});
-            IsPopupVisible = false;
+                IsPopupVisible = false;
+            }
+            else
+            {
+                ShowReturnZoneToast("Veuillez retourner le tricyle dans la zone de retour !");
+                ShowReturnZoneCircle();
+            }
+            
         }
 
         [RelayCommand]

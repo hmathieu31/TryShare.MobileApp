@@ -10,7 +10,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Exceptions
     [Serializable]
     public class ServiceAuthentificationException : Exception
     {
-        public string Content { get; }
+        public string? Content { get; }
 
         public ServiceAuthentificationException() : base()
         {

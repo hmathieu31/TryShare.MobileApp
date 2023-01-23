@@ -8,7 +8,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.View;
 public partial class MainPage : ContentPage
 {
     readonly MainPageViewModel _viewModel;
-    public IPublicClientApplication IdentityClient { get; set; }
+
     public MainPage(MainPageViewModel viewModel)
     {
         InitializeComponent();
@@ -20,7 +20,6 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
         _viewModel.OnAppearing();
-
     }
 
     private void PinMarkerClicked(object sender, PinClickedEventArgs e)
