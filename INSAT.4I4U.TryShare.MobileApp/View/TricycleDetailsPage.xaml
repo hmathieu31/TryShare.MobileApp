@@ -159,7 +159,7 @@
                    Grid.ColumnSpan="2"
                    VerticalOptions="Center"
                    Margin="25,0,0,0"
-                   Text="Conditions d'utilisation - POUR DEBUG: DIRIGE VERS LES COMMENTAIRES"
+                   Text="Conditions d'utilisation"
                    TextColor="DarkGrey"
                    TextDecorations="Underline"
                    FontSize="16">
