@@ -10,6 +10,7 @@ using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader;
 using CommunityToolkit.Maui;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel;
+using INSAT._4I4U.TryShare.MobileApp.Services.ReturnZones;
 
 namespace INSAT._4I4U.TryShare.MobileApp;
 
@@ -99,6 +100,7 @@ public static class MauiProgram
             .AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
             .AddSingleton<IUserService, UserService>()
             .AddSingleton<IBookingService, BookingService>()
+            .AddSingleton<IReturnZonesService, ReturnZonesService>()
             .AddSingleton<MsalHelper>();
         return builder;
     }

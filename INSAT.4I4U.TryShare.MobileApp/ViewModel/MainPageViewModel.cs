@@ -10,15 +10,16 @@ using INSAT._4I4U.TryShare.MobileApp.Message;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using INSAT._4I4U.TryShare.MobileApp.Services.User;
+using INSAT._4I4U.TryShare.MobileApp.Services.ReturnZones;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
     public partial class MainPageViewModel : BaseViewModel
     {
         readonly ITricycleService _tricycleService;
-        private readonly MsalHelper msal;
         private readonly IBookingService bookingService;
         private readonly IUserLocationService _userLocationService;
+        private readonly IReturnZonesService _returnZonesService;
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
@@ -39,21 +40,22 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsReturnButtonVisible))]
         private Tricycle? bookedTricycle;
-        
+
         public bool IsReturnButtonVisible => BookedTricycle is not null;
 
         public MainPageViewModel(ITricycleService tricycleService,
-                                 MsalHelper msal,
-                                 IBookingService bookingService, IUserLocationService userLocationService)
+                                 IBookingService bookingService,
+                                 IUserLocationService userLocationService,
+                                 IReturnZonesService returnZonesService)
         {
             this._tricycleService = tricycleService;
-            this.msal = msal;
             this.bookingService = bookingService;
-            this._userLocationService= userLocationService;
+            this._userLocationService = userLocationService;
+            this._returnZonesService = returnZonesService;
         }
 
 
-        static void ShowReturnZoneToast( string message)
+        static void ShowReturnZoneToast(string message)
         {
 
             CancellationTokenSource cancellationTokenSource = new();
@@ -80,9 +82,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
-            
-            SetReturnZones();
-            _ = JustBookedCheckAsync();
+            GetReturnZones();
+
+            await JustBookedCheckAsync();
             try
             {
                 WeakReferenceMessenger.Default.Register<MainPageViewModel, BookingCompletedMessage>(this, (r, m) =>
@@ -96,29 +98,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
                 Debug.WriteLine(ex);
             }
-        }
-
-        private void SetReturnZones()
-        {
-            ReturnZones.Clear();
-
-            // For current debug purposes
-            var toulouseRadius = new Distance(50000);
-            var toulouseCenter = new Location(43.570565, 1.466504);//Toulouse
-            //var toulouseCenter = new Location(59, 5.7);//Norvège
-
-            var toulouseReturnZone = new ReturnZone
-            {
-                Center = toulouseCenter,
-                Radius = toulouseRadius,
-                FillColor = Color.FromRgba(0, 0, 255, 0.2),
-                StrokeColor = Color.FromRgba(0, 0, 255, 0.5),
-                StrokeWidth = 2,
-                IsVisible = true,
-            };
-
-            ReturnZones.Add(toulouseReturnZone);
-            IsMapReady = true;
         }
 
         /// <summary>
@@ -152,6 +131,22 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                 IsReturnable = false;
             else
                 IsReturnable = true;
+        }
+
+        void GetReturnZones()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+            var list = _returnZonesService.GetAllReturnZones();
+
+            if (ReturnZones.Count != 0)
+                ReturnZones.Clear();
+
+            foreach (var returnZone in list)
+                ReturnZones.Add(returnZone);
+            IsBusy = false;
         }
 
         [RelayCommand]
@@ -198,7 +193,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                 ShowReturnZoneToast("Veuillez retourner le tricyle dans la zone de retour !");
                 ShowReturnZoneCircle();
             }
-            
+
         }
 
         [RelayCommand]
