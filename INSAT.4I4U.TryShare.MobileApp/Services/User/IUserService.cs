@@ -16,8 +16,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 
         public Task<UserIdentity> GetUserIdentityAsync();
 
-        public Task SignInUserAsync();
-
         public Task SignOutUserAsync();
 
         public Task EditUserProfile();
