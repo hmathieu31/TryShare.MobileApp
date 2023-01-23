@@ -41,7 +41,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsReturnButtonVisible))]
-        private Tricycle? bookedTricycle = new Tricycle { BatteryPercentage=44, Id=4,  Location=new Location(59,7.44)};
+        private Tricycle? bookedTricycle;
         
         public bool IsReturnButtonVisible => BookedTricycle is not null;
 
@@ -194,14 +194,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         async Task GoToDetailsAsync(Tricycle tricycle)
         {
             await Shell.Current.GoToAsync(nameof(TricycleDetailsPage), true, new Dictionary<string, object>
-                { {"Tricycle", tricycle } });
-            IsPopupVisible = false;
-        }
-
-        [RelayCommand]
-        async Task GoToEndOfBookingAsync(Tricycle tricycle)
-        {
-            await Shell.Current.GoToAsync(nameof(EndOfBookingPage), true, new Dictionary<string, object>
                 { {"Tricycle", tricycle } });
             IsPopupVisible = false;
         }
