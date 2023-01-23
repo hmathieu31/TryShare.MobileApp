@@ -4,7 +4,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
 {
     /// <summary>
     /// TODO
-    /// This is a mock service for the tricycle service.
+    /// This is a mock service for the selectedTricycle service.
     /// </summary>
     public class TricycleMockService : ITricycleService
     {
