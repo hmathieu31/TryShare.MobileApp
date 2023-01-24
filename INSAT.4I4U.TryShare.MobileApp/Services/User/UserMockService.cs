@@ -24,6 +24,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             return true;
         }
 
+        public void MapTricycleToUser(Tricycle tricycle, UserIdentity userIdentity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task SignInUserAsync()
         {
             throw new NotImplementedException();
