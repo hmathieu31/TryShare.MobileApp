@@ -42,10 +42,23 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             return true;
         }
 
-        public void MapTricycleToUser(Tricycle tricycle, UserIdentity userIdentity)
+        public void SetTricycleToUser(Tricycle tricycle, UserIdentity userIdentity)
         {
             userIdentity.BookedTricycle = tricycle;
             _preferenceService.StoreBookedTricycle(userIdentity, tricycle);
+        }
+
+        public async Task<Tricycle> GetTricycleFromUserAsync()
+        {
+            var userIdentity = await GetUserIdentityAsync();
+            var tricycle = await _preferenceService.GetBookedTricycleAsync(userIdentity);
+            return tricycle;
+        }
+        
+        public void RemoveTricycleToUser(UserIdentity userIdentity)
+        {
+            userIdentity.BookedTricycle = null;
+            _preferenceService.RemoveBookedTricycle(userIdentity);
         }
 
         public Task SignInUserAsync()

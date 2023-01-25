@@ -79,13 +79,17 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
-
+            BookedTricycle = await _userService.GetTricycleFromUserAsync();
         }
         
         public async void OnAppearing()
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
+            BookedTricycle = await _userService.GetTricycleFromUserAsync();
+            
+            SetReturnZones();
+            _ = JustBookedCheckAsync();
             GetReturnZones();
 
             try

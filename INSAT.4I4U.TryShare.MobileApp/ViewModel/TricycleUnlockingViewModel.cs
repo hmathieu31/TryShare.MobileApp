@@ -47,7 +47,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             }
             else
             {
-                _userService.MapTricycleToUser(SelectedTricycle, await _userService.GetUserIdentityAsync());
+                _userService.SetTricycleToUser(SelectedTricycle, await _userService.GetUserIdentityAsync());
                 await Shell.Current.Navigation.PopToRootAsync();
                 WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
 

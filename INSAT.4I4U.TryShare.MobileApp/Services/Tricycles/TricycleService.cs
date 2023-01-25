@@ -12,7 +12,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
     public class TricycleService : ITricycleService
     {
         private readonly IRequestProvider _requestProvider;
-        private const string apiUrlTricycle = "api/Tricycles";
+        private const string apiUrlTricycles = "api/Tricycles";
         private static bool IsConnectedInternet => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
         public TricycleService(IRequestProvider requestProvider)
@@ -29,7 +29,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
         {
             if (IsConnectedInternet)
             {
-                var uri = UriHelper.CombineUri(GlobalSettings.DefaultEndpoint, $"{apiUrlTricycle}");
+                var uri = UriHelper.CombineUri(GlobalSettings.DefaultEndpoint, $"{apiUrlTricycles}");
 
                 var dtos =  await _requestProvider.GetAsync<List<TricycleDto>>(uri);
                 if (dtos is null)
@@ -43,6 +43,27 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
                     }
                 }
                 return dtos.Select(dto => dto.ToModel()).ToList();
+            }
+            else
+            {
+                throw new NotImplementedException("Offline functionality not implemented");
+            }
+        }
+
+        /// <summary>
+        /// Gets a tricycle asynchronously.
+        /// </summary>
+        /// <returns>A tricycle if the client is connected to the Internet</returns>
+        /// <exception cref="NotImplementedException">Offline functionality not implemented</exception>
+        public async Task<Tricycle?> GetTricycleByIdAsync(int id)
+        {
+            if (IsConnectedInternet)
+            {
+                var uri = UriHelper.CombineUri(GlobalSettings.DefaultEndpoint, $"{apiUrlTricycles}/{id}");
+
+                var dto = await _requestProvider.GetAsync<TricycleDto>(uri);
+
+                return dto?.ToModel();
             }
             else
             {

@@ -14,6 +14,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             throw new NotImplementedException();
         }
 
+        public Task<Tricycle> GetTricycleFromUserAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<UserIdentity> GetUserIdentityAsync()
         {
             throw new NotImplementedException();
@@ -24,7 +29,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             return true;
         }
 
-        public void MapTricycleToUser(Tricycle tricycle, UserIdentity userIdentity)
+        public void RemoveTricycleToUser(UserIdentity userIdentity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTricycleToUser(Tricycle tricycle, UserIdentity userIdentity)
         {
             throw new NotImplementedException();
         }

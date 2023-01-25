@@ -17,6 +17,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
             tricycleList.Add(new Model.Tricycle { Id = 000002, Location = new Location(43.53, 1.52), BatteryPercentage = 12 });
         }
 
+        public Task<Tricycle?> GetTricycleByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Model.Tricycle>> GetTricyclesAsync()
         {
             return Task.FromResult(tricycleList);

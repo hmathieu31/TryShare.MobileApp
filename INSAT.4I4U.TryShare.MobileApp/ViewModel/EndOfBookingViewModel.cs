@@ -1,6 +1,7 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 using Microsoft.Maui.Layouts;
 
@@ -11,18 +12,19 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     {
         public ObservableCollection<Comment> Comments { get; } = new();
 
-        readonly ICommentService _commentService;
-        readonly IBookingService _bookingService;
+        private readonly IBookingService _bookingService;
+        private readonly IUserService _userService;
 
         [ObservableProperty]
         Tricycle? selectedTricycle;
 
         [ObservableProperty]
         bool isActivityIndicatorRunning = false;
-        public EndOfBookingViewModel(ICommentService commentService, IBookingService bookingService)
+
+        public EndOfBookingViewModel(IBookingService bookingService, IUserService userService)
         {
-            this._commentService = commentService;
             this._bookingService = bookingService;
+            this._userService = userService;
         }
 
         [RelayCommand]
@@ -30,6 +32,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             IsActivityIndicatorRunning= true;
             await _bookingService.RequestEndOfBookingAsync(SelectedTricycle);
+            _userService.RemoveTricycleToUser(SelectedTricycle, await _userService.GetUserIdentityAsync());
             await Shell.Current.Navigation.PopToRootAsync();
             IsActivityIndicatorRunning= false;
         }
