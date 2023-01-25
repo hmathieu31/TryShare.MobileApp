@@ -76,12 +76,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\bicyclette %281%29.png" />
 	  <MauiImage Remove="Resources\Images\Vector.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\battery.svg" />
 	  <None Remove="Resources\Images\bicycle.svg" />
+	  <None Remove="Resources\Images\bicyclette %281%29.png" />
+	  <None Remove="Resources\Images\bicyclette.png" />
 	  <None Remove="Resources\Images\bike.svg" />
 	  <None Remove="Resources\Images\co2.svg" />
 	  <None Remove="Resources\Images\flame.svg" />
