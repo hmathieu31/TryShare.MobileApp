@@ -17,6 +17,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         int ratingControlValue;
 
+        [ObservableProperty]
+        bool isActivityIndicatorRunning = false;
         public TricycleUnlockingViewModel(IBookingService bookingService)
         {
             _bookingService = bookingService;
@@ -25,6 +27,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         public async Task BookAndGoToMainPageAsync()
         {
+            IsActivityIndicatorRunning = true;
             if (SelectedTricycle is null)
                 throw new InvalidOperationException("Tricycle should not be null");
 
@@ -38,9 +41,12 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             }
             else
             {
+
                 await Shell.Current.Navigation.PopToRootAsync();
                 WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
+
             }
+            IsActivityIndicatorRunning = false;
         }
     }
 }
