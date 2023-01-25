@@ -96,12 +96,11 @@ public static class MauiProgram
             .AddSingleton<ITricycleService, TricycleService>()
             .AddSingleton<IRequestProvider, RequestProvider>()
             .AddSingleton<ICommentService, CommentMockService>()
-            .AddSingleton<IRequestProvider, RequestProvider>()
             .AddSingleton<IUserLocationService, UserLocationService>()
             .AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
             .AddSingleton<IUserService, UserService>()
             .AddSingleton<IBookingService, BookingService>()
-            .AddSingleton<PreferenceService>();
+            .AddSingleton<PreferenceService>()
             .AddSingleton<IReturnZonesService, ReturnZonesService>()
             .AddSingleton<MsalHelper>();
         return builder;

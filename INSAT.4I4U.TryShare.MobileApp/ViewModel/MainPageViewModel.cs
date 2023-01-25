@@ -2,9 +2,6 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-using Microsoft.Maui.Maps;
-using INSAT._4I4U.TryShare.MobileApp.Helpers;
-using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using CommunityToolkit.Maui.Alerts;
@@ -41,16 +38,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public bool IsReturnButtonVisible => BookedTricycle is not null;
 
         public MainPageViewModel(ITricycleService tricycleService,
-                                 MsalHelper msal,
-                                 IBookingService bookingService, 
                                  IUserLocationService userLocationService,
+                                 IReturnZonesService returnZonesService,
                                  IUserService userService)
-                                 IBookingService bookingService,
-                                 IReturnZonesService returnZonesService)
         {
             this._tricycleService = tricycleService;
-            this.msal = msal;
-            this.bookingService = bookingService;
             this._userLocationService = userLocationService;
             this._userService = userService;
             this._returnZonesService = returnZonesService;
@@ -86,10 +78,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
-            BookedTricycle = await _userService.GetTricycleFromUserAsync();
-            
-            SetReturnZones();
-            _ = JustBookedCheckAsync();
+            BookedTricycle = await _userService.GetTricycleFromUserAsync();            
             GetReturnZones();
 
             try
