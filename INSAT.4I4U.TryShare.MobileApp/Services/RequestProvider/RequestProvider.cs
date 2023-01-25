@@ -23,8 +23,14 @@ public class RequestProvider : IRequestProvider
         HttpClient httpClient = GetOrCreateHttpClient(token);
         HttpResponseMessage response = await httpClient.GetAsync(uri).ConfigureAwait(false);
 
-        await RequestProvider.HandleResponse(response).ConfigureAwait(false);
-
+        try
+        {
+            await RequestProvider.HandleResponse(response).ConfigureAwait(false);
+        }
+        catch (ArgumentNullException)
+        {
+            return default;
+        }
         var result = await response.Content.ReadFromJsonAsync<TResult?>();
 
         return result;
@@ -144,6 +150,10 @@ public class RequestProvider : IRequestProvider
                     response.StatusCode == HttpStatusCode.Unauthorized)
             {
                 throw new ServiceAuthentificationException(content);
+            }
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new ArgumentNullException(nameof(response));
             }
 
             throw new HttpRequestExceptionEx(response.StatusCode, content);

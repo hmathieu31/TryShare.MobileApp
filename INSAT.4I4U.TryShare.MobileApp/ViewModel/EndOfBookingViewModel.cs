@@ -32,7 +32,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             IsActivityIndicatorRunning= true;
             await _bookingService.RequestEndOfBookingAsync(SelectedTricycle);
-            _userService.RemoveTricycleToUser(SelectedTricycle, await _userService.GetUserIdentityAsync());
+            _userService.RemoveTricycleToUser(await _userService.GetUserIdentityAsync());
             await Shell.Current.Navigation.PopToRootAsync();
             IsActivityIndicatorRunning= false;
         }
