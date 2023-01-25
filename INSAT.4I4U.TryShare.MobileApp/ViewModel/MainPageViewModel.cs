@@ -31,9 +31,6 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         private Tricycle? selectedTricycle;
 
         [ObservableProperty]
-        private bool isReturnable;
-
-        [ObservableProperty]
         private bool isMapReady;
 
         [ObservableProperty]

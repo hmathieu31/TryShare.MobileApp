@@ -93,7 +93,7 @@
         <Button Text="Retourner"
                 Command="{Binding GoToEndOfBookingCommand}"
                 CommandParameter="{Binding BookedTricycle}"
-                IsVisible="True"
+                IsVisible="{Binding IsReturnButtonVisible}"
                 FontAttributes="Bold"
                 TextColor="White"
                 BackgroundColor="MediumPurple"
@@ -104,19 +104,6 @@
                 HorizontalOptions="Center"
                 Margin="0,10,0,0"/>
 
-        <!--<Button Text="Debug"
-                Command="{Binding GoToEndOfBookingCommand}"
-                IsVisible="{Binding IsNotBusy}"
-                FontAttributes="Bold"
-                TextColor="White"
-                BackgroundColor="#512DB4"
-                WidthRequest="300"
-                HeightRequest="60"
-                FontSize="22"
-                VerticalOptions="End"
-                HorizontalOptions="Center"
-                />-->
-        
         <Grid IsVisible= "{Binding IsPopupVisible}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
