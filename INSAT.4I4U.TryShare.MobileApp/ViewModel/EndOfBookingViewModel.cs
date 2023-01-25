@@ -2,6 +2,7 @@ using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
+using Microsoft.Maui.Layouts;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
@@ -15,6 +16,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         Tricycle? selectedTricycle;
+
+        [ObservableProperty]
+        bool isActivityIndicatorRunning = false;
         public EndOfBookingViewModel(ICommentService commentService, IBookingService bookingService)
         {
             this._commentService = commentService;
@@ -24,14 +28,17 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         public async Task GoToMainPageAsync()
         {
+            IsActivityIndicatorRunning= true;
             await _bookingService.RequestEndOfBookingAsync(SelectedTricycle);
             await Shell.Current.Navigation.PopToRootAsync();
+            IsActivityIndicatorRunning= false;
         }
 
 
         [RelayCommand]
         async Task GetCommentsAsync()
         {
+            IsActivityIndicatorRunning = true;
             if (IsBusy)
                 return;
 
@@ -61,6 +68,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             {
                 IsBusy = false;
             }
+            IsActivityIndicatorRunning = false;
         }
     }
 }

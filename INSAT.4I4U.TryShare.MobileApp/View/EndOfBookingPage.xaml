@@ -149,7 +149,6 @@
             </controls:Rating.Shadow>
         </controls:Rating>
 
-        
         <BoxView Color="White"
                  BackgroundColor="White"
                  Grid.Row="4"
@@ -199,7 +198,14 @@
                         Radius="20"/>
             </Button.Shadow>
         </Button>
-
+        
+        <ActivityIndicator IsRunning="{Binding IsActivityIndicatorRunning}"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Start"
+                               Margin="0,10,0,0"
+                               />
     </Grid>
 
 </ContentPage>

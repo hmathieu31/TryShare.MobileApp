@@ -24,6 +24,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [ObservableProperty]
         private Tricycle selectedTricycle;
 
+        [ObservableProperty]
+        bool isActivityIndicatorRunning = false;
+
         /// <summary>
         /// Postal address of the selectedTricycle following the format "street, city"
         /// </summary>
@@ -72,6 +75,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         [RelayCommand]
         public async Task GoToRatingPageAsync(Tricycle tricycle)
         {
+            IsActivityIndicatorRunning = true;
             const int distanceMax = 10;
             if (_userService.IsConnected && _userService.IsAuthenticated())
             {
@@ -80,13 +84,16 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
                     var distance = await _userLocationService.CalculateDistanceFromTricycleAsync(tricycle);
                     if (distance < distanceMax)
                     {
+                        
                         await Shell.Current.GoToAsync(nameof(TricycleUnlockingPage), true, new Dictionary<string, object>
                         { {"Tricycle", tricycle } });
+                        
                     }
                     else
                     {
                         OnDetailsTryToUnlockTooFarFromTheVehicule.Invoke();
                     }
+                    IsActivityIndicatorRunning = false;
                 }
                 catch (PermissionException)
                 {
