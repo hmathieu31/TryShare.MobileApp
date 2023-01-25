@@ -1,6 +1,7 @@
 ﻿using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.Infrastructure.Mappers;
 using INSAT._4I4U.TryShare.MobileApp.Model;
+using Microsoft.Identity.Client;
 
 namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 {
@@ -37,9 +38,9 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
             }
         }
 
-        public Task SignOutUserAsync()
+        public async Task SignOutUserAsync()
         {
-            throw new NotImplementedException();
+            await _msalHelper.SignOutUserAsync();
         }
     }
 }

@@ -96,5 +96,18 @@ namespace INSAT._4I4U.TryShare.MobileApp.Helpers
             // If the device does not support UI
             throw new NotSupportedException("Device needs to support UI to acquire token interactively");
         }
-    }
+
+        public async Task<IAccount?> FetchSignedInUserFromCache()
+        {
+            // Get accounts from cache
+            IEnumerable<IAccount> accounts = await this.PublicClientApplication.GetAccountsAsync();
+            return accounts.FirstOrDefault();
+        }
+
+        public async Task SignOutUserAsync()
+        {
+            var existingUser = await FetchSignedInUserFromCache().ConfigureAwait(false);
+            await this.PublicClientApplication.RemoveAsync(existingUser).ConfigureAwait(false);
+        }
+    }    
 }

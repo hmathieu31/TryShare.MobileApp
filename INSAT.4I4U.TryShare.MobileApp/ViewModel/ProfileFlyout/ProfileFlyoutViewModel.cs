@@ -1,4 +1,5 @@
-﻿using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
+﻿using INSAT._4I4U.TryShare.MobileApp.Services.User;
+using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader
 {
     public partial class ProfileFlyoutViewModel : BaseViewModel
     {
-        public ProfileFlyoutViewModel()
+        private readonly IUserService _userService;
+        public ProfileFlyoutViewModel(IUserService userService)
         {
+            this._userService = userService;
         }
         
         [ObservableProperty]
@@ -19,10 +22,31 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader
         [ObservableProperty]
         string connectionButtonText = "Connexion";
 
+        private void SetConnectionButtonText(bool isAuthenticated)
+        {
+            if (isAuthenticated)
+            {
+                ConnectionButtonText = "Déconnexion";
+            }
+            else
+            {
+                ConnectionButtonText = "Connexion";
+            }
+        }
+
         [RelayCommand]
         Task LogInOutAsync()
         {
-            ConnectionButtonText = "Connection";
+            var isAuthenticated = _userService.IsAuthenticated();
+            if (isAuthenticated)
+            {
+                _userService.SignOutUserAsync();
+            }
+            else
+            {
+                _userService.GetUserIdentityAsync();
+            }
+            SetConnectionButtonText(isAuthenticated);
             return Task.CompletedTask;
         }
     }

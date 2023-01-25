@@ -2,7 +2,6 @@ using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using INSAT._4I4U.TryShare.MobileApp.Services.Comments;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
-using Microsoft.Maui.Layouts;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 {
