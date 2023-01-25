@@ -2,6 +2,8 @@
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
+using INSAT._4I4U.TryShare.MobileApp.Services.Preference;
+using INSAT._4I4U.TryShare.MobileApp.Services.User;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.Base;
 
 namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
@@ -10,6 +12,8 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
     public partial class TricycleUnlockingViewModel : BaseViewModel
     {
         private readonly IBookingService _bookingService;
+        private readonly IUserService _userService;
+        private readonly PreferenceService _preferenceService;
 
         [ObservableProperty]
         Tricycle? selectedTricycle;
@@ -19,9 +23,11 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
 
         [ObservableProperty]
         bool isActivityIndicatorRunning = false;
-        public TricycleUnlockingViewModel(IBookingService bookingService)
+
+        public TricycleUnlockingViewModel(IBookingService bookingService, PreferenceService preferenceService, IUserService userService)
         {
-            _bookingService = bookingService;
+            this._bookingService = bookingService;
+            this._userService = userService;
         }
 
         [RelayCommand]
@@ -41,7 +47,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             }
             else
             {
-
+                _userService.SetTricycleToUser(SelectedTricycle, await _userService.GetUserIdentityAsync());
                 await Shell.Current.Navigation.PopToRootAsync();
                 WeakReferenceMessenger.Default.Send(new BookingCompletedMessage());
 

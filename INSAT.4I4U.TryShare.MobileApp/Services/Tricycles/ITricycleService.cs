@@ -18,6 +18,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.Tricycles
         /// <returns>A List of Tricycles if the client is connected to the Internet</returns>
         /// <exception cref="NotImplementedException">Offline functionality not implemented</exception>
         public Task<List<Tricycle>> GetTricyclesAsync();
+        public Task<Tricycle?> GetTricycleByIdAsync(int id);
 
     }
 }

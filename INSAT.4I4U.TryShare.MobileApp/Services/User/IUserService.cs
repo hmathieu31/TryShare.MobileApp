@@ -20,5 +20,10 @@ namespace INSAT._4I4U.TryShare.MobileApp.Services.User
 
         public Task EditUserProfile();
 
+        public void SetTricycleToUser(Tricycle tricycle, UserIdentity userIdentity);
+
+        public void RemoveTricycleToUser(UserIdentity userIdentity);
+
+        public Task<Tricycle> GetTricycleFromUserAsync();
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.Maui.LifecycleEvents;
 using INSAT._4I4U.TryShare.MobileApp.Helpers;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel.ProfileFlyoutHeader;
 using CommunityToolkit.Maui;
+using INSAT._4I4U.TryShare.MobileApp.Services.Preference;
 using INSAT._4I4U.TryShare.MobileApp.ViewModel;
 using INSAT._4I4U.TryShare.MobileApp.Services.ReturnZones;
 
@@ -79,8 +80,8 @@ public static class MauiProgram
 		    .AddTransient<TricycleDetailsViewModel>()
             .AddTransient<ProfileFlyoutViewModel>()
 		    .AddSingleton<CommentViewModel>()
-			.AddTransient<TricycleUnlockingViewModel>()
-            .AddTransient<EndOfBookingViewModel>();
+            .AddTransient<EndOfBookingViewModel>()
+			.AddTransient<TricycleUnlockingViewModel>();
         return builder;
     }
 
@@ -95,11 +96,11 @@ public static class MauiProgram
             .AddSingleton<ITricycleService, TricycleService>()
             .AddSingleton<IRequestProvider, RequestProvider>()
             .AddSingleton<ICommentService, CommentMockService>()
-            .AddSingleton<IRequestProvider, RequestProvider>()
             .AddSingleton<IUserLocationService, UserLocationService>()
             .AddSingleton<IUserSubscriptionService, UserSubscriptionMockService>()
             .AddSingleton<IUserService, UserService>()
             .AddSingleton<IBookingService, BookingService>()
+            .AddSingleton<PreferenceService>()
             .AddSingleton<IReturnZonesService, ReturnZonesService>()
             .AddSingleton<MsalHelper>();
         return builder;

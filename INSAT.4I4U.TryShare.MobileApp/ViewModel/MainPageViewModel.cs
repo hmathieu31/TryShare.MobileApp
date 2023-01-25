@@ -2,9 +2,6 @@
 using INSAT._4I4U.TryShare.MobileApp.Model;
 using INSAT._4I4U.TryShare.MobileApp.View;
 using INSAT._4I4U.TryShare.MobileApp.Services.Tricycles;
-using Microsoft.Maui.Maps;
-using INSAT._4I4U.TryShare.MobileApp.Helpers;
-using INSAT._4I4U.TryShare.MobileApp.Services.Booking;
 using CommunityToolkit.Mvvm.Messaging;
 using INSAT._4I4U.TryShare.MobileApp.Message;
 using CommunityToolkit.Maui.Alerts;
@@ -19,6 +16,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         readonly ITricycleService _tricycleService;
         private readonly IUserLocationService _userLocationService;
         private readonly IReturnZonesService _returnZonesService;
+        private readonly IUserService _userService;
 
         public ObservableCollection<Tricycle> Tricycles { get; } = new();
 
@@ -40,12 +38,13 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         public bool IsReturnButtonVisible => BookedTricycle is not null;
 
         public MainPageViewModel(ITricycleService tricycleService,
-                                 IBookingService bookingService,
                                  IUserLocationService userLocationService,
-                                 IReturnZonesService returnZonesService)
+                                 IReturnZonesService returnZonesService,
+                                 IUserService userService)
         {
             this._tricycleService = tricycleService;
             this._userLocationService = userLocationService;
+            this._userService = userService;
             this._returnZonesService = returnZonesService;
         }
 
@@ -72,12 +71,14 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
+            BookedTricycle = await _userService.GetTricycleFromUserAsync();
         }
         
         public async void OnAppearing()
         {
             await GetTricyclesAsync();
             //TODO Instanciate bookedTricycle
+            BookedTricycle = await _userService.GetTricycleFromUserAsync();            
             GetReturnZones();
 
             try
@@ -176,7 +177,7 @@ namespace INSAT._4I4U.TryShare.MobileApp.ViewModel
             if (await _userLocationService.IsUserInReturnZoneAsync(ReturnZones.First()))
             {
                 await Shell.Current.GoToAsync(nameof(EndOfBookingPage), true, new Dictionary<string, object>
-            { {"Tricycle", tricycle}});
+                { {"Tricycle", tricycle}});
                 IsPopupVisible = false;
             }
             else
